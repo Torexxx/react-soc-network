@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -11,26 +14,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="861bdb38-3fa8-437d-bb83-d72b21bd83bb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Header/Header.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Header/Header.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Navbar/Navbar.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Navbar/Navbar.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Profile/MyPosts/MyPosts.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Profile/MyPosts/MyPosts.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Profile/MyPosts/Post/Post.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Profile/MyPosts/Post/Post.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Profile/Profile.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Profile/Profile.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Navbar/Navbar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Profile/MyPosts/MyPosts.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Profile/Profile.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/logo192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setupTests.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar/Navbar.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar/Navbar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar/Navbar.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Profile/MyPosts/MyPosts.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Profile/MyPosts/MyPosts.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/MyPosts/MyPosts.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Profile/MyPosts/Post/Post.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/MyPosts/Post/Post.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Profile/Profile.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Profile/Profile.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/Profile.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +45,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
+        <option value="tsconfig.json" />
         <option value="JavaScript File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -56,17 +62,42 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/Dialogs" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="ts.external.directory.path" value="C:\Users\Timofey\Desktop\Projects\react-socnetwork\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Timofey\Desktop\Projects\react-socnetwork\src\components" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Timofey\Desktop\Projects\react-socnetwork\src\components\Profile\MyPosts" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Timofey\Desktop\Projects\react-socnetwork\src\components\Dialogs" />
+      <recent name="C:\Users\Timofey\Desktop\Projects\react-socnetwork\src\components\Profile\MyPosts\Post" />
+      <recent name="C:\Users\Timofey\Desktop\Projects\react-socnetwork\src\redux" />
+      <recent name="C:\Users\Timofey\Desktop\Projects\react-socnetwork\src\components\Dialogs\Message" />
+      <recent name="C:\Users\Timofey\Desktop\Projects\react-socnetwork\src\components\Dialogs\DialogItem" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -80,7 +111,47 @@
       <workItem from="1599451165590" duration="1150000" />
       <workItem from="1599452330024" duration="1854000" />
       <workItem from="1599755490446" duration="3341000" />
-      <workItem from="1599803524154" duration="1324000" />
+      <workItem from="1599803524154" duration="4745000" />
+      <workItem from="1599841762244" duration="8464000" />
+      <workItem from="1599911275120" duration="876000" />
+      <workItem from="1599979735002" duration="2982000" />
+      <workItem from="1600053173832" duration="989000" />
+      <workItem from="1600093826756" duration="4878000" />
+      <workItem from="1600141323850" duration="5482000" />
+      <workItem from="1600527354522" duration="8101000" />
+      <workItem from="1600623269685" duration="1344000" />
+      <workItem from="1600625076075" duration="963000" />
+      <workItem from="1600796440196" duration="1919000" />
+      <workItem from="1600798380622" duration="363000" />
+      <workItem from="1600798768471" duration="1066000" />
+      <workItem from="1600799855918" duration="1791000" />
+      <workItem from="1600801667050" duration="396000" />
+      <workItem from="1600880283927" duration="660000" />
+      <workItem from="1600882475345" duration="1793000" />
+      <workItem from="1600884291925" duration="1673000" />
+      <workItem from="1600886103673" duration="972000" />
+      <workItem from="1600934621906" duration="1002000" />
+      <workItem from="1601034217710" duration="315000" />
+      <workItem from="1601034561096" duration="1155000" />
+      <workItem from="1601134627584" duration="8829000" />
+      <workItem from="1601829675815" duration="7300000" />
+      <workItem from="1601920832343" duration="4283000" />
+      <workItem from="1602010736224" duration="4400000" />
+      <workItem from="1602090754469" duration="2728000" />
+      <workItem from="1602172758862" duration="4646000" />
+      <workItem from="1602405852740" duration="298000" />
+      <workItem from="1602406176501" duration="2795000" />
+      <workItem from="1602431517407" duration="5690000" />
+      <workItem from="1602522058402" duration="5630000" />
+      <workItem from="1602693246261" duration="1013000" />
+      <workItem from="1602781642240" duration="4406000" />
+      <workItem from="1602934658863" duration="12035000" />
+      <workItem from="1603010262757" duration="8096000" />
+      <workItem from="1603029296998" duration="12492000" />
+      <workItem from="1603121855356" duration="5119000" />
+      <workItem from="1603210561023" duration="6000000" />
+      <workItem from="1603300125768" duration="2465000" />
+      <workItem from="1603385209998" duration="1282000" />
     </task>
     <servers />
   </component>
@@ -100,18 +171,61 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="396" y="165" key="#Notifications" timestamp="1599911323707">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="396" y="165" key="#Notifications/0.0.1280.680@0.0.1280.680" timestamp="1599911323707" />
     <state x="2610" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1599217685436">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2610" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599217685436" />
-    <state x="493" y="180" key="FileChooserDialogImpl" timestamp="1599758616673">
+    <state x="493" y="180" key="FileChooserDialogImpl" timestamp="1602735360261">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state x="493" y="180" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1602735360261" />
     <state x="2660" y="275" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599454258159" />
-    <state x="493" y="180" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1599758616673" />
+    <state x="493" y="180" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1600199266358" />
+    <state width="1899" height="55" key="GridCell.Tab.0.bottom" timestamp="1603302987624">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1259" height="142" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1603041236331" />
+    <state width="1899" height="55" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603302987624" />
+    <state width="1899" height="55" key="GridCell.Tab.0.center" timestamp="1603302987624">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1259" height="142" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1603041236331" />
+    <state width="1899" height="55" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603302987624" />
+    <state width="1899" height="55" key="GridCell.Tab.0.left" timestamp="1603302987624">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1259" height="142" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1603041236331" />
+    <state width="1899" height="55" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603302987624" />
+    <state width="1899" height="55" key="GridCell.Tab.0.right" timestamp="1603302987624">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1259" height="142" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1603041236331" />
+    <state width="1899" height="55" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603302987624" />
     <state x="2668" y="240" key="RollbackChangesDialog" timestamp="1599451992224">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2668" y="240" key="RollbackChangesDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599451992224" />
+    <state x="2012" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1603010780162">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2012" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603010780162" />
+    <state x="0" y="0" width="587" height="680" key="find.popup" timestamp="1601136258899">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="0" y="0" width="587" height="680" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1601136258899" />
+    <state x="2366" y="231" key="run.anything.popup" timestamp="1603033836014">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2366" y="231" key="run.anything.popup/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603033836014" />
+    <state x="297" y="151" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1602525844791" />
+    <state x="2375" y="2" width="1008" height="1037" key="search.everywhere.popup" timestamp="1603213959360">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2375" y="2" width="1008" height="1037" key="search.everywhere.popup/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603213959360" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1602014136698" />
   </component>
 </project>
