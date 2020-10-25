@@ -23,5 +23,3 @@ let mapDispatchToProps = (dispatch: Function) => {
 const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users);
 
 export default UsersContainer;
-
-

@@ -1,5 +1,3 @@
-import {CombinedState, Store} from "redux";
-
 export interface IPost {
     id: number
     message: string
@@ -41,7 +39,6 @@ export interface IState {
     };
 }
 
-
 export interface IUser {
     id: number
     photos: any
@@ -50,4 +47,5 @@ export interface IUser {
     status: string
     location: {city: string, country: string}
 }
+
 

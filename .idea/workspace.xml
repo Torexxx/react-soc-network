@@ -14,9 +14,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="861bdb38-3fa8-437d-bb83-d72b21bd83bb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/images/avatar.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Users/Users.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Users/Users.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Users/UsersContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Users/UsersContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/dialogs-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/dialogs-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/profile-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/profile-reducer.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/users-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/users-reducer.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -138,7 +141,7 @@
       <workItem from="1603385209998" duration="7937000" />
       <workItem from="1603470973652" duration="5810000" />
       <workItem from="1603560668216" duration="4091000" />
-      <workItem from="1603610582638" duration="4738000" />
+      <workItem from="1603610582638" duration="5040000" />
     </task>
     <task id="LOCAL-00001" summary="second commit">
       <created>1603387272233</created>
@@ -147,7 +150,21 @@
       <option name="project" value="LOCAL" />
       <updated>1603387272233</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Third comment">
+      <created>1603617593446</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1603617593446</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Unresolved files">
+      <created>1603617649004</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1603617649004</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,7 +184,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="second commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="second commit" />
+    <MESSAGE value="Third comment" />
+    <MESSAGE value="Unresolved files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Unresolved files" />
   </component>
   <component name="WindowStateProjectService">
     <state x="396" y="165" key="#Notifications" timestamp="1599911323707">
@@ -208,10 +227,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2668" y="240" key="RollbackChangesDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599451992224" />
-    <state x="2472" y="253" key="Vcs.Push.Dialog.v2" timestamp="1603393754112">
+    <state x="2472" y="253" key="Vcs.Push.Dialog.v2" timestamp="1603617650611">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2472" y="253" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603393754112" />
+    <state x="2472" y="253" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603617650611" />
     <state x="2012" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1603010780162">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
