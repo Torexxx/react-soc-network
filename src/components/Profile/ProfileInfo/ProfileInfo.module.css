@@ -1,0 +1,13 @@
+.profileInfoWrapper {
+    border: 1px solid paleturquoise;
+    /*padding: 100px 0 100px*/
+}
+
+.wallpaper {
+    background-image: url("https://wallpaperscave.ru/images/thumbs/wp-preview/800x500/18/03-02/games-fallout-4-24022.jpg");
+    background-size: contain;
+    height: 60vh;
+    background-repeat: no-repeat;
+
+
+}
