@@ -1,41 +1,34 @@
-const ADD_MESSAGE_TEXT =  'ADD_MESSAGE_TEXT';
-const UPDATE_NEW_MESSAGE_TEXT =  'UPDATE_NEW_MESSAGE_TEXT';
+import {IUser} from "../interfaces";
+const FOLLOWTOGGLE =  'FOLLOWTOGGLE';
+const SET_USERS =  'SET_USERS';
 
 let initialState = {
-    dialogs: [
-        {id: 1, name: 'Torex'},
-        {id: 2, name: 'Jetkokos'},
-        {id: 3, name: 'Dustman'},
-        {id: 4, name: 'Lue kang'},
-        {id: 5, name: 'Big Boss'},
-
-    ],
-    messages:  [
-        {id: 1, message: 'Hello'},
-        {id: 2, message: 'Hi'},
-        {id: 3, message: 'Blalla'},
-        {id: 4, message: 'Do yo like it'},
-        {id: 5, message: 'Ok!'},
-    ],
-    newMessageText: '',
+    users: [],
 };
 
-const dialogsReducer = (state = initialState, action: { type: string, payload?: { dialogText: string} }) => {
-    switch (action.type) {
-        case ADD_MESSAGE_TEXT :
-           let body = state.newMessageText;
-            return {...state, newMessageText: '',
-                    messages: [...state.messages, {id: Date.now(), message: body} ]};
+const usersReducer = (state = initialState, action: { type: string, payload?: { userId?: number, users: Array<IUser>} }) => {
 
-        case UPDATE_NEW_MESSAGE_TEXT:
-            return {...state, newMessageText: action.payload!.dialogText };
+    switch (action.type) {
+        case FOLLOWTOGGLE :
+            return {...state,
+                users: state.users.map( (user: IUser) => {
+                    if (user.id === action.payload!.userId) {
+                        return { ...user, followed: !user.followed }
+                    } else {
+                        return user
+                    }
+                })
+            }
+
+        case SET_USERS:
+            return {...state, users: [...state.users, ...action.payload!.users]}
 
         default:
             return state;
     }
 }
 
-export const addMessageTextAC = () => ({type: ADD_MESSAGE_TEXT});
-export const updateMessageTextAC = (text: string) => ({type: UPDATE_NEW_MESSAGE_TEXT, payload: { dialogText: text }});
+export const followToggleAC = (userId: number) => ({type: FOLLOWTOGGLE, payload: {userId}});
+export const setUsersAC = (users: IUser[]) => ({type: SET_USERS, payload: {users}});
 
-export default dialogsReducer;
+export default usersReducer;
