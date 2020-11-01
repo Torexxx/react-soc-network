@@ -36,6 +36,9 @@ export interface IState {
     };
     usersPage: {
         users: IUser[];
+        pageSize: number,
+        totalUsersCount: number,
+        currentPage: number,
     };
 }
 

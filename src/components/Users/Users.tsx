@@ -1,31 +1,69 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import userPhoto from '../../assets/images/avatar.png';
 import {IUser} from "../../interfaces";
+import style from './Users.module.css'
 
  interface IUsers {
      followToggle(userId: number): void
      setUsers(users: Array<IUser> ): void
      users: Array<IUser>
+     pageSize: number
+     totalUsersCount: number
+     currentPage: number
+     setPage(page: number) : void
+     setTotalUsersCount(usersCount: number): void
  }
 
-const Users: React.FunctionComponent<IUsers> = ({followToggle, setUsers, users}) => {
+const Users: React.FunctionComponent<IUsers> = ({
+        followToggle,
+        setUsers,
+        users,
+        pageSize,
+        totalUsersCount,
+        currentPage,
+        setPage,
+        setTotalUsersCount
+    }) => {
 
-    if (users.length === 0) {
-        fetch('https://social-network.samuraijs.com/api/1.0/users',
-            // {mode: 'no-cors', credentials: "omit"}
-            )
+    useEffect(() => {
+        console.log('useEffect')
+        fetch(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${currentPage}`)
             .then(response => response.json())
             .then(json => {
-                console.log(json.items)
                 setUsers(json.items)
+                setTotalUsersCount(json.totalCount)
             })
+            .catch((error)=> console.log(error + ' -- включи инет'))
+    },[ currentPage])
+
+     // const getUsers = () => {
+     //     if (users.length === 0) {
+     //         fetch('https://social-network.samuraijs.com/api/1.0/users',
+     //             // {mode: 'no-cors', credentials: "omit"}
+     //         )
+     //             .then(response => response.json())
+     //             .then(json => {
+     //                 console.log(json.items)
+     //                 setUsers(json.items)
+     //             })
+     //     }
+     // }
+
+    let pages = [];
+    let pagesCount = Math.ceil(totalUsersCount / pageSize);
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i);
+    }
+
+    const onPageChanged = (pageNumber: number) => {
+        setPage(pageNumber);
     }
 
     return (
-        <div>
-            {users.map((user: IUser) => {
+        <div className={style.users}>
+            {pages.map(p => <span key={p} onClick={() => onPageChanged(p)} className={style.currentPage}>{p}</span>)}
 
-                console.log(users)
+            {users.map((user: IUser) => {
                 return <div key={user.id}>
                     <div>
                         <div><img alt='avatar'
@@ -38,7 +76,6 @@ const Users: React.FunctionComponent<IUsers> = ({followToggle, setUsers, users})
 
                    {/*<div>{user.location.city}*/}
                    {/*    {user.location.country}</div>*/}
-
 
                     <div style={{marginBottom: '10px'}}><button className={'btn btn-primary'} onClick={() => followToggle(user.id)}>{user.followed ? 'unfollow' : 'follow'}</button></div>
                 </div>

@@ -1,0 +1,10 @@
+.users {
+    padding: 25px;
+}
+
+.currentPage {
+    font-weight: bold;
+    color: brown;
+    cursor: pointer;
+    padding: 5px;
+}
