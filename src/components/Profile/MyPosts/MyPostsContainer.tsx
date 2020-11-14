@@ -7,23 +7,23 @@ import {connect} from "react-redux";
 //     // posts: Array<IPost>
 //     // newPostText: string
 //     // dispatch(action: { type: string, payload?:{ newText: string } }): void
-//     store: Store<CombinedState<IState>>
+//     store2: Store<CombinedState<IState>>
 // }
 
 // const MyPostsContainer: React.FC = () => {
 //
 //   return ( <StoreContext.Consumer>
 //           {
-//               (store) => {
+//               (store2) => {
 //
-//                   let state = store.getState();
+//                   let state = store2.getState();
 //
 //                   const onAddPost = () => {
-//                       store.dispatch(addPostAC());
+//                       store2.dispatch(addPostAC());
 //                   }
 //
 //                   const onPostChange = (text: string) => {
-//                       store.dispatch(updateNewPostTextAC(text));
+//                       store2.dispatch(updateNewPostTextAC(text));
 //                   }
 //                   return (
 //                       <MyPosts addPost={ onAddPost }

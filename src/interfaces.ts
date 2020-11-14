@@ -22,6 +22,7 @@ export interface IState {
             likesCount: number;
         }[];
         newPostText: string;
+        profile: any;
     };
     dialogsPage: {
         dialogs: {
@@ -39,6 +40,7 @@ export interface IState {
         pageSize: number,
         totalUsersCount: number,
         currentPage: number,
+        isFetching: boolean,
     };
 }
 

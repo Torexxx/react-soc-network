@@ -4,22 +4,22 @@ import {IState} from "../../interfaces";
 import {connect} from "react-redux";
 
 // type DialogsProps = {
-//     store: Store<CombinedState<IState>>
+//     store2: Store<CombinedState<IState>>
 // }
 
 // const DialogsContainer: React.FunctionComponent = () => {
 //
 //     return <StoreContext.Consumer>
 //         {
-//             (store) => {
-//                 let state = store.getState().dialogsPage;
+//             (store2) => {
+//                 let state = store2.getState().dialogsPage;
 //
 //                 const onSendMessageClick = () => {
-//                     store.dispatch(addMessageTextAC());
+//                     store2.dispatch(addMessageTextAC());
 //                 }
 //
 //                 const onNewMessageChange = (body: string) => {
-//                     store.dispatch(updateMessageTextAC(body))
+//                     store2.dispatch(updateMessageTextAC(body))
 //                 }
 //                 return <Dialogs sendNewMessage ={ onSendMessageClick } updateNewMessageBody ={ onNewMessageChange } dialogsPage ={ state }/>
 //             }
