@@ -2,6 +2,7 @@ import {addMessageTextAC, updateMessageTextAC} from '../../redux/dialogs-reducer
 import Dialogs from "./Dialogs";
 import {IState} from "../../interfaces";
 import {connect} from "react-redux";
+import {withAuthRedirect} from "../hoc/withAuthRedirect";
 
 // type DialogsProps = {
 //     store2: Store<CombinedState<IState>>
@@ -32,7 +33,7 @@ import {connect} from "react-redux";
 
 let mapStateToProps = (state: IState) => {
     return {
-        dialogsPage: state.dialogsPage
+        dialogsPage: state.dialogsPage,
     }
 };
 
@@ -47,6 +48,6 @@ let mapDispatchToProps = (dispatch: any) => {
     }
 };
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(withAuthRedirect(Dialogs));
 
 export default DialogsContainer;

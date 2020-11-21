@@ -1,14 +1,15 @@
 import {connect} from "react-redux";
 import Users from "./Users";
 import {
-    followToggle,
-    hideLoader,
+    follow,
+    unfollow,
+    getUsers,
     setCurrentPage,
-    setTotalUsersCount,
-    setUsers,
-    showLoader
+    toggleFollowingInProgress
 } from "../../redux/users-reducer";
-import {IState, IUser} from "../../interfaces";
+
+import {IState} from "../../interfaces";
+import { withAuthRedirect } from "../hoc/withAuthRedirect";
 
 let mapStateToProps = (state: IState) => {
     return {
@@ -16,7 +17,8 @@ let mapStateToProps = (state: IState) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 
@@ -43,13 +45,14 @@ let mapStateToProps = (state: IState) => {
 //     }
 // }
 
+
+
 const UsersContainer = connect(mapStateToProps, {
-    followToggle,
-    setUsers,
+    follow,
+    unfollow,
+    getUsers,
     setCurrentPage,
-    setTotalUsersCount,
-    showLoader,
-    hideLoader,
+    toggleFollowingInProgress
 })(Users);
 
-export default UsersContainer;
+export default withAuthRedirect(UsersContainer);

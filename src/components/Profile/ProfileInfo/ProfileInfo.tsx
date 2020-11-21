@@ -1,14 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 import s from './ProfileInfo.module.css'
 import {Preloader} from "../../Preloader/Preloader";
+import ProfileStatus from "./ProfileStatus";
 
-const ProfileInfo = ( {profile}:any) => {
+const ProfileInfo = ( {profile, status, updateStatus }:any) => {
+    console.log(profile)
 
     if (!profile) {
         return <Preloader />
 
     } else {
-        console.log(1)
         return (
             <div className={s.profileInfoWrapper}>
                 <div className={s.wallpaper}>
@@ -18,8 +19,10 @@ const ProfileInfo = ( {profile}:any) => {
                 </div>
                 <div>
                     <img alt='' src={profile && profile.photos.large}/>
-                    ava + description!!
+
                     <div>{profile && profile.fullname}</div>
+
+                    <ProfileStatus status ={ status } updateStatus = {updateStatus} />
                 </div>
             </div>
         )

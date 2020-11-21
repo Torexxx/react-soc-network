@@ -7,3 +7,27 @@
     width: 20px;
 }
 
+.authUser {
+    color: #fff;
+    padding: 0 5px;
+
+}
+
+.login {
+    color: #fff;
+    padding: 0 5px;
+
+}
+ a {
+    color: #fff
+}
+ .loginBlock {
+     display: flex;
+     justify-content: flex-end;
+     padding: 0px 15px;
+ }
+
+ .loginAva {
+     display: flex;
+     padding-right: 15px;
+ }

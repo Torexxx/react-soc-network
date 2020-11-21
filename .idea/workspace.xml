@@ -14,21 +14,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="861bdb38-3fa8-437d-bb83-d72b21bd83bb" name="Default Changelist" comment="Pagination">
+      <change afterPath="$PROJECT_DIR$/src/api/api.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Header/HeaderContainer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Login/Login.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Profile/ProfileInfo/ProfileStatus.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/hoc/withAuthRedirect.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Dialogs/Dialogs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dialogs/Dialogs.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Dialogs/DialogsContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dialogs/DialogsContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Profile/MyPosts/MyPostsContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/MyPosts/MyPostsContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/Profile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Profile/ProfileInfo/ProfileInfo.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/ProfileInfo/ProfileInfo.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Profile/ProfileInfo/ProfileInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/ProfileInfo/ProfileInfo.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Users/Users.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Users/Users.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Users/UsersContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Users/UsersContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/profile-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/profile-reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/store.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/redux-store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/redux-store.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/users-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/users-reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +62,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/hooks" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/Header" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -66,18 +72,18 @@
     <property name="ts.external.directory.path" value="C:\Users\Timofey\Desktop\Projects\react-socnetwork\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Timofey\Desktop\Projects\react-socnetwork\src\hooks" />
-      <recent name="C:\Users\Timofey\Desktop\Projects\react-socnetwork\src\assets\images" />
-      <recent name="C:\Users\Timofey\Desktop\Projects\react-socnetwork\src\components\Users\img" />
-      <recent name="C:\Users\Timofey\Desktop\Projects\react-socnetwork\src\components\Users" />
-      <recent name="C:\Users\Timofey\Desktop\Projects\react-socnetwork\src\redux" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Timofey\Desktop\Projects\react-socnetwork\src\redux" />
       <recent name="C:\Users\Timofey\Desktop\Projects\react-socnetwork\src\components\Profile" />
       <recent name="C:\Users\Timofey\Desktop\Projects\react-socnetwork\src\components\Users" />
       <recent name="C:\Users\Timofey\Desktop\Projects\react-socnetwork\src\components\Profile\MyPosts" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Timofey\Desktop\Projects\react-socnetwork\src\components\Header" />
+      <recent name="C:\Users\Timofey\Desktop\Projects\react-socnetwork\src\redux" />
+      <recent name="C:\Users\Timofey\Desktop\Projects\react-socnetwork\src\hooks" />
+      <recent name="C:\Users\Timofey\Desktop\Projects\react-socnetwork\src\assets\images" />
+      <recent name="C:\Users\Timofey\Desktop\Projects\react-socnetwork\src\components\Users\img" />
     </key>
   </component>
   <component name="RunManager">
@@ -179,6 +185,43 @@
       <workItem from="1605197468432" duration="674000" />
       <workItem from="1605199275202" duration="1794000" />
       <workItem from="1605238477578" duration="2007000" />
+      <workItem from="1605333393371" duration="1779000" />
+      <workItem from="1605335212121" duration="1939000" />
+      <workItem from="1605337171407" duration="1199000" />
+      <workItem from="1605338993893" duration="1793000" />
+      <workItem from="1605340801563" duration="1435000" />
+      <workItem from="1605371196730" duration="1808000" />
+      <workItem from="1605373027023" duration="1488000" />
+      <workItem from="1605374837818" duration="1731000" />
+      <workItem from="1605416893197" duration="2009000" />
+      <workItem from="1605419070071" duration="1792000" />
+      <workItem from="1605420878176" duration="1793000" />
+      <workItem from="1605422686133" duration="2933000" />
+      <workItem from="1605425638037" duration="1914000" />
+      <workItem from="1605428813239" duration="744000" />
+      <workItem from="1605430738551" duration="1794000" />
+      <workItem from="1605432546652" duration="1182000" />
+      <workItem from="1605450764457" duration="1794000" />
+      <workItem from="1605452574708" duration="1126000" />
+      <workItem from="1605458306555" duration="1825000" />
+      <workItem from="1605460231105" duration="1119000" />
+      <workItem from="1605462099568" duration="1792000" />
+      <workItem from="1605463905588" duration="881000" />
+      <workItem from="1605536442762" duration="4653000" />
+      <workItem from="1605624905085" duration="323000" />
+      <workItem from="1605626596928" duration="1652000" />
+      <workItem from="1605628405753" duration="1122000" />
+      <workItem from="1605630835880" duration="1864000" />
+      <workItem from="1605632719432" duration="1611000" />
+      <workItem from="1605941933494" duration="1786000" />
+      <workItem from="1605943743819" duration="1880000" />
+      <workItem from="1605945642285" duration="1411000" />
+      <workItem from="1605962355952" duration="1268000" />
+      <workItem from="1605965988299" duration="2441000" />
+      <workItem from="1605968448000" duration="1792000" />
+      <workItem from="1605970257292" duration="1792000" />
+      <workItem from="1605972075885" duration="2103000" />
+      <workItem from="1605974305288" duration="1792000" />
     </task>
     <task id="LOCAL-00001" summary="second commit">
       <created>1603387272233</created>
@@ -215,7 +258,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604242961617</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="redux">
+      <created>1605333763894</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1605333763894</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,7 +289,8 @@
     <MESSAGE value="Unresolved files" />
     <MESSAGE value="refactoring" />
     <MESSAGE value="Pagination" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pagination" />
+    <MESSAGE value="redux" />
+    <option name="LAST_COMMIT_MESSAGE" value="redux" />
   </component>
   <component name="WindowStateProjectService">
     <state x="396" y="165" key="#Notifications" timestamp="1599911323707">
@@ -256,26 +307,26 @@
     <state x="493" y="180" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1602735360261" />
     <state x="2660" y="275" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599454258159" />
     <state x="493" y="180" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1600199266358" />
-    <state width="1899" height="118" key="GridCell.Tab.0.bottom" timestamp="1605239526748">
+    <state width="1899" height="84" key="GridCell.Tab.0.bottom" timestamp="1605943520906">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1259" height="142" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1603041236331" />
-    <state width="1899" height="118" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605239526748" />
-    <state width="1899" height="118" key="GridCell.Tab.0.center" timestamp="1605239526748">
+    <state width="1899" height="84" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605943520906" />
+    <state width="1899" height="84" key="GridCell.Tab.0.center" timestamp="1605943520906">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1259" height="142" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1603041236331" />
-    <state width="1899" height="118" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605239526748" />
-    <state width="1899" height="118" key="GridCell.Tab.0.left" timestamp="1605239526748">
+    <state width="1899" height="84" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605943520906" />
+    <state width="1899" height="84" key="GridCell.Tab.0.left" timestamp="1605943520906">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1259" height="142" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1603041236331" />
-    <state width="1899" height="118" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605239526748" />
-    <state width="1899" height="118" key="GridCell.Tab.0.right" timestamp="1605239526748">
+    <state width="1899" height="84" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605943520906" />
+    <state width="1899" height="84" key="GridCell.Tab.0.right" timestamp="1605943520906">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1259" height="142" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1603041236331" />
-    <state width="1899" height="118" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605239526748" />
+    <state width="1899" height="84" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605943520906" />
     <state x="2668" y="240" key="RollbackChangesDialog" timestamp="1599451992224">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -284,28 +335,28 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2381" y="165" key="SettingsEditor/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605116953806" />
-    <state x="2472" y="253" key="Vcs.Push.Dialog.v2" timestamp="1604242963729">
+    <state x="2472" y="253" key="Vcs.Push.Dialog.v2" timestamp="1605333765370">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2472" y="253" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1604242963729" />
-    <state x="2012" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1603010780162">
+    <state x="2472" y="253" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605333765370" />
+    <state x="1911" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605628167585">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2012" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603010780162" />
-    <state x="2395" y="0" width="881" height="1040" key="find.popup" timestamp="1605201063020">
+    <state x="1911" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605628167585" />
+    <state x="2395" y="0" width="881" height="1040" key="find.popup" timestamp="1605974752136">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2395" y="0" width="881" height="1040" key="find.popup/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605201063020" />
+    <state x="2395" y="0" width="881" height="1040" key="find.popup/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605974752136" />
     <state x="0" y="0" width="587" height="680" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1601136258899" />
-    <state x="2366" y="231" key="run.anything.popup" timestamp="1605120434308">
+    <state x="2366" y="231" key="run.anything.popup" timestamp="1605971172730">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2366" y="231" key="run.anything.popup/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605120434308" />
+    <state x="2366" y="231" key="run.anything.popup/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605971172730" />
     <state x="297" y="151" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1602525844791" />
-    <state x="2375" y="2" width="1008" height="1037" key="search.everywhere.popup" timestamp="1605201058573">
+    <state x="2375" y="2" width="1008" height="1037" key="search.everywhere.popup" timestamp="1605451842850">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2375" y="2" width="1008" height="1037" key="search.everywhere.popup/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605201058573" />
+    <state x="2375" y="2" width="1008" height="1037" key="search.everywhere.popup/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605451842850" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1602014136698" />
   </component>
 </project>

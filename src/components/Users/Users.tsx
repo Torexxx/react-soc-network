@@ -6,8 +6,9 @@ import {Preloader} from "../Preloader/Preloader";
 import {NavLink} from "react-router-dom";
 
 interface IUsers {
-    followToggle(userId: number): void
-    setUsers(users: Array<IUser>): void
+    follow(userId: number) : void
+    unfollow(userId: number) : void,
+    getUsers(pageSize: number,currentPage: number ) : void
 
     users: Array<IUser>
     pageSize: number
@@ -16,35 +17,26 @@ interface IUsers {
     isFetching: boolean
 
     setCurrentPage(page: number): void
-    setTotalUsersCount(usersCount: number): void
-    showLoader(): void
-    hideLoader(): void
+    toggleFollowingInProgress(isFetching: boolean, userId: number) : void
+    followingInProgress: Array<number>
 }
 
 const Users: React.FunctionComponent<IUsers> = ({
-    followToggle,
-    setUsers,
+    unfollow,
+    follow,
+    getUsers,
     users,
     pageSize,
     totalUsersCount,
     currentPage,
     setCurrentPage,
-    setTotalUsersCount,
     isFetching,
-    showLoader,
-    hideLoader,
+    followingInProgress,
+    toggleFollowingInProgress,
   }) => {
 
     useEffect(() => {
-        showLoader();
-        fetch(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${currentPage}`)
-            .then(response => response.json())
-            .then(json => {
-                setUsers(json.items)
-                setTotalUsersCount(json.totalCount)
-                hideLoader();
-            })
-            .catch((error) => console.log(error + ' -- включи инет'))
+        getUsers(pageSize, currentPage)
     }, [currentPage])
 
     // const getUsers = () => {
@@ -91,8 +83,17 @@ const Users: React.FunctionComponent<IUsers> = ({
                                         </div>
                                         <div> {user.status}</div>
                                         <div style={{marginBottom: '10px'}}>
-                                            <button className={'btn btn-primary'}
-                                                    onClick={() => followToggle(user.id)}>{user.followed ? 'unfollow' : 'follow'}</button>
+                                            { user.followed
+                                                    ? <button disabled={followingInProgress.some((id: number) => id === user.id)}  className={'btn btn-primary'}
+                                                        onClick={() => unfollow(user.id)}>
+                                                        unfollow
+                                                    </button>
+                                                    : <button disabled={followingInProgress.some((id: number) => id === user.id )}  className={'btn btn-primary'}
+                                                              onClick={() => follow(user.id)}>
+                                                        follow
+                                                    </button>
+                                            }
+
                                         </div>
                                     </div>
                         })}

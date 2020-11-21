@@ -14,9 +14,10 @@ type DialogsProps = {
     // dispatch(action: { type: string, payload?:{ dialogText: string } }): void
     updateNewMessageBody(text: string): void
     sendNewMessage(): void
+    isAuth: boolean
 }
 
-const Dialogs: React.FunctionComponent<DialogsProps> = ({sendNewMessage, updateNewMessageBody, dialogsPage}) => {
+const Dialogs: React.FunctionComponent<DialogsProps> = ({sendNewMessage, updateNewMessageBody, dialogsPage, isAuth}) => {
 
     let state = dialogsPage;
 
@@ -33,6 +34,7 @@ const Dialogs: React.FunctionComponent<DialogsProps> = ({sendNewMessage, updateN
         let body = e.target.value;
         updateNewMessageBody(body);
     }
+
 
     return (
         <div className={s.dialogs}>

@@ -41,7 +41,9 @@ export interface IState {
         totalUsersCount: number,
         currentPage: number,
         isFetching: boolean,
+        followingInProgress: Array<number>,
     };
+    auth: any
 }
 
 export interface IUser {
