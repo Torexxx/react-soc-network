@@ -4,7 +4,7 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 interface IProfile {
     profile : any
-    isAuth: boolean
+    // isAuth: boolean
     status: string
     updateStatus(status: string): void
 }

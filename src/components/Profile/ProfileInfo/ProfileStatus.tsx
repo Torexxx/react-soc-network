@@ -7,7 +7,9 @@ interface IProps {
 
 class ProfileStatus extends React.Component<IProps> {
 
-    inputRef = React.createRef<HTMLInputElement>();
+
+
+    // inputRef = React.createRef<HTMLInputElement>();
 
     state = {
         editMode: false,
@@ -15,34 +17,38 @@ class ProfileStatus extends React.Component<IProps> {
     }
 
 
-    static getDerivedStateFromProps(nextProps: any, prevState: any) {
-        if (nextProps.status !== prevState.status ) {
-            console.log('inside getDerivedStateFromProps')
-            return {
-                status: prevState.status
-            };
-        }
-        return 1
+    // static getDerivedStateFromProps(nextProps: any, prevState: any) {
+    //     if (nextProps.status !== prevState.status ) {
+    //         console.log('inside getDerivedStateFromProps')
+    //         return {
+    //             status: prevState.status
+    //         };
+    //     }
+    //     return 1
+    // }
+
+    componentDidUpdate(prevProps: Readonly<IProps>, prevState: Readonly<{}>, snapshot?: any) {
+
+      if (prevProps.status !== this.props.status) {
+          this.setState({
+              status: this.props.status
+          })
+      }
     }
 
     activateEditMode = () => {
-        this.setState(() => ({ editMode: true }),
-            () => {
-            this.inputRef.current!.focus()
-        })
+        this.setState(() => ({ editMode: true }))
+
     }
 
 
     deactivateEditMode = () => {
-        this.setState((prev) => {
-
-            return {editMode: false }
-        })
-
-        this.props.updateStatus(this.inputRef.current!.value);
+        this.setState(() =>  ({editMode: false }) )
+        this.props.updateStatus(this.state.status);
     }
 
     onStatusEditHandler = (e: any) => {
+
         this.setState({
             status: e.target.value
         })
@@ -54,9 +60,9 @@ class ProfileStatus extends React.Component<IProps> {
                 <div>
                     {
                     !this.state.editMode
-                        ? <span onDoubleClick={this.activateEditMode}>{this.props.status || 'no status'}</span>
+                        ? <span onDoubleClick={this.activateEditMode}>Статус: <div>{this.props.status || 'no status'}</div></span>
                         : <div>
-                            <input value = {this.state.status} ref={this.inputRef} onBlur={this.deactivateEditMode} onChange={this.onStatusEditHandler} />
+                            <input value = {this.state.status} autoFocus={true} onBlur={this.deactivateEditMode} onChange={this.onStatusEditHandler} />
                           </div>
                     }
                 </div>

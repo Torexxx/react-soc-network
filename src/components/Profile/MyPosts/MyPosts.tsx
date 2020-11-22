@@ -1,42 +1,47 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import {IPost} from '../../../interfaces';
+import {Field, reduxForm } from "redux-form";
 
 type MyPostsProps = {
     posts: Array<IPost> // Array<object>
-    // addPost(newText:string): void
-    newPostText: string
-    // dispatch(action: { type: string, payload?:{ newText: string } }): void
-    addPost(): void
-    updateNewPostText(text: string): void
-
+    addPost(newPostText: any): void
 }
 
-const MyPosts: React.FC<MyPostsProps> = ( { posts, newPostText, addPost, updateNewPostText} ) => {
+const AddPostForm = (props: any) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            {/*  preventDefault*/}
+            {/*Сбор данных */}
+            {/*Вызов колбека*/}
+            <Field name='newPostText' component ={'textarea'} />
+            <div>
+                <button>Add post</button>
+            </div>
+        </form>
+    )
+}
+
+const AddPostsReduxForm = reduxForm({form: 'postAddMessageForm'})(AddPostForm);
+
+const MyPosts: React.FC<MyPostsProps> = ( { posts, addPost} ) => {
 
     let postsElements = posts.map((p) => <Post key={ p.id } { ...p }/>)
-    let newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    const onAddPost = () => {
-        // let text = newPostElement.current!.value;
-            addPost();
+    const addNewPost = (values: any) => {
+        addPost(values.newPostText);
     }
-
-    const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        updateNewPostText(e.target.value);
-    }
-    
-
 
   return (
     <div className={ s.myPostsWrapper }>
         <h3>My posts</h3>
       <div>
           <div>
-            <textarea value={ newPostText } onChange={ onPostChange } ref={ newPostElement } />
+            <AddPostsReduxForm onSubmit={addNewPost} />
+            {/*// когда форма засабмитится вызовет колбек и мы получим данные их этой формы.*/}
           </div>
-        <button onClick={ onAddPost }>Add post</button>
+
       </div>
       <div className={ s.posts }>
           { postsElements }

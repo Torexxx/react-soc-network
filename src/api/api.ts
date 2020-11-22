@@ -39,8 +39,6 @@ export const profileAPI = {
             .then(response => response.json())
     },
     updateStatus(status: string) {
-        console.log('status', status)
-        console.log('status', JSON.stringify({status: status}) )
         return fetch(`${mainUrl}profile/status`,
             {
                 method: "PUT",
@@ -66,6 +64,39 @@ export const authAPI = {
     me() {
         return fetch(`${mainUrl}auth/me`,
             {credentials: 'include'}
+        )
+            .then(response => response.json())
+    },
+
+    login(email: string, password: any, rememberMe: boolean) {
+
+        return fetch(`${mainUrl}auth/login`,
+            {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'API-KEY': '440b7389-1318-41a2-a185-f027c1dbbdad'
+                },
+                body: JSON.stringify({email, password, rememberMe})
+            }
+        )
+            .then(response => response.json())
+    },
+
+    loginOut() {
+
+        return fetch(`${mainUrl}auth/login`,
+            {
+                method: 'DELETE',
+                credentials: 'include',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'API-KEY': '440b7389-1318-41a2-a185-f027c1dbbdad'
+                },
+            }
         )
             .then(response => response.json())
     },

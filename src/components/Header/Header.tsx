@@ -5,6 +5,10 @@ import defaultAvatar from '../../assets/images/avatar.png'
 
 const Header = ({...props}) => {
 
+    const logOutHandler = () => {
+        props.loginOut();
+    }
+
     return <header className={s.header}>
 
         <img src='https://www.freelogodesign.org/Content/img/logo-ex-7.png' alt='' />
@@ -17,7 +21,7 @@ const Header = ({...props}) => {
                         <div className={s.authUser}>{props.userAuthData.login}</div>
                         { props.userAuthData.userAvatar ?  <img  src={props.userAuthData.userAvatar} alt=''/> : <img alt='' src={defaultAvatar} />}
                     </div>
-                    <NavLink to={'/login'} className={s.login} >Sign out </NavLink>
+                    <NavLink to={'/login'} onClick={logOutHandler} className={s.login} >Sign out </NavLink>
                 </div>
 
                 : <NavLink to={'/login'} className={s.login}>Log in</NavLink>
