@@ -3,7 +3,7 @@ import s from './Dialogs.module.css';
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
 import {IDialog, IMessage} from "../../interfaces";
-import { reduxForm, Field } from 'redux-form';
+import AddMessageForm from "./AddMessageForm/AddMessageForm";
 
 type DialogsProps = {
     dialogsPage: {
@@ -14,17 +14,6 @@ type DialogsProps = {
     sendNewMessage(body: any): void
     isAuth: boolean,
 }
-
-const AddMessageForm = ({ handleSubmit}: any) => {
-    return (
-        <form onSubmit={handleSubmit}>
-            <Field  component="textarea" name={'newMessageBody'} placeholder='Enter text'/>
-            <button>Send</button>
-        </form>
-    )
-}
-
-const AddMessageReduxForm = reduxForm({form: 'dialogAddMessageForm'})(AddMessageForm);
 
 const Dialogs: React.FunctionComponent<DialogsProps> = ({sendNewMessage, dialogsPage, isAuth}) => {
 
@@ -41,7 +30,7 @@ const Dialogs: React.FunctionComponent<DialogsProps> = ({sendNewMessage, dialogs
         <div className={s.dialogs}>
            <div className={s.dialogsItems}>
                { dialogsElements }
-              <AddMessageReduxForm onSubmit={addNewMessage} />
+              <AddMessageForm onSubmit={addNewMessage} />
             </div>
             <div className={s.messages }>
                 { messageElements }
@@ -51,4 +40,3 @@ const Dialogs: React.FunctionComponent<DialogsProps> = ({sendNewMessage, dialogs
 }
 
 export default Dialogs;
-

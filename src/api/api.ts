@@ -67,9 +67,7 @@ export const authAPI = {
         )
             .then(response => response.json())
     },
-
-    login(email: string, password: any, rememberMe: boolean) {
-
+    login(email: string, password: any, rememberMe: boolean = false) {
         return fetch(`${mainUrl}auth/login`,
             {
                 method: 'POST',
@@ -84,8 +82,7 @@ export const authAPI = {
         )
             .then(response => response.json())
     },
-
-    loginOut() {
+    logOut() {
 
         return fetch(`${mainUrl}auth/login`,
             {

@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import userPhoto from '../../assets/images/avatar.png';
 import {IUser} from "../../interfaces";
 import style from './Users.module.css'
-import {Preloader} from "../Preloader/Preloader";
+import {Preloader} from "../common/Preloader/Preloader";
 import {NavLink} from "react-router-dom";
 
 interface IUsers {

@@ -6,7 +6,7 @@ import defaultAvatar from '../../assets/images/avatar.png'
 const Header = ({...props}) => {
 
     const logOutHandler = () => {
-        props.loginOut();
+        props.logOut();
     }
 
     return <header className={s.header}>

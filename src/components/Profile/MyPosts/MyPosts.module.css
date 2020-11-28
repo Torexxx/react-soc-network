@@ -1,5 +1,26 @@
 .myPostsWrapper {
     /*border: 1px solid red;*/
     background-color: cadetblue;
-    padding: 100px 0 100px
+    padding: 15px 0 100px
+}
+
+/*.errorText {*/
+/*    display: block;*/
+/*    color: red;*/
+/*    border: solid red 2px;*/
+/*    padding: 10px;*/
+/*    font-size: 22px;*/
+/*}*/
+
+/*.textAreaError {*/
+/*    border: solid red 2px;*/
+/*}*/
+
+.formControl.error span {
+    color: red;
+}
+
+.formControl.error input,
+.formControl.error textarea {
+    border: solid red 2px;
 }
