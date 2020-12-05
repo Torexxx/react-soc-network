@@ -9,6 +9,8 @@ const SHOW_LOADER =  'SHOW_LOADER';
 const HIDE_LOADER =  'HIDE_LOADER';
 const TOGGLE_IS_FOLLOWING_PROGRESS =  'TOGGLE_IS_FOLLOWING_PROGRESS';
 
+const FAKE =  'FAKE';
+
 
 let initialState = {
     users: [],
@@ -68,6 +70,11 @@ const usersReducer = (state = initialState, action: { type: string, payload?: { 
                     :  state.followingInProgress.filter((id: number) => id !== action.payload!.userId)
             }
 
+        case FAKE:
+            return {
+                ...state,
+            }
+
 
 
         default:
@@ -85,10 +92,11 @@ export const hideLoader = () => ({type: HIDE_LOADER});
 export const toggleFollowingInProgress = (isFetching: boolean, userId: number) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, payload: {isFetching, userId}});
 
 
-export const getUsers = (pageSize: number, currentPage: number) => {
+export const getRequestUsers = (pageSize: number, page: number) => {
     return (dispatch: any) => {
         dispatch(showLoader());
-        usersAPI.getUsers(pageSize, currentPage)
+        dispatch(setCurrentPage(page));
+        usersAPI.getUsers(pageSize, page)
             .then(json => {
                 dispatch(setUsers(json.items))
                 dispatch(setTotalUsersCount(json.totalCount))

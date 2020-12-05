@@ -10,6 +10,11 @@ import UsersContainer from "./components/Users/UsersContainer";
 // import MainAppChildren from "./hooks/mainAppChildren";
 import MainAppRenderProps from "./hooks/mainAppRenderProps";
 import LoginPage from './components/Login/Login';
+import {Preloader} from "./components/common/Preloader/Preloader";
+import { connect } from 'react-redux';
+import {getAuthUserData} from "./redux/auth-reducer";
+import {initializeApp} from "./redux/app-reducer";
+import { compose } from 'redux';
 
 // type AppProps = {
 //     store2: Store<CombinedState<IState>>
@@ -33,25 +38,46 @@ import LoginPage from './components/Login/Login';
 
 export type WrapperProps = {
     mainApp: React.ElementType
+    initialized: boolean
 }
 
+class App extends React.Component<any> {
 
-const App: React.FunctionComponent = () => {
+    componentDidMount() {
+        this.props.initializeApp();
+    }
 
-    return (
-            <div className='app-wrapper'>
-                <HeaderContainer />
-                <Navbar />
-                <div className='app-wrapper-content'>
-                    <Route path='/' exact> Заглушка</Route>
-                    <Route path='/dialogs' render={ () => <DialogsContainer /> }/>
-                    <Route path='/profile/:userId?' render={ () => <ProfileContainer /> }/>
-                    <Route path='/users' render={ () => <UsersContainer /> }/>
-                    <Route path='/hooks' render={ () => <MainAppRenderProps /> }/>
-                    <Route path='/login' render={ () => <LoginPage /> }/>
+    render() {
+        if (this.props.initialized) {
+            return (
+                <div className='app-wrapper'>
+                    <HeaderContainer />
+                    <Navbar />
+                    <div className='app-wrapper-content'>
+                        <Route path='/' exact> Заглушка</Route>
+                        <Route path='/dialogs' render={ () => <DialogsContainer /> }/>
+                        <Route path='/profile/:userId?' render={ () => <ProfileContainer /> }/>
+                        <Route path='/users' render={ () => <UsersContainer /> }/>
+                        <Route path='/hooks' render={ () => <MainAppRenderProps /> }/>
+                        <Route path='/login' render={ () => <LoginPage /> }/>
+                    </div>
                 </div>
-            </div>
-    )
+            )
+        } else {
+            return <Preloader />
+        }
+
+    }
 }
 
-export default App;
+const mapStateToProps = (state: any) => {
+    return {
+        initialized: state.app.initialized
+    }
+}
+
+export default
+    compose(
+        connect(mapStateToProps,{initializeApp})
+        (App)
+    )

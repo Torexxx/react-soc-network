@@ -1,12 +1,14 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { login } from '../../redux/auth-reducer';
+import {Field, reduxForm} from 'redux-form';
+import {login} from '../../redux/auth-reducer';
 import {connect} from "react-redux";
-import {withAuthRedirect2} from "../hoc/withAuthRedirect";
 import {required} from "../../utils/Form-validator";
-import { Input } from '../common/FormControls/FormControls';
+import {Input} from '../common/FormControls/FormControls';
+import {Redirect} from "react-router-dom";
+import s from './Login.module.css';
 
 function LoginForm (props: any) {
+    console.log(props)
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -27,32 +29,54 @@ function LoginForm (props: any) {
             </div>
             <div>
                 <Field name="rememberMe" component="input" type="checkbox"/> rememberMe
-
             </div>
+            {
+                props.error ? <div className={s.commonErrorText}>{props.error}</div>
+                    : ''
+            }
             <div>
                 <button> Войти</button>
             </div>
+
+            {
+                props.captchaImg ? <div> <img alt='' src={props.captchaImg}/>
+                    <div>
+                        <Field
+                            name="captcha"
+                            placeholder="captcha"
+                            component={Input}
+                            type="text"
+                            valid = {[required]}
+                        />
+                    </div>
+                </div>
+                    : ''
+            }
+
         </form>
     )
 }
 
-let LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
+function Login({login, isAuth}: any) {
 
-function Login({login}: any) {
     const loginSubmit = (values :any) => {
-        const {email, password, rememberMe } = values;
-
-        login(email, password, rememberMe);
-
+        debugger
+        const {email, password, rememberMe, captcha } = values;
+        login(email, password, rememberMe, captcha);
     }
+
+    if (isAuth) return <Redirect to='/profile'/>
     return (
         <>
             <h1>Login</h1>
           <LoginReduxForm onSubmit={loginSubmit} />
+
         </>
     );
+
 }
+const mapStateToProps = (state: any) => ({isAuth: state.auth.isAuth, captchaImg: state.auth.captchaImg});
 
+let LoginReduxForm = reduxForm({form: 'login'})(connect(mapStateToProps, null)(LoginForm));
 
-
-export default connect(null, {login})(withAuthRedirect2(Login));
+export default connect(mapStateToProps, {login})(Login);

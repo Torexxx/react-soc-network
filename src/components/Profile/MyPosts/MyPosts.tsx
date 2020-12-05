@@ -35,32 +35,40 @@ const AddPostForm = (props: any) => {
     )
 }
 
-const MyPosts: React.FC<MyPostsProps> = ( { posts, addPost, resetField} ) => {
-
-    let postsElements = posts.map((p) => <Post key={ p.id } { ...p }/>)
-
-    const addNewPost = (values: any) => {
-        addPost(values.newPostText);
-        resetField();
-    }
-  return (
-    <div className={ s.myPostsWrapper }>
-        <h3>My posts</h3>
-      <div>
-          <div>
-            <AddPostsReduxForm onSubmit={addNewPost} />
-            {/*// когда форма засабмитится вызовет колбек и мы получим данные их этой формы.*/}
-          </div>
-
-      </div>
-      <div className={ s.posts }>
-          { postsElements }
-      </div>
-    </div>
-  )
-
-}
-
 const AddPostsReduxForm = reduxForm({form: 'postAddMessageForm'})(AddPostForm);
+
+class MyPosts extends React.Component<MyPostsProps> {
+
+    componentDidUpdate(prevProps: Readonly<MyPostsProps>, prevState: Readonly<{}>) {
+        console.log('componentDidUpdate')
+    }
+
+    render() {
+        console.log('RENDER')
+        let {posts, addPost, resetField} = this.props;
+        let postsElements = posts.map((p) => <Post key={p.id} {...p}/>)
+
+        const addNewPost = (values: any) => {
+            addPost(values.newPostText);
+            resetField();
+        }
+        return (
+            <div className={s.myPostsWrapper}>
+                <h3>My posts</h3>
+                <div>
+                    <div>
+                        <AddPostsReduxForm onSubmit={addNewPost}/>
+                        {/*// когда форма засабмитится вызовет колбек и мы получим данные их этой формы.*/}
+                    </div>
+
+                </div>
+                <div className={s.posts}>
+                    {postsElements}
+                </div>
+            </div>
+        )
+
+    }
+}
 
 export default MyPosts;

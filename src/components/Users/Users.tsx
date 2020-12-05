@@ -8,7 +8,7 @@ import {NavLink} from "react-router-dom";
 interface IUsers {
     follow(userId: number) : void
     unfollow(userId: number) : void,
-    getUsers(pageSize: number,currentPage: number ) : void
+    getRequestUsers(pageSize: number,currentPage: number ) : void
 
     users: Array<IUser>
     pageSize: number
@@ -24,7 +24,7 @@ interface IUsers {
 const Users: React.FunctionComponent<IUsers> = ({
     unfollow,
     follow,
-    getUsers,
+    getRequestUsers,
     users,
     pageSize,
     totalUsersCount,
@@ -35,8 +35,10 @@ const Users: React.FunctionComponent<IUsers> = ({
     toggleFollowingInProgress,
   }) => {
 
+    // console.log('render USERS')
+
     useEffect(() => {
-        getUsers(pageSize, currentPage)
+        getRequestUsers(pageSize, currentPage)
     }, [currentPage])
 
     // const getUsers = () => {
@@ -68,7 +70,7 @@ const Users: React.FunctionComponent<IUsers> = ({
                     :
                     <>
                         {pages.map(p => <span key={p} onClick={() => onPageChanged(p)}
-                                              className={style.currentPage}>{p}</span>)}
+                                              className={p === currentPage ? style.currentPage: style.userPage}>{p}</span>)}
                         {users.map((user: IUser) => {
                             return <div key={user.id}>
                                         <div>
