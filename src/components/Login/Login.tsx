@@ -60,7 +60,6 @@ function LoginForm (props: any) {
 function Login({login, isAuth}: any) {
 
     const loginSubmit = (values :any) => {
-        debugger
         const {email, password, rememberMe, captcha } = values;
         login(email, password, rememberMe, captcha);
     }

@@ -14,7 +14,6 @@ import {
 } from "../../redux/user-selectors";
 
 let mapStateToProps = (state: IState) => {
-    // console.log('mapStateToProps USERS')
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
@@ -25,7 +24,7 @@ let mapStateToProps = (state: IState) => {
     }
 }
 
-const UsersContainer = connect(mapStateToProps, {
+export default connect(mapStateToProps, {
     follow,
     unfollow,
     getRequestUsers,
@@ -33,4 +32,3 @@ const UsersContainer = connect(mapStateToProps, {
     toggleFollowingInProgress
 })(Users);
 
-export default UsersContainer;

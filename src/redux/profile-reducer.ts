@@ -3,6 +3,8 @@ import {profileAPI, usersAPI } from "../api/api";
 const ADD_POST =  'ADD_POST';
 const SET_USER_PROFILE =  'SET_USER_PROFILE';
 const SET_STATUS =  'SET_STATUS';
+const DELETE_POST = 'DELETE_POST';
+const FAKE_USERS =  'FAKE_USERS';
 
 
 let initialState = {
@@ -10,12 +12,11 @@ let initialState = {
         {id: 1, message: 'Hello',likesCount: 1},
         {id: 2, message: 'Hi',likesCount: 1},
     ],
-    // newPostText: '',
     profile: null,
     status: ''
 };
 
-const profileReducer = (state = initialState, action: { type: string, payload?: { newText: string, profile: any, status: string, newPostText: any} }) => {
+const profileReducer = (state = initialState, action: { type: string, payload?: { newText: string, profile: any, status: string, newPostText: any, postId: number} }) => {
 
     switch (action.type) {
         case ADD_POST:
@@ -35,6 +36,14 @@ const profileReducer = (state = initialState, action: { type: string, payload?: 
             return {
                 ...state, status: action.payload!.status
             }
+        case FAKE_USERS:
+        return {
+            ...state, posts: []
+        }
+        case DELETE_POST:
+            return {
+                ...state, posts: state.posts.filter((post) => post.id !== action.payload!.postId)
+            }
 
         default:
             return state;
@@ -44,7 +53,7 @@ const profileReducer = (state = initialState, action: { type: string, payload?: 
 export const addPostAC = (newPostText: any) => ({type: ADD_POST, payload: {newPostText}});
 const setUserProfile = (profile: any) => ({type: SET_USER_PROFILE, payload: { profile }});
 const setStatus = (status: string) => ({type: SET_STATUS, payload: { status }});
-
+export const deletePost = (postId: number) => ({type: DELETE_POST, payload: {postId}})
 export const getStatus = (userId: number) => {
     return (dispatch: any) => {
         profileAPI.getStatus(userId)

@@ -5,7 +5,6 @@ import {connect} from "react-redux";
 import {reset} from "redux-form";
 
 let mapStateToProps = (state: IState) => {
-    // console.log('mapStateToProps MyPostsContainer ')
     return {
         posts: state.profilePage.posts,
     }
@@ -24,6 +23,5 @@ let mapDispatchToProps = (dispatch: any) => {
     }
 };
 
-const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps )(MyPosts);
+export default connect(mapStateToProps, mapDispatchToProps)(MyPosts);
 
-export default MyPostsContainer;

@@ -2,7 +2,7 @@ import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import {IPost} from '../../../interfaces';
-import {Field, reduxForm } from "redux-form";
+import {Field, reduxForm} from "redux-form";
 import {maxLength, number, required} from "../../../utils/Form-validator";
 import {TextArea} from "../../common/FormControls/FormControls";
 
@@ -37,38 +37,33 @@ const AddPostForm = (props: any) => {
 
 const AddPostsReduxForm = reduxForm({form: 'postAddMessageForm'})(AddPostForm);
 
-class MyPosts extends React.Component<MyPostsProps> {
+const MyPosts = (props: MyPostsProps) =>  {
 
-    componentDidUpdate(prevProps: Readonly<MyPostsProps>, prevState: Readonly<{}>) {
-        console.log('componentDidUpdate')
+    let {posts, addPost, resetField} = props;
+    let postsElements = [...posts]
+        .reverse()
+        .map((p) => <Post key={p.id} {...p}/>)
+
+    const addNewPost = (values: any) => {
+        addPost(values.newPostText);
+        resetField();
     }
-
-    render() {
-        console.log('RENDER')
-        let {posts, addPost, resetField} = this.props;
-        let postsElements = posts.map((p) => <Post key={p.id} {...p}/>)
-
-        const addNewPost = (values: any) => {
-            addPost(values.newPostText);
-            resetField();
-        }
-        return (
-            <div className={s.myPostsWrapper}>
-                <h3>My posts</h3>
+    return (
+        <div className={s.myPostsWrapper}>
+            <h3>My posts</h3>
+            <div>
                 <div>
-                    <div>
-                        <AddPostsReduxForm onSubmit={addNewPost}/>
-                        {/*// когда форма засабмитится вызовет колбек и мы получим данные их этой формы.*/}
-                    </div>
+                    <AddPostsReduxForm onSubmit={addNewPost}/>
+                    {/*// когда форма засабмитится вызовет колбек и мы получим данные их этой формы.*/}
+                </div>
 
-                </div>
-                <div className={s.posts}>
-                    {postsElements}
-                </div>
             </div>
-        )
+            <div className={s.posts}>
+                {postsElements}
+            </div>
+        </div>
+    )
 
-    }
 }
 
 export default MyPosts;
