@@ -18,7 +18,8 @@ let initialState = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
-    followingInProgress: []
+    followingInProgress: [],
+    portionSize: 5
 
 };
 
@@ -92,12 +93,17 @@ export const hideLoader = () => ({type: HIDE_LOADER});
 export const toggleFollowingInProgress = (isFetching: boolean, userId: number) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, payload: {isFetching, userId}});
 
 
-export const getRequestUsers = (pageSize: number, page: number) => {
+export const getRequestUsers = (page: number, pageSize: number) => {
+    debugger
     return (dispatch: any) => {
+        debugger
         dispatch(showLoader());
         dispatch(setCurrentPage(page));
+
         usersAPI.getUsers(pageSize, page)
             .then(json => {
+
+
                 dispatch(setUsers(json.items))
                 dispatch(setTotalUsersCount(json.totalCount))
                 dispatch(hideLoader());

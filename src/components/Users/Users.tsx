@@ -1,24 +1,22 @@
 import React, {useEffect} from 'react';
-import userPhoto from '../../assets/images/avatar.png';
 import {IUser} from "../../interfaces";
 import style from './Users.module.css'
 import {Preloader} from "../common/Preloader/Preloader";
-import {NavLink} from "react-router-dom";
+import Paginator from "../common/Paginator/Paginator";
+import User from './User';
 
 interface IUsers {
     follow(userId: number) : void
     unfollow(userId: number) : void,
-    getRequestUsers(pageSize: number,currentPage: number ) : void
-
+    getRequestUsers(pageNumber: number, pageSize: number ) : void
     users: Array<IUser>
     pageSize: number
-    totalUsersCount: number
-    currentPage: number
+    totalItemsCount: number
+    pageNumber: number
     isFetching: boolean
-
-    setCurrentPage(page: number): void
     toggleFollowingInProgress(isFetching: boolean, userId: number) : void
-    followingInProgress: Array<number>
+    followingInProgress: Array<number>,
+    portionSize: number
 }
 
 const Users: React.FunctionComponent<IUsers> = ({
@@ -27,41 +25,19 @@ const Users: React.FunctionComponent<IUsers> = ({
     getRequestUsers,
     users,
     pageSize,
-    totalUsersCount,
-    currentPage,
-    setCurrentPage,
+    totalItemsCount,
+    pageNumber,
     isFetching,
     followingInProgress,
-    toggleFollowingInProgress,
+    portionSize
   }) => {
 
-    // console.log('render USERS')
-
     useEffect(() => {
-        getRequestUsers(pageSize, currentPage)
-    }, [currentPage])
-
-    // const getUsers = () => {
-    //     if (users.length === 0) {
-    //         fetch('https://social-network.samuraijs.com/api/1.0/users',
-    //             // {mode: 'no-cors', credentials: "omit"}
-    //         )
-    //             .then(response => response.json())
-    //             .then(json => {
-    //                 console.log(json.items)
-    //                 setUsers(json.items)
-    //             })
-    //     }
-    // }
-
-    let pages = [];
-    let pagesCount = Math.ceil(totalUsersCount / pageSize);
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-    }
+        getRequestUsers(pageNumber, pageSize);
+    }, [pageNumber])
 
     const onPageChanged = (pageNumber: number) => {
-        setCurrentPage(pageNumber);
+        getRequestUsers(pageNumber, pageSize);
     }
 
     return (
@@ -69,36 +45,24 @@ const Users: React.FunctionComponent<IUsers> = ({
             { isFetching ? <Preloader/>
                     :
                     <>
-                        {pages.map(p => <span key={p} onClick={() => onPageChanged(p)}
-                                              className={p === currentPage ? style.currentPage: style.userPage}>{p}</span>)}
-                        {users.map((user: IUser) => {
-                            return <div key={user.id}>
-                                        <div>
-                                            <div>
-                                                <NavLink to={'/profile/' + user.id}>
-                                                    <img alt='avatar'
-                                                         style={{width: '100px'}}
-                                                         src={user.photos.small ? user.photos.small : userPhoto}/>
-                                                </NavLink>
-                                            </div>
-                                            <div>{user.name}</div>
-                                        </div>
-                                        <div> {user.status}</div>
-                                        <div style={{marginBottom: '10px'}}>
-                                            { user.followed
-                                                    ? <button disabled={followingInProgress.some((id: number) => id === user.id)}  className={'btn btn-primary'}
-                                                        onClick={() => unfollow(user.id)}>
-                                                        unfollow
-                                                    </button>
-                                                    : <button disabled={followingInProgress.some((id: number) => id === user.id )}  className={'btn btn-primary'}
-                                                              onClick={() => follow(user.id)}>
-                                                        follow
-                                                    </button>
-                                            }
-
-                                        </div>
-                                    </div>
-                        })}
+                        <Paginator
+                            totalItemsCount ={totalItemsCount}
+                            pageSize = {pageSize}
+                            onPageChanged = {onPageChanged}
+                            pageNumber={pageNumber}
+                            portionSize={ portionSize}
+                        />
+                        <div>
+                            {users.map((user: IUser) => {
+                               return <User
+                                   key = {user.id}
+                                   user = {user}
+                                   unfollow = {unfollow}
+                                   follow = {follow}
+                                   followingInProgress = {followingInProgress}
+                               />
+                            })}
+                        </div>
                     </>
             }
         </div>

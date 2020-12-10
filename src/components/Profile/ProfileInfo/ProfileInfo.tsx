@@ -12,11 +12,9 @@ class ProfileInfo extends React.Component<any> {
     //     return nextProps != this.props || nextState != this.state
     // }
 
-
     render() {
         let {profile, status, updateStatus} = this.props;
 
-        // console.log('profile')
 
         if (!profile) {
             return <Preloader/>

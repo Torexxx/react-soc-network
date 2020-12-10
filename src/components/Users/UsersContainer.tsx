@@ -1,13 +1,12 @@
 import {connect} from "react-redux";
 import Users from "./Users";
 import {follow, getRequestUsers, setCurrentPage, toggleFollowingInProgress, unfollow} from "../../redux/users-reducer";
-
 import {IState} from "../../interfaces";
 import {
     getCurrentPage,
     getFollowingInProgress,
     getIsFetching,
-    getPageSize,
+    getPageSize, getPortionSize,
     getTotalUsersCount,
     getUsers,
 
@@ -17,10 +16,11 @@ let mapStateToProps = (state: IState) => {
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
-        totalUsersCount: getTotalUsersCount(state),
-        currentPage: getCurrentPage(state),
+        totalItemsCount: getTotalUsersCount(state),
+        pageNumber: getCurrentPage(state),
         isFetching: getIsFetching(state),
-        followingInProgress: getFollowingInProgress(state)
+        followingInProgress: getFollowingInProgress(state),
+        portionSize: getPortionSize(state)
     }
 }
 

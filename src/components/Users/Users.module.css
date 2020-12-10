@@ -2,18 +2,6 @@
     padding: 25px;
 }
 
-.currentPage {
-    font-weight: bold;
-    color: red;
-    cursor: pointer;
-    padding: 5px;
-}
-.userPage {
-    color: green;
-    display: inline-block;
-    margin: 0 5px;
-    cursor: pointer;
-}
 
 .users span:hover   {
     text-decoration: underline;
