@@ -146,11 +146,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.test" />
         <item itemvalue="npm.start" />
         <item itemvalue="Jest.renders without crashing" />
-        <item itemvalue="npm.test" />
-        <item itemvalue="Jest.after delete post length should decrement" />
         <item itemvalue="Jest.new post length of post should be incremented" />
+        <item itemvalue="Jest.after delete post length should decrement" />
       </list>
     </recent_temporary>
   </component>
