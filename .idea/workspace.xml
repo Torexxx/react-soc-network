@@ -7,29 +7,33 @@
     <expand>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="861bdb38-3fa8-437d-bb83-d72b21bd83bb" name="Default Changelist" comment="Pagination">
-      <change afterPath="$PROJECT_DIR$/src/components/Users/User.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/Paginator/Paginator.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/Paginator/Paginator.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/hoc/withSuspense.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Profile/ProfileInfo/ProfileInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/ProfileInfo/ProfileInfo.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Users/Users.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Users/Users.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Dialogs/Dialogs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dialogs/Dialogs.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Users/Users.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Users/Users.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Users/UsersContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Users/UsersContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/user-selectors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user-selectors.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/Paginator/Paginator.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/Paginator/Paginator.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/Paginator/Paginator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/Paginator/Paginator.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/users-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/users-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +52,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="e3d416cc81fa5401060a2dc5b9c931374eea3a85" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1h2AOIGrEypZubSFsyqJPS1Wb1R" />
@@ -85,32 +94,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Jest.renders without crashing">
-    <configuration name="after delete post length should decrement" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/App.test.js" />
-      <test-names>
-        <test-name value="after delete post length should decrement" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="new post length of post should be incremented" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/App.test.js" />
-      <test-names>
-        <test-name value="new post length of post should be incremented" />
-      </test-names>
-      <method v="2" />
-    </configuration>
     <configuration name="renders without crashing" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -122,6 +105,26 @@
       <test-names>
         <test-name value="renders without crashing" />
       </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="deploy" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="deploy" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
       <method v="2" />
     </configuration>
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
@@ -146,11 +149,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.test" />
         <item itemvalue="npm.start" />
+        <item itemvalue="npm.build" />
+        <item itemvalue="npm.deploy" />
+        <item itemvalue="npm.test" />
         <item itemvalue="Jest.renders without crashing" />
-        <item itemvalue="Jest.new post length of post should be incremented" />
-        <item itemvalue="Jest.after delete post length should decrement" />
       </list>
     </recent_temporary>
   </component>
@@ -296,6 +299,9 @@
       <workItem from="1607438802993" duration="1930000" />
       <workItem from="1607530647011" duration="9881000" />
       <workItem from="1607615774334" duration="351000" />
+      <workItem from="1607753183554" duration="24000" />
+      <workItem from="1607753267205" duration="4314000" />
+      <workItem from="1607841383125" duration="11980000" />
     </task>
     <task id="LOCAL-00001" summary="second commit">
       <created>1603387272233</created>
@@ -360,7 +366,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606550554234</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Default changelist">
+      <created>1607617042768</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1607617042768</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -371,19 +384,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="master" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -400,7 +401,8 @@
     <MESSAGE value="local state" />
     <MESSAGE value="redux-form" />
     <MESSAGE value="Redux form validate" />
-    <option name="LAST_COMMIT_MESSAGE" value="Redux form validate" />
+    <MESSAGE value="Default changelist" />
+    <option name="LAST_COMMIT_MESSAGE" value="Default changelist" />
   </component>
   <component name="WindowStateProjectService">
     <state x="396" y="165" key="#Notifications" timestamp="1599911323707">
@@ -426,30 +428,30 @@
     <state x="493" y="180" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1602735360261" />
     <state x="2660" y="275" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606586387554" />
     <state x="493" y="180" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1600199266358" />
-    <state width="1259" height="130" key="GridCell.Tab.0.bottom" timestamp="1607540545688">
+    <state width="1259" height="259" key="GridCell.Tab.0.bottom" timestamp="1607886497143">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1259" height="204" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1606411965001" />
     <state width="1899" height="188" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606634401536" />
-    <state width="1259" height="130" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1607540545688" />
-    <state width="1259" height="130" key="GridCell.Tab.0.center" timestamp="1607540545688">
+    <state width="1259" height="259" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1607886497143" />
+    <state width="1259" height="259" key="GridCell.Tab.0.center" timestamp="1607886497143">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1259" height="204" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1606411965000" />
     <state width="1899" height="188" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606634401536" />
-    <state width="1259" height="130" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1607540545688" />
-    <state width="1259" height="130" key="GridCell.Tab.0.left" timestamp="1607540545688">
+    <state width="1259" height="259" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1607886497143" />
+    <state width="1259" height="259" key="GridCell.Tab.0.left" timestamp="1607886497143">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1259" height="204" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1606411965000" />
     <state width="1899" height="188" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606634401536" />
-    <state width="1259" height="130" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1607540545687" />
-    <state width="1259" height="130" key="GridCell.Tab.0.right" timestamp="1607540545688">
+    <state width="1259" height="259" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1607886497143" />
+    <state width="1259" height="259" key="GridCell.Tab.0.right" timestamp="1607886497143">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1259" height="204" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1606411965000" />
     <state width="1899" height="188" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606634401536" />
-    <state width="1259" height="130" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1607540545688" />
+    <state width="1259" height="259" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1607886497143" />
     <state width="1259" height="342" key="GridCell.Tab.1.bottom" timestamp="1607268697352">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -498,38 +500,40 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1259" height="342" key="GridCell.Tab.3.right/0.0.1280.680@0.0.1280.680" timestamp="1607268697352" />
-    <state x="2668" y="240" key="RollbackChangesDialog" timestamp="1599451992224">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="499" y="86" key="RollbackChangesDialog" timestamp="1607621302541">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="2668" y="240" key="RollbackChangesDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599451992224" />
+    <state x="499" y="86" key="RollbackChangesDialog/0.0.1280.680@0.0.1280.680" timestamp="1607621302541" />
     <state x="2381" y="165" key="SettingsEditor" timestamp="1605116953806">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2381" y="165" key="SettingsEditor/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605116953806" />
-    <state x="2472" y="253" key="Vcs.Push.Dialog.v2" timestamp="1606550559394">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="368" y="147" key="Vcs.Push.Dialog.v2" timestamp="1607617044366">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="2472" y="253" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606550559394" />
+    <state x="368" y="147" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1607617044366" />
     <state x="-6" y="60" width="1158" height="560" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1607158750402">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="1911" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605628167585" />
     <state x="-6" y="60" width="1158" height="560" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680@0.0.1280.680" timestamp="1607158750402" />
-    <state x="534" y="0" width="587" height="680" key="find.popup" timestamp="1607148630910">
+    <state x="534" y="0" width="587" height="680" key="find.popup" timestamp="1607881218813">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="2395" y="0" width="881" height="1040" key="find.popup/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606664599091" />
-    <state x="534" y="0" width="587" height="680" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1607148630910" />
-    <state x="297" y="151" key="run.anything.popup" timestamp="1607531720159">
+    <state x="534" y="0" width="587" height="680" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1607881218813" />
+    <state x="297" y="151" key="run.anything.popup" timestamp="1607753468756">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="2366" y="231" key="run.anything.popup/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605971172730" />
-    <state x="297" y="151" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1607531720159" />
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1607196824253">
+    <state x="297" y="151" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1607753468756" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1607841835421">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="303" y="1" width="672" height="679" key="search.everywhere.popup/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1606631365251" />
     <state x="2375" y="2" width="1008" height="1037" key="search.everywhere.popup/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606664574067" />
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1607196824253" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1607841835421" />
   </component>
 </project>

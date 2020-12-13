@@ -94,9 +94,9 @@ export const toggleFollowingInProgress = (isFetching: boolean, userId: number) =
 
 
 export const getRequestUsers = (page: number, pageSize: number) => {
-    debugger
+
     return (dispatch: any) => {
-        debugger
+
         dispatch(showLoader());
         dispatch(setCurrentPage(page));
 

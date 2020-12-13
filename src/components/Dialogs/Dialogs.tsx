@@ -16,7 +16,7 @@ type DialogsProps = {
 }
 
 const Dialogs: React.FunctionComponent<DialogsProps> = ({sendNewMessage, dialogsPage, isAuth}) => {
-
+    console.log('DIALOGS RENDER')
      let state = dialogsPage;
      let messageElements = state.messages.map( (m:{id: number, message: string}) => <Message key={m.id} {...m} /> );
      let dialogsElements = state.dialogs.map( ({id, name}:any) => <DialogItem key={id} name = {name} id={id} /> );

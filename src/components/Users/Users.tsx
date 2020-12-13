@@ -19,7 +19,7 @@ interface IUsers {
     portionSize: number
 }
 
-const Users: React.FunctionComponent<IUsers> = ({
+const Users: React.FunctionComponent<IUsers> = React.memo( ({
     unfollow,
     follow,
     getRequestUsers,
@@ -36,22 +36,23 @@ const Users: React.FunctionComponent<IUsers> = ({
         getRequestUsers(pageNumber, pageSize);
     }, [pageNumber])
 
-    const onPageChanged = (pageNumber: number) => {
-        getRequestUsers(pageNumber, pageSize);
-    }
+    const onPageChanged = React.useCallback((pageNumber: number) => {
+        getRequestUsers(pageNumber, pageSize)
+    }, [])
 
     return (
         <div className={style.users}>
+            <Paginator
+                totalItemsCount ={totalItemsCount}
+                pageSize = {pageSize}
+                onPageChanged = {onPageChanged}
+                pageNumber={pageNumber}
+                portionSize={ portionSize}
+            />
             { isFetching ? <Preloader/>
                     :
                     <>
-                        <Paginator
-                            totalItemsCount ={totalItemsCount}
-                            pageSize = {pageSize}
-                            onPageChanged = {onPageChanged}
-                            pageNumber={pageNumber}
-                            portionSize={ portionSize}
-                        />
+
                         <div>
                             {users.map((user: IUser) => {
                                return <User
@@ -67,6 +68,6 @@ const Users: React.FunctionComponent<IUsers> = ({
             }
         </div>
     );
-};
+});
 
 export default Users;

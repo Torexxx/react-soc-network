@@ -3,8 +3,6 @@ import './App.css';
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
-import ProfileContainer from "./components/Profile/ProfileContainer";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 // import MainAppHoc from "./hooks/mainAppHoc";
 // import MainAppChildren from "./hooks/mainAppChildren";
@@ -15,11 +13,10 @@ import {connect, Provider} from 'react-redux';
 import {initializeApp} from "./redux/app-reducer";
 import { compose } from 'redux';
 import store from './redux/redux-store';
+import withSuspense from "./components/hoc/withSuspense";
+const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"))
+const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"))
 
-export type WrapperProps = {
-    mainApp: React.ElementType
-    initialized: boolean
-}
 
 class App extends React.Component<any> {
 
@@ -28,6 +25,7 @@ class App extends React.Component<any> {
     }
 
     render() {
+
         if (this.props.initialized) {
             return (
                 <div className='app-wrapper'>
@@ -35,8 +33,8 @@ class App extends React.Component<any> {
                     <Navbar />
                     <div className='app-wrapper-content'>
                         <Route path='/' exact> Заглушка</Route>
-                        <Route path='/dialogs' render={ () => <DialogsContainer /> }/>
-                        <Route path='/profile/:userId?' render={ () => <ProfileContainer /> }/>
+                        <Route path='/dialogs' render={withSuspense(DialogsContainer)}/>
+                        <Route path='/profile/:userId?' render={ withSuspense(ProfileContainer)}/>
                         <Route path='/users' render={ () => <UsersContainer /> }/>
                         <Route path='/hooks' render={ () => <MainAppRenderProps /> }/>
                         <Route path='/login' render={ () => <LoginPage /> }/>
