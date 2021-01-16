@@ -61,8 +61,7 @@ export const login = (email: string, password: any, rememberMe: boolean, captcha
 const setCaptcha = (captchaImg: string) => ({type:SET_CAPTCHA, payload: {captchaImg} });
 const getCaptcha = () => async (dispatch: any) => {
         let response = await authAPI.getCaptcha();
-        dispatch(setCaptcha(response.url))
-        dispatch(setCaptcha(response.url))
+        dispatch(setCaptcha(response.url));
 }
 export const logout = () => async (dispatch: any) => {
         let response = await authAPI.logout();

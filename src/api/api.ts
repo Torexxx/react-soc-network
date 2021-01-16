@@ -12,7 +12,7 @@ export const usersAPI = {
             method: "DELETE",
             credentials : "include",
             headers: {
-                'API-KEY': '440b7389-1318-41a2-a185-f027c1dbbdad'
+                'API-KEY': 'd07e318e-5bc8-4780-b44a-37a9fb87fff6'
             }
         })
     },
@@ -21,7 +21,7 @@ export const usersAPI = {
             method: "POST",
             credentials : "include",
             headers: {
-                'API-KEY': '440b7389-1318-41a2-a185-f027c1dbbdad'
+                'API-KEY': 'd07e318e-5bc8-4780-b44a-37a9fb87fff6'
             }
         })
     },
@@ -29,7 +29,24 @@ export const usersAPI = {
         console.warn('use profileAPI.getProfile()');
         return profileAPI.getProfile(userId);
 
+    },
+    savePhoto(photoFile: any) {
+        let formData = new FormData();
+        formData.append("image", photoFile);
+
+        return fetch(`${mainUrl}/profile/photo`, {
+            method: "PUT",
+            credentials : "include",
+            headers: {
+                'API-KEY': 'd07e318e-5bc8-4780-b44a-37a9fb87fff6'
+            },
+            body: formData
+        })
+            .then(response => {
+                return response.json()
+            })
     }
+
 }
 
 export const profileAPI = {
@@ -45,7 +62,7 @@ export const profileAPI = {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'API-KEY': '440b7389-1318-41a2-a185-f027c1dbbdad'
+                    'API-KEY': 'd07e318e-5bc8-4780-b44a-37a9fb87fff6'
                 },
                 credentials: 'include',
                 body: JSON.stringify({status})
@@ -55,17 +72,45 @@ export const profileAPI = {
     },
     getStatus(userId: number) {
         return fetch(`${mainUrl}profile/status/${userId}`,
-            {credentials: 'include'})
+            {credentials: 'include',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'API-KEY': 'd07e318e-5bc8-4780-b44a-37a9fb87fff6'
+                }})
             .then(response => response.json())
-    }
+            .catch(console.log)
+    },
+    saveProfile(profile: object) {
+
+        return fetch(`${mainUrl}profile`,
+            {
+                method: "PUT",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'API-KEY': 'd07e318e-5bc8-4780-b44a-37a9fb87fff6'
+                },
+                credentials: 'include',
+                body: JSON.stringify(profile)
+
+            })
+            .then(response => response.json())
+    },
 }
 
 export const authAPI = {
     me() {
         return fetch(`${mainUrl}auth/me`,
-            {credentials: 'include'}
+            {credentials: 'include',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'API-KEY': 'd07e318e-5bc8-4780-b44a-37a9fb87fff6'
+                }}
         )
             .then(response => response.json())
+            .catch(console.log)
     },
     login(email: string, password: any, rememberMe: boolean = false, captcha?: string) {
         return fetch(`${mainUrl}auth/login`,
@@ -75,7 +120,7 @@ export const authAPI = {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'API-KEY': '440b7389-1318-41a2-a185-f027c1dbbdad'
+                    'API-KEY': 'd07e318e-5bc8-4780-b44a-37a9fb87fff6'
                 },
                 body: JSON.stringify({email, password, rememberMe, captcha})
             }
@@ -91,7 +136,7 @@ export const authAPI = {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'API-KEY': '440b7389-1318-41a2-a185-f027c1dbbdad'
+                    'API-KEY': 'd07e318e-5bc8-4780-b44a-37a9fb87fff6'
                 },
             }
         )
@@ -105,7 +150,7 @@ export const authAPI = {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'API-KEY': '440b7389-1318-41a2-a185-f027c1dbbdad'
+                    'API-KEY': 'd07e318e-5bc8-4780-b44a-37a9fb87fff6'
                 },
             }
         )

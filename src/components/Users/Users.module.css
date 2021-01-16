@@ -2,8 +2,49 @@
     padding: 25px;
 }
 
-
 .users span:hover   {
     text-decoration: underline;
     text-decoration-color: fuchsia;
+}
+
+.usersWrapper {
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+    flex-wrap: wrap;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #7A956B;
+    padding: 8px;
+    border-radius: 5px;
+    margin: 10px;
+    max-width: 128px;
+    overflow: hidden;
+}
+
+.follow {
+    color: hsla(0,0%,100%,.698);
+    display: inline;
+    background-color: #7a956b;
+    color: #fff;
+    padding: 2px 5px;
+    font-size: 12px;
+    min-width: 100px;
+    min-height: 25px;
+    border-radius: 4px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.follow:hover {
+    background-color: #486d35;
+
+}
+
+.user_follow__dGnF0 {
+
 }

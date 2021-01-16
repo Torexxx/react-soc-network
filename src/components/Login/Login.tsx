@@ -8,7 +8,8 @@ import {Redirect} from "react-router-dom";
 import s from './Login.module.css';
 
 function LoginForm (props: any) {
-    console.log(props)
+
+
     return (
         <form onSubmit={props.handleSubmit}>
             <div>

@@ -1,10 +1,13 @@
 .header {
     grid-area: h;
-    background-color: cornflowerblue;
+    background-color: #794F45;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header img {
-    width: 20px;
+    /*width: 20px;*/
 }
 
 .authUser {
@@ -30,4 +33,8 @@
  .loginAva {
      display: flex;
      padding-right: 15px;
+ }
+
+ .logo {
+     width: 80px;
  }

@@ -14,7 +14,7 @@ const FAKE =  'FAKE';
 
 let initialState = {
     users: [],
-    pageSize: 100,
+    pageSize: 24,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,

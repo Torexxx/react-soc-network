@@ -1,5 +1,6 @@
 .profileInfoWrapper {
     border: 1px solid paleturquoise;
+    padding: 10px;
     /*padding: 100px 0 100px*/
 }
 
@@ -8,10 +9,31 @@
     /*background-size: contain;*/
     /*height: 60vh;*/
     /*background-repeat: no-repeat;*/
+    padding: 20px;
+    background: lightyellow;
+    margin: 15px 0;
+    /*margin-left: 0;*/
 
 
 }
 
 .avatar {
-    width: 200px;
+   max-width: 200px;
+}
+.contacts {
+    display: flex;
+    padding-left:10px;
+}
+.contacts b {
+    margin-right: 5px;
+}
+.editField {
+    display: flex;
+}
+.editField b {
+    margin-right: 5px;
+}
+
+.commonErrorText {
+    color: red;
 }

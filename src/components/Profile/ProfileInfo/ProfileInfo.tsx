@@ -1,43 +1,72 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import s from './ProfileInfo.module.css'
 import {Preloader} from "../../common/Preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import avatar from "../../../assets/images/avatar.png"
+import ProfileData from "./ProfileData";
+import ProfileDataReduxForm from './ProfileDataForm';
 
-class ProfileInfo extends React.Component<any> {
-    // shouldComponentUpdate(nextProps: any, nextState: any): boolean {
-    //
-    //
-    //     console.log('---------------',this.props)
-    //     return nextProps != this.props || nextState != this.state
-    // }
+export const Contacts = ({contactTitle, contactValue}: any) => {
+    return <div className={s.contacts}>
+        <b>{contactTitle}</b> : {contactValue}
+    </div>
+}
 
-    render() {
-        let {profile, status, updateStatus} = this.props;
+const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile, profileUpdateStatus, ...props }: any) => {
 
+    interface Event<T = EventTarget> {
+        target: T;
+    }
 
-        if (!profile) {
-            return <Preloader/>
+    const [editMode, setEditMode] = useState(false);
 
-        } else {
-            return (
-                <div className={s.profileInfoWrapper}>
-                    <div className={s.wallpaper}>
-                        <div>{profile && profile.fullName}</div>
-                        <div>{profile && profile.aboutMe}</div>
-                        <div>{profile && profile.lookingForAJobDescription}</div>
-                    </div>
-                    <div>
-                        <img className={s.avatar} alt=''
-                             src={profile && profile.photos.large ? profile.photos.large : avatar}/>
-
-                        <div>{profile && profile.fullname}</div>
-
-                        <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
-                    </div>
-                </div>
-            )
+    useEffect(() => {
+        if (profileUpdateStatus === 'success') {
+            setEditMode(false);
         }
+    })
+
+    const goToEditMode = () => {
+        setEditMode(true);
+    }
+
+    const profileInfoSubmit =  (formData: any) => {
+        saveProfile(formData)
+        // if profileUpdateStatus === success  => setEditMode(false);
+
+        // saveProfile(formData)
+        //     .then(() => {
+        //         setEditMode(false);
+        //     });
+    }
+
+    const onMainPhotoSelected = (e: Event<HTMLInputElement>) => {
+        if (e.target.files!.length) {
+            savePhoto(e.target.files![0]);
+        }
+    }
+
+    if (!profile) {
+        return <Preloader/>
+    } else {
+        return (
+            <div>
+                <img className={s.avatar} alt=''
+                     src={profile && profile.photos.large ? profile.photos.large : avatar}/>
+
+                <div>{isOwner && <input onChange={onMainPhotoSelected} type='file'/>}</div>
+
+                <div className={s.wallpaper}>
+                    {
+                        editMode
+                            ? <ProfileDataReduxForm {...props} initialValues={profile} onSubmit={profileInfoSubmit} profile={profile}  />
+                            : <ProfileData profile={profile} goToEditMode={goToEditMode} />
+                    }
+                </div>
+
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus} isOwner={isOwner}/>
+            </div>
+        )
     }
 }
 

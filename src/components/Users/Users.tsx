@@ -53,7 +53,7 @@ const Users: React.FunctionComponent<IUsers> = React.memo( ({
                     :
                     <>
 
-                        <div>
+                        <div className={style.usersWrapper}>
                             {users.map((user: IUser) => {
                                return <User
                                    key = {user.id}
