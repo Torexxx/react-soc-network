@@ -1,11 +1,20 @@
+import axios from 'axios';
+// const { default: axios } = require('axios');
+
 const mainUrl = 'https://social-network.samuraijs.com/api/1.0/';
+
+let instance = axios.create({
+    withCredentials: true,
+    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
+    headers: {
+        "API-KEY": "d07e318e-5bc8-4780-b44a-37a9fb87fff6"
+    }
+})
 
 export const usersAPI = {
     getUsers(pageSize: number, currentPage: number) {
-        return fetch(`${mainUrl}users?count=${pageSize}&page=${currentPage}`, {
-            credentials : "include",
-        })
-            .then(response => response.json());
+        return instance.get(`users?count=${pageSize}&page=${currentPage}`)
+            .then(response => response.data)
     },
     unfollow(userId: number) {
             return fetch(`${mainUrl}follow/${userId}`, {
@@ -46,7 +55,6 @@ export const usersAPI = {
                 return response.json()
             })
     }
-
 }
 
 export const profileAPI = {
@@ -56,19 +64,8 @@ export const profileAPI = {
             .then(response => response.json())
     },
     updateStatus(status: string) {
-        return fetch(`${mainUrl}profile/status`,
-            {
-                method: "PUT",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'API-KEY': 'd07e318e-5bc8-4780-b44a-37a9fb87fff6'
-                },
-                credentials: 'include',
-                body: JSON.stringify({status})
-
-            })
-            .then(response => response.json())
+        return instance.put(`profile/status`, {status})
+            .then(response => response.data)
     },
     getStatus(userId: number) {
         return fetch(`${mainUrl}profile/status/${userId}`,
@@ -79,7 +76,7 @@ export const profileAPI = {
                     'API-KEY': 'd07e318e-5bc8-4780-b44a-37a9fb87fff6'
                 }})
             .then(response => response.json())
-            .catch(console.log)
+
     },
     saveProfile(profile: object) {
 
@@ -142,7 +139,10 @@ export const authAPI = {
         )
             .then(response => response.json())
     },
-    getCaptcha() {
+}
+
+export const securityAPI = {
+    getCaptchaUrl() {
         return fetch(`${mainUrl}security/get-captcha-url`,
             {
                 method: 'GET',
@@ -156,6 +156,4 @@ export const authAPI = {
         )
             .then(response => response.json())
     }
-
 }
-

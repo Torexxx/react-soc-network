@@ -80,13 +80,14 @@ export const getStatus = (userId: number) => {
 export const updateStatus = (status: string) => {
     return (dispatch: any) => {
         profileAPI.updateStatus(status)
-
             .then(json => {
-
                 if (json.resultCode === 0) {
                     dispatch(setStatus(status) )
                 }
             })
+            .catch((err) => {
+                console.error(err);
+        })
     }
 }
 export const getUserProfile = (userId: number) => {

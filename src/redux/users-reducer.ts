@@ -102,13 +102,10 @@ export const getRequestUsers = (page: number, pageSize: number) => {
 
         usersAPI.getUsers(pageSize, page)
             .then(json => {
-
-
                 dispatch(setUsers(json.items))
                 dispatch(setTotalUsersCount(json.totalCount))
                 dispatch(hideLoader());
             })
-            .catch((error) => console.log(error + ' -- включи инет'))
     }
 }
 

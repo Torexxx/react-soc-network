@@ -8,8 +8,6 @@ import {Redirect} from "react-router-dom";
 import s from './Login.module.css';
 
 function LoginForm (props: any) {
-
-
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -40,7 +38,7 @@ function LoginForm (props: any) {
             </div>
 
             {
-                props.captchaImg ? <div> <img alt='' src={props.captchaImg}/>
+                props.captchaUrl ? <div> <img alt='' src={props.captchaUrl}/>
                     <div>
                         <Field
                             name="captcha"
@@ -60,8 +58,8 @@ function LoginForm (props: any) {
 
 function Login({login, isAuth}: any) {
 
-    const loginSubmit = (values :any) => {
-        const {email, password, rememberMe, captcha } = values;
+    const loginSubmit = (formData :any) => {
+        const {email, password, rememberMe, captcha } = formData;
         login(email, password, rememberMe, captcha);
     }
 
@@ -75,7 +73,7 @@ function Login({login, isAuth}: any) {
     );
 
 }
-const mapStateToProps = (state: any) => ({isAuth: state.auth.isAuth, captchaImg: state.auth.captchaImg});
+const mapStateToProps = (state: any) => ({isAuth: state.auth.isAuth, captchaUrl: state.auth.captchaUrl});
 
 let LoginReduxForm = reduxForm({form: 'login'})(connect(mapStateToProps, null)(LoginForm));
 

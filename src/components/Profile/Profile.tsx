@@ -1,7 +1,6 @@
 import React from 'react';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-// import Test from "./Test";
 
 interface IProfile {
     profile : any
@@ -12,14 +11,6 @@ interface IProfile {
     saveProfile(profile: any): void
     profileUpdateStatus: string
 }
-const Width = (props: any) => {
-
-    return (
-        props.children(42)
-    )
-}
-
-const Component = ({render}: any) => render('React');
 
 const Profile: React.FunctionComponent<IProfile> = ( props) => {
 
@@ -35,13 +26,6 @@ const Profile: React.FunctionComponent<IProfile> = ( props) => {
 
             />
             <MyPostsContainer />
-            {/*<Test test = 'test' />*/}
-            {/*<Width>*/}
-            {/*    {(width: any) => <div>window is {width}</div>  }*/}
-            {/*</Width>*/}
-            {/*<Component render = {*/}
-            {/*    (text: string) => <div>{text}</div>*/}
-            {/*}/>*/}
         </>
     )
 }
