@@ -35,7 +35,7 @@ export const usersAPI = {
         })
     },
     getProfile(userId: number) {
-        console.warn('use profileAPI.getProfile()');
+        // console.warn('use profileAPI.getProfile()');
         return profileAPI.getProfile(userId);
 
     },
@@ -59,9 +59,8 @@ export const usersAPI = {
 
 export const profileAPI = {
     getProfile(userId: number) {
-        return fetch(`${mainUrl}profile/${userId}`,
-            {credentials: 'include'})
-            .then(response => response.json())
+        return instance(`${mainUrl}profile/${userId}`)
+            .then(response => response.data)
     },
     updateStatus(status: string) {
         return instance.put(`profile/status`, {status})

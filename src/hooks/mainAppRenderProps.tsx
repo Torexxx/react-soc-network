@@ -20,7 +20,6 @@ const Avatar = () => {
         const ref = React.createRef<HTMLButtonElement>()
 
         useEffect(()=> {
-           const content = ref.current
             let counterInterval = setInterval(() => {
                 setCounter((counter) => {
                     if (counter === 1) {

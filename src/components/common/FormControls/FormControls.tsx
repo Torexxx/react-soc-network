@@ -1,7 +1,6 @@
 import s from "../../Profile/MyPosts/MyPosts.module.css";
 import React from "react";
 import {Field} from "redux-form";
-import {required} from "../../../utils/Form-validator";
 
 //
 // export const FormControl = ({  input, meta: { touched, error }, ...rest }: any) => {

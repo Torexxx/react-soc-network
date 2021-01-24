@@ -13,6 +13,9 @@
 
 .app-wrapper-content {
     grid-area: c;
-    /*background-color: cornflowerblue;*/
-    padding:25px;
+    background-image: url("https://hsto.org/getpro/tmtm/megapost/ea2/1ce/cb0/ea21cecb0844b1f674db6a54af8ba9ca.png");
+    padding: 25px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: #794F45;
 }

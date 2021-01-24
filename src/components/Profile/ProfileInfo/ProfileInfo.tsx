@@ -24,7 +24,7 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, savePro
         if (profileUpdateStatus === 'success') {
             setEditMode(false);
         }
-    })
+    }, [profileUpdateStatus])
 
     const goToEditMode = () => {
         setEditMode(true);

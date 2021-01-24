@@ -34,11 +34,11 @@ const Users: React.FunctionComponent<IUsers> = React.memo( ({
 
     useEffect(() => {
         getRequestUsers(pageNumber, pageSize);
-    }, [pageNumber])
+    }, [pageNumber, getRequestUsers, pageSize])
 
-    const onPageChanged = React.useCallback((pageNumber: number) => {
+        const onPageChanged = React.useCallback((pageNumber: number) => {
         getRequestUsers(pageNumber, pageSize)
-    }, [])
+    }, [getRequestUsers, pageSize])
 
     return (
         <div className={style.users}>

@@ -19,6 +19,7 @@
 
 .avatar {
    max-width: 200px;
+    border: 7px solid white;
 }
 .contacts {
     display: flex;

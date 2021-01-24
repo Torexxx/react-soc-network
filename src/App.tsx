@@ -21,7 +21,7 @@ class App extends React.Component<any> {
 
     catchAllUnhandledErrors = () => {
         alert('some error occured')
-        // dispatch(globalError) Выпадашка
+        // TODO dispatch(globalError) Выпадашка
     }
 
     componentDidMount() {
