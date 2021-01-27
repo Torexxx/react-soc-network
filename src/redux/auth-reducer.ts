@@ -25,15 +25,6 @@ let initialState = {
 
 export type InitialStateType = typeof initialState;
 
-// let state: initialStateType = {
-//     userId: 1,
-//     login: null,
-//     email: null,
-//     isAuth: false,
-//     userAvatar: null,
-//     captchaUrl: ''
-// }
-
 type ActionType = {
     type: string,
     payload?: {
@@ -50,11 +41,11 @@ const authReducer = (state = initialState, action: ActionType): InitialStateType
              return {
                  ...state,
                  ...action.payload,
+
             }
         case SET_CAPTCHA:
 
             return {
-                userId: 'ДОЛЖНА БЫТЬ ОШИБКА!!! ТАКОГО СВОЙСТВЫА НЕТ В InitialStateType',
                 ...state,
                 ...action.payload,
             }

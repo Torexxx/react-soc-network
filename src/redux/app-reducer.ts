@@ -16,8 +16,6 @@ let initialState: InitialStateType = {
     globalError: null
 };
 
-// export type InitialStateType = typeof initialState;
-
 type InitializeSuccessActionType = {
     type: typeof INITIALIZED_SUCCESS
 }
@@ -28,9 +26,7 @@ const appReducer = (state = initialState, action: actionType): InitialStateType 
             return {
                 ...state,
                 initialized: true,
-
         }
-
         default:
             return state
     }

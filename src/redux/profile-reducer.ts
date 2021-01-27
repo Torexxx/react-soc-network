@@ -1,35 +1,52 @@
 import {profileAPI, usersAPI } from "../api/api";
 import {stopSubmit} from "redux-form";
+import {PhotosType, PostType, ProfileType} from "../types/types";
 
 const ADD_POST =  'ADD_POST';
 const SET_USER_PROFILE =  'SET_USER_PROFILE';
 const SET_STATUS =  'SET_STATUS';
 const DELETE_POST = 'DELETE_POST';
-const FAKE_USERS =  'FAKE_USERS';
 const SAVE_PHOTO_SUCCESS =  'SAVE_PHOTO_SUCCESS';
 const SET_PROFILE_UPDATE_STATUS =  'SET_PROFILE_UPDATE_STATUS';
 
-
 let initialState = {
     posts: [
-        {id: 1, message: 'Hello',likesCount: 1},
-        {id: 2, message: 'Hi',likesCount: 1},
-    ],
-    profile: null as unknown,
+        {id: 1, message: 'Hello', likesCount: 1},
+        {id: 2, message: 'Hi', likesCount: 1},
+    ] as Array<PostType>,
+    profile: null as ProfileType | null,
     status: '',
+    newPostText: '',
     profileUpdateStatus: 'none',
-};
 
-const profileReducer = (state = initialState, action: { type: string, payload?: { newText: string, profile: any, status: string, newPostText: any, postId: number, photos: any} }) => {
+}
+
+export type InitialStateType =  typeof initialState
+
+type ActionType = {
+    type: string,
+    payload?:
+        {
+            newText: string,
+            profile: ProfileType,
+            status: string,
+            newPostText: string,
+            postId: number,
+            photos: PhotosType
+        }
+}
+
+const profileReducer = (state = initialState, action: ActionType): InitialStateType => {
 
     switch (action.type) {
-
         case ADD_POST:
             let newPost = {
                 id: Date.now(), message: action.payload!.newPostText, likesCount: 1
             }
              return {
-                ...state, newPostText: '', posts: [...state.posts, newPost]
+                ...state,
+                 newPostText: '',
+                 posts: [...state.posts, newPost]
             };
 
         case SET_USER_PROFILE:
@@ -41,17 +58,14 @@ const profileReducer = (state = initialState, action: { type: string, payload?: 
             return {
                 ...state, status: action.payload!.status
             }
-        case FAKE_USERS:
-        return {
-            ...state, posts: []
-        }
+
         case DELETE_POST:
             return {
                 ...state, posts: state.posts.filter((post) => post.id !== action.payload!.postId)
             }
         case SAVE_PHOTO_SUCCESS:
             return {
-                ...state, profile: {...state.profile as {} , photos: action.payload!.photos.photos}
+                ...state, profile: {...state.profile, photos: action.payload!.photos} as ProfileType
             }
         case SET_PROFILE_UPDATE_STATUS:
             return {
@@ -63,12 +77,48 @@ const profileReducer = (state = initialState, action: { type: string, payload?: 
     }
 }
 
-export const addPostAC = (newPostText: any) => ({type: ADD_POST, payload: {newPostText}});
-const setUserProfile = (profile: any) => ({type: SET_USER_PROFILE, payload: { profile }});
-const setProfileUpdateStatus = (status: any) => ({type: SET_PROFILE_UPDATE_STATUS, payload: {status}});
-const setStatus = (status: string) => ({type: SET_STATUS, payload: { status }});
-export const deletePost = (postId: number) => ({type: DELETE_POST, payload: {postId}})
-export const savePhotoSuccess = (photos: any) => ({type: SAVE_PHOTO_SUCCESS, payload: {photos}})
+type addPostACActionType = {
+    type: typeof ADD_POST
+    payload: {
+        newPostText: string
+    }
+}
+export const addPostAC = (newPostText: string): addPostACActionType => ({type: ADD_POST, payload: {newPostText}})
+type setUserProfileActionType = {
+    type: typeof SET_USER_PROFILE
+    payload: {
+        profile: ProfileType
+    }
+}
+const setUserProfile = (profile: ProfileType): setUserProfileActionType => ({type: SET_USER_PROFILE, payload: {profile}})
+type setProfileUpdateStatusActionType = {
+    type: typeof SET_PROFILE_UPDATE_STATUS
+    payload: {
+        status: string
+    }
+}
+const setProfileUpdateStatus = (status: string): setProfileUpdateStatusActionType => ({type: SET_PROFILE_UPDATE_STATUS, payload: {status}})
+type setStatusActionType = {
+    type: typeof SET_STATUS
+    payload: {
+        status: string
+    }
+}
+const setStatus = (status: string): setStatusActionType => ({type: SET_STATUS, payload: {status}})
+export const deletePost = (postId: number): deletePostActionType => ({type: DELETE_POST, payload: {postId}})
+type deletePostActionType = {
+    type: typeof DELETE_POST
+    payload: {
+        postId: number
+    }
+}
+type savePhotoSuccessActionType = {
+    type: typeof SAVE_PHOTO_SUCCESS
+    payload: {
+        photos: PhotosType
+    }
+}
+export const savePhotoSuccess = (photos: PhotosType): savePhotoSuccessActionType => ({type: SAVE_PHOTO_SUCCESS, payload: {photos,...photos}})
 export const getStatus = (userId: number) => {
     return (dispatch: any) => {
         profileAPI.getStatus(userId)
@@ -107,8 +157,7 @@ export const savePhoto = (file: any) => {
          }
     }
 }
-
-export const saveProfile = (profile: any) => {
+export const saveProfile = (profile: ProfileType) => {
     return async (dispatch: any, getState: any) => {
         let json =  await profileAPI.saveProfile(profile);
 
@@ -117,14 +166,6 @@ export const saveProfile = (profile: any) => {
             dispatch(setUserProfile(profile));
             dispatch(setProfileUpdateStatus('none'));
         }
-
-        // TODO сделано
-        // 47:00 это же безумие делать лишний запрос к серверу!!! Если мы только
-        // что отправили данные на сервер и он ответил, что они приняты -
-        // нельзя ли взять эти же данные (которые мы отправляли) и их задиспатчить с
-        // стейт сразу? Потому что, КАКИЕ еще данные нам может вернуть сервер, кроме тех,
-        // которые мы сами же ему только что отправили.
-
             else {
                 setProfileUpdateStatus('error');
                 const res = json.messages[0].toLowerCase();

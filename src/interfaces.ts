@@ -52,7 +52,7 @@ export interface IUser {
     followed: boolean
     name: string
     status: string
-    location: {city: string, country: string}
+    location: { city: string, country: string }
 }
 
 
