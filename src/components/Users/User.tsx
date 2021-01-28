@@ -1,17 +1,17 @@
 import React from 'react';
 import userPhoto from '../../assets/images/avatar.png';
 import {NavLink} from "react-router-dom";
-import style from './Users.module.css'
+import style from './Users.module.css';
+import {IUser} from "../../types/types";
 
-interface IUser {
-    follow(userId: number) : void
-    unfollow(userId: number) : void,
+interface IProps {
+    follow(userId: number): void
+    unfollow(userId: number): void
     followingInProgress: Array<number>
-    user: {name: string, id: number, uniqueUrlName?: any, photos: {small: string, large: string},
-          status: any, followed: boolean}
+    user: IUser
 }
 
-const User: React.FunctionComponent<IUser> = ({user, unfollow, follow, followingInProgress}) => {
+const User: React.FC<IProps> = ({user, unfollow, follow, followingInProgress}) => {
     return (
      <div className={style.user}>
         <div>

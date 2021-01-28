@@ -2,23 +2,23 @@ import React, {useState} from 'react';
 import style from './Paginator.module.css';
 import cn from 'classnames';
 
-interface IPaginator {
+type PropsType = {
     pageSize: number
     totalItemsCount: number
     pageNumber: number
-    onPageChanged(pageSize: number): void
-    portionSize: number
+    onPageChanged(pageNumber: number): void
+    portionSize?: number
 }
 
-const Paginator: React.FunctionComponent<IPaginator> = React.memo( ({
+const Paginator: React.FC<PropsType> = React.memo(({
     totalItemsCount,
     pageSize,
     onPageChanged,
     pageNumber,
-    portionSize
+    portionSize = 10
   }) => {
 
-    let pages = [];
+    let pages: Array<number> = [];
     let pagesCount = Math.ceil(totalItemsCount / pageSize);
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
@@ -30,13 +30,10 @@ const Paginator: React.FunctionComponent<IPaginator> = React.memo( ({
     let rightPortionPageNumber  = portionNumber * portionSize;
 
     return (
-
         <div className={style.paginator}>
             { portionNumber > 1 &&  <button onClick={() => {
                 setPortionNumber(portionNumber - 1);
                 onPageChanged(leftPortionPageNumber - portionSize)
-                console.log('leftPortionPageNumber', leftPortionPageNumber)
-                console.log('portionSize', portionSize)
             }
             }>-</button>}
 
@@ -50,8 +47,6 @@ const Paginator: React.FunctionComponent<IPaginator> = React.memo( ({
                         key={p}
                         onClick={() => {
                             onPageChanged(p)
-                            console.log(p)
-                            console.log(leftPortionPageNumber)
                         }
                      }>{p}</span>)
 
@@ -61,17 +56,8 @@ const Paginator: React.FunctionComponent<IPaginator> = React.memo( ({
                 setPortionNumber(portionNumber + 1);
                 onPageChanged(rightPortionPageNumber + 1);
             }}>+</button>
-
-
-
             }
             <div>
-                {/*<button onClick={() => {*/}
-                {/*    setPortionNumber(portionCount * portionNumber);*/}
-                {/*    onPageChanged(portionCount * portionNumber * portionSize - 4);*/}
-                {/*    console.log( portionNumber)*/}
-
-                {/*}}>last</button>*/}
             </div>
         </div>
     );

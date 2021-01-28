@@ -1,13 +1,16 @@
 import React from 'react';
 
-interface IProps {
-    status: any,
+type PropsType = {
+    status: string
     updateStatus(status: string): void
 }
 
-class ProfileStatus extends React.Component<IProps> {
+interface StateType {
+    status: string
+    editMode: boolean
+}
 
-
+class ProfileStatus extends React.Component<PropsType, StateType> {
 
     // inputRef = React.createRef<HTMLInputElement>();
 
@@ -15,7 +18,6 @@ class ProfileStatus extends React.Component<IProps> {
         editMode: false,
         status: this.props.status
     }
-
 
     // static getDerivedStateFromProps(nextProps: any, prevState: any) {
     //     if (nextProps.status !== prevState.status ) {
@@ -27,7 +29,7 @@ class ProfileStatus extends React.Component<IProps> {
     //     return 1
     // }
 
-    componentDidUpdate(prevProps: Readonly<IProps>, prevState: Readonly<{}>, snapshot?: any) {
+    componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<{}>, snapshot?: any) {
 
       if (prevProps.status !== this.props.status) {
           this.setState({
@@ -38,9 +40,7 @@ class ProfileStatus extends React.Component<IProps> {
 
     activateEditMode = () => {
         this.setState(() => ({ editMode: true }))
-
     }
-
 
     deactivateEditMode = () => {
         this.setState(() =>  ({editMode: false }) )
@@ -55,7 +55,6 @@ class ProfileStatus extends React.Component<IProps> {
     }
 
     render() {
-
         return (
                 <div>
                     {
@@ -71,3 +70,4 @@ class ProfileStatus extends React.Component<IProps> {
 }
 
 export default ProfileStatus;
+

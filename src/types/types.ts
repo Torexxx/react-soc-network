@@ -45,6 +45,7 @@ export interface IUser {
     name: string
     status: string
     location: LocationType
+    uniqueUrlName?: any
 }
 
 export type {PhotosType, PostType, ContactsType, ProfileType}

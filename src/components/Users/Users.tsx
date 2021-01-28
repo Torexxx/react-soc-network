@@ -1,25 +1,25 @@
 import React, {useEffect} from 'react';
-import {IUser} from "../../interfaces";
-import style from './Users.module.css'
+import {IUser} from "../../types/types";
+import style from './Users.module.css';
 import {Preloader} from "../common/Preloader/Preloader";
 import Paginator from "../common/Paginator/Paginator";
 import User from './User';
 
-interface IUsers {
-    follow(userId: number) : void
-    unfollow(userId: number) : void,
-    getRequestUsers(pageNumber: number, pageSize: number ) : void
+interface IProps {
+    follow(userId: number): void
+    unfollow(userId: number): void,
+    getRequestUsers(pageNumber: number, pageSize: number ): void
     users: Array<IUser>
     pageSize: number
     totalItemsCount: number
     pageNumber: number
     isFetching: boolean
-    toggleFollowingInProgress(isFetching: boolean, userId: number) : void
+    toggleFollowingInProgress(isFetching: boolean, userId: number): void
     followingInProgress: Array<number>,
     portionSize: number
 }
 
-const Users: React.FunctionComponent<IUsers> = React.memo( ({
+const Users: React.FC<IProps> = React.memo( ({
     unfollow,
     follow,
     getRequestUsers,
@@ -52,7 +52,6 @@ const Users: React.FunctionComponent<IUsers> = React.memo( ({
             { isFetching ? <Preloader/>
                     :
                     <>
-
                         <div className={style.usersWrapper}>
                             {users.map((user: IUser) => {
                                return <User

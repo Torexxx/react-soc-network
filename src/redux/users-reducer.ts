@@ -85,57 +85,66 @@ const usersReducer = (state = initialState, action: ActionType): InitialStateTyp
     }
 }
 
-type followSuccessActionType = {
+type FollowSuccessActionType = {
     type: typeof FOLLOW
     payload: {
         userId: number
     }
 }
-export const followSuccess = (userId: number): followSuccessActionType => ({type: FOLLOW, payload: {userId}});
-type unfollowSuccessActionType = {
+export const followSuccess = (userId: number): FollowSuccessActionType => ({type: FOLLOW, payload: {userId}});
+type UnfollowSuccessActionType = {
     type: typeof UNFOLLOW
     payload: {
         userId: number
     }
 }
-export const unfollowSuccess = (userId: number): unfollowSuccessActionType => ({type: UNFOLLOW, payload: {userId}});
-type setUsersActionType = {
+export const unfollowSuccess = (userId: number): UnfollowSuccessActionType => ({type: UNFOLLOW, payload: {userId}});
+type SetUsersActionType = {
     type: typeof SET_USERS
     payload: {
         users: Array<IUser>
     }
 }
-export const setUsers = (users: Array<IUser>): setUsersActionType => ({type: SET_USERS, payload: {users}});
-type setCurrentPageActionType = {
+export const setUsers = (users: Array<IUser>): SetUsersActionType => ({type: SET_USERS, payload: {users}});
+type SetCurrentPageActionType = {
     type: typeof SET_CURRENT_PAGE
     payload: {
         page: number
     }
 }
-export const setCurrentPage = (page: number): setCurrentPageActionType => ({type: SET_CURRENT_PAGE, payload: {page}});
-type setTotalUsersCountActionType = {
+export const setCurrentPage = (page: number): SetCurrentPageActionType => ({
+    type: SET_CURRENT_PAGE,
+    payload: {page}
+});
+type SetTotalUsersCountActionType = {
     type: typeof SET_TOTAL_USERS_COUNT
     payload: {
         usersCount: number
     }
 }
-export const setTotalUsersCount = (usersCount: number): setTotalUsersCountActionType => ({type: SET_TOTAL_USERS_COUNT, payload: {usersCount}});
+export const setTotalUsersCount = (usersCount: number): SetTotalUsersCountActionType => ({
+    type: SET_TOTAL_USERS_COUNT,
+    payload: {usersCount}
+});
 type showLoaderActionType = {
     type: typeof SHOW_LOADER
 }
 export const showLoader = (): showLoaderActionType => ({type: SHOW_LOADER});
-type hideLoaderActionType = {
+type HideLoaderActionType = {
     type: typeof HIDE_LOADER
 }
-export const hideLoader = (): hideLoaderActionType => ({type: HIDE_LOADER});
-type toggleFollowingInProgressActionType = {
+export const hideLoader = (): HideLoaderActionType => ({type: HIDE_LOADER});
+type ToggleFollowingInProgressActionType = {
     type: typeof TOGGLE_IS_FOLLOWING_PROGRESS
     payload: {
         isFetching: boolean
         userId: number
     }
 }
-export const toggleFollowingInProgress = (isFetching: boolean, userId: number): toggleFollowingInProgressActionType => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, payload: {isFetching, userId}});
+export const toggleFollowingInProgress = (isFetching: boolean, userId: number): ToggleFollowingInProgressActionType => ({
+    type: TOGGLE_IS_FOLLOWING_PROGRESS,
+    payload: {isFetching, userId}
+});
 
 export const getRequestUsers = (page: number, pageSize: number) => {
 
