@@ -10,6 +10,7 @@ interface IProps {
     followingInProgress: Array<number>
     user: IUser
 }
+// Comment
 
 const User: React.FC<IProps> = ({user, unfollow, follow, followingInProgress}) => {
     return (
