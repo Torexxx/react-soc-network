@@ -1,11 +1,12 @@
 import React from 'react';
+import { ChangeEvent } from 'react';
 
 type PropsType = {
     status: string
     updateStatus(status: string): void
 }
 
-interface StateType {
+type StateType = {
     status: string
     editMode: boolean
 }
@@ -29,7 +30,7 @@ class ProfileStatus extends React.Component<PropsType, StateType> {
     //     return 1
     // }
 
-    componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<{}>, snapshot?: any) {
+    componentDidUpdate(prevProps: PropsType, prevState: StateType, snapshot?: any) {
 
       if (prevProps.status !== this.props.status) {
           this.setState({
@@ -47,7 +48,7 @@ class ProfileStatus extends React.Component<PropsType, StateType> {
         this.props.updateStatus(this.state.status);
     }
 
-    onStatusEditHandler = (e: any) => {
+    onStatusEditHandler = (e: ChangeEvent<HTMLInputElement>) => {
 
         this.setState({
             status: e.target.value

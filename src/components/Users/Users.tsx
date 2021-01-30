@@ -4,22 +4,9 @@ import style from './Users.module.css';
 import {Preloader} from "../common/Preloader/Preloader";
 import Paginator from "../common/Paginator/Paginator";
 import User from './User';
+import { PropsType } from './UsersContainer';
 
-interface IProps {
-    follow(userId: number): void
-    unfollow(userId: number): void,
-    getRequestUsers(pageNumber: number, pageSize: number ): void
-    users: Array<IUser>
-    pageSize: number
-    totalItemsCount: number
-    pageNumber: number
-    isFetching: boolean
-    toggleFollowingInProgress(isFetching: boolean, userId: number): void
-    followingInProgress: Array<number>,
-    portionSize: number
-}
-
-const Users: React.FC<IProps> = React.memo( ({
+const Users: React.FC<PropsType> = React.memo( ({
     unfollow,
     follow,
     getRequestUsers,
@@ -29,19 +16,23 @@ const Users: React.FC<IProps> = React.memo( ({
     pageNumber,
     isFetching,
     followingInProgress,
-    portionSize
+    portionSize,
+    titleText
+
   }) => {
 
     useEffect(() => {
         getRequestUsers(pageNumber, pageSize);
     }, [pageNumber, getRequestUsers, pageSize])
 
-        const onPageChanged = React.useCallback((pageNumber: number) => {
+    const onPageChanged = React.useCallback((pageNumber: number) => {
         getRequestUsers(pageNumber, pageSize)
     }, [getRequestUsers, pageSize])
 
     return (
+
         <div className={style.users}>
+            <h1>{titleText}</h1>
             <Paginator
                 totalItemsCount ={totalItemsCount}
                 pageSize = {pageSize}
@@ -49,7 +40,8 @@ const Users: React.FC<IProps> = React.memo( ({
                 pageNumber={pageNumber}
                 portionSize={ portionSize}
             />
-            { isFetching ? <Preloader/>
+            { isFetching
+                    ? <Preloader/>
                     :
                     <>
                         <div className={style.usersWrapper}>

@@ -14,37 +14,6 @@ export interface IMessage{
     message: string
 }
 
-export interface IState {
-    profilePage: {
-        posts: {
-            id: number;
-            message: string;
-            likesCount: number;
-        }[];
-        newPostText: string;
-        profile: any;
-    };
-    dialogsPage: {
-        dialogs: {
-            id: number;
-            name: string;
-        }[];
-        messages: {
-            id: number;
-            message: string;
-        }[];
-        newMessageText: string;
-    };
-    usersPage: {
-        users: IUser[];
-        pageSize: number,
-        totalUsersCount: number,
-        currentPage: number,
-        isFetching: boolean,
-        followingInProgress: Array<number>,
-    };
-    auth: any
-}
 
 export interface IUser {
     id: number

@@ -1,7 +1,7 @@
-import {connect} from "react-redux";
+import React from 'react';
+import {connect, ConnectedProps} from "react-redux";
 import Users from "./Users";
-import {follow, getRequestUsers, setCurrentPage, toggleFollowingInProgress, unfollow} from "../../redux/users-reducer";
-import {IState} from "../../interfaces";
+import {follow, getRequestUsers, unfollow} from "../../redux/users-reducer";
 import {
     getCurrentPage,
     getFollowingInProgress,
@@ -11,8 +11,48 @@ import {
     getUsers,
 
 } from "../../redux/user-selectors";
+import { AppStateType } from "../../redux/redux-store";
+import {IUser} from "../../types/types";
 
-let mapStateToProps = (state: IState) => {
+type MapStatePropsType = {
+    users: Array<IUser>
+    pageSize: number
+    totalItemsCount: number
+    pageNumber: number
+    isFetching: boolean
+    followingInProgress: Array<number>
+    portionSize: number
+};
+type MapDispatchPropsType = {
+    follow(userId: number): void
+    unfollow(userId: number): void
+    getRequestUsers(pageNumber: number, pageSize: number ): void
+};
+type OwnType  = {
+    titleText: string
+};
+
+export type PropsType = MapStatePropsType & MapDispatchPropsType & OwnType;
+
+const UsersContainer: React.FC<PropsType> = (props) => {
+    return (
+        <Users
+            users ={props.users}
+            pageSize={props.pageSize}
+            totalItemsCount={props.totalItemsCount}
+            pageNumber={props.pageNumber}
+            isFetching={props.isFetching}
+            followingInProgress={props.followingInProgress}
+            portionSize={props.portionSize}
+            follow={props.follow}
+            unfollow={props.unfollow}
+            getRequestUsers={props.getRequestUsers}
+            titleText={props.titleText}
+        />
+    )
+}
+
+let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
@@ -24,11 +64,22 @@ let mapStateToProps = (state: IState) => {
     }
 }
 
-export default connect(mapStateToProps, {
+export default connect<MapStatePropsType, MapDispatchPropsType, OwnType, AppStateType>(
+    mapStateToProps, {
     follow,
     unfollow,
     getRequestUsers,
-    setCurrentPage,
-    toggleFollowingInProgress
-})(Users);
+})(UsersContainer);
 
+
+// const connector = connect(
+//     mapStateToProps, {
+//         follow,
+//         unfollow,
+//         getRequestUsers,
+//     })
+// type PropsFromRedux = ConnectedProps<typeof connector>;
+// type Props = PropsFromRedux & OwnType;
+//
+//
+// export default connector(UsersContainer);

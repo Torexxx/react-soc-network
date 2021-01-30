@@ -12,7 +12,7 @@ import {Preloader} from "./components/common/Preloader/Preloader";
 import {connect, Provider} from 'react-redux';
 import {initializeApp} from "./redux/app-reducer";
 import { compose } from 'redux';
-import store from './redux/redux-store';
+import store, {AppStateType} from './redux/redux-store';
 import withSuspense from "./components/hoc/withSuspense";
 const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"))
 const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"))
@@ -44,9 +44,8 @@ class App extends React.Component<any> {
                         <Switch>
                             <Route path='/' exact render={() => <Redirect to='/profile'/>}/>
                             <Route path='/dialogs' render={withSuspense(DialogsContainer)}/>
-                            <Route path='/dialogs' render={withSuspense(DialogsContainer)}/>
                             <Route path='/profile/:userId?' render={ withSuspense(ProfileContainer)}/>
-                            <Route path='/users' render={ () => <UsersContainer /> }/>
+                            <Route path='/users' render={ () => <UsersContainer titleText = {"Пользователи"}/> }/>
                             <Route path='/hooks' render={ () => <MainAppRenderProps /> }/>
                             <Route path='/login' render={ () => <LoginPage /> }/>
                             <Route path='*' render={ () => <div>404 NOT FOUND</div> }/>
@@ -60,7 +59,7 @@ class App extends React.Component<any> {
     }
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: AppStateType) => {
     return {
         initialized: state.app.initialized
     }

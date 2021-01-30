@@ -1,5 +1,5 @@
-import {StateType} from "../types/types";
+import { AppStateType } from "./redux-store";
 
-export const sidebarReducer = (state: StateType, action: { type: string, payload?: { newText: string, dialogText: string} }) => {
+export const sidebarReducer = (state: AppStateType, action: { type: string, payload?: { newText: string, dialogText: string} }) => {
     return state;
 }

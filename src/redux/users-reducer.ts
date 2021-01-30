@@ -15,7 +15,7 @@ let initialState = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
-    followingInProgress: [] as Array<number | undefined>, // array of users id
+    followingInProgress: [] as Array<number>, // array of users id
     portionSize: 5
 };
 
@@ -24,11 +24,11 @@ export type InitialStateType = typeof initialState
 type ActionType = {
  type: string
     payload?: {
-        userId?: number
+        userId: number
         page: number
         usersCount: number
         users: Array<IUser>
-        isFetching?: boolean
+        isFetching: boolean
  }
 }
 
@@ -77,7 +77,7 @@ const usersReducer = (state = initialState, action: ActionType): InitialStateTyp
                 ...state,
                 followingInProgress: action.payload!.isFetching
                     ? [...state.followingInProgress,  action.payload!.userId ]
-                    :  state.followingInProgress.filter((id: number | undefined) => id !== action.payload!.userId)
+                    :  state.followingInProgress.filter((id: number) => id !== action.payload!.userId)
             }
 
         default:

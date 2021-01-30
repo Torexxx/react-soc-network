@@ -4,14 +4,14 @@ import {NavLink} from "react-router-dom";
 import style from './Users.module.css';
 import {IUser} from "../../types/types";
 
-interface IProps {
+interface PropsType {
     follow(userId: number): void
     unfollow(userId: number): void
     followingInProgress: Array<number>
     user: IUser
 }
 
-const User: React.FC<IProps> = ({user, unfollow, follow, followingInProgress}) => {
+const User: React.FC<PropsType> = ({user, unfollow, follow, followingInProgress}) => {
     return (
      <div className={style.user}>
         <div>
