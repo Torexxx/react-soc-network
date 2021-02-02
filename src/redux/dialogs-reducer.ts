@@ -1,10 +1,10 @@
 const ADD_MESSAGE_TEXT =  'ADD_MESSAGE_TEXT';
 
-type DialogType = {
+export type DialogType = {
     id: number
     name: string
 }
-type MessageType = {
+export type MessageType = {
     id: number
     message: string
 }
@@ -29,36 +29,28 @@ let initialState = {
 
 export type initialStateType = typeof initialState;
 
-type ActionType = {
-    type: string
-    payload?: {
-        dialogText: string,
-        newMessageBody: any
-    }
-}
+export type ActionsTypes = addMessageTextACActionType;
 
-const dialogsReducer = (state = initialState, action: ActionType): initialStateType => {
+const dialogsReducer = (state = initialState, action: ActionsTypes): initialStateType => {
     switch (action.type) {
         case ADD_MESSAGE_TEXT :
-           let body = action.payload!.newMessageBody;
+           let body = action.newMessageBody;
             return {
                 ...state,
-                    messages: [...state.messages, {id: Date.now(), message: body} ]};
+                    messages: [...state.messages, {id: Date.now(), message: body}]};
 
         default:
             return state;
     }
 }
 
-type addMessageTextACActionPayloadType = {
-    newMessageBody: string
-}
+
 type addMessageTextACActionType = {
     type: typeof ADD_MESSAGE_TEXT
-    payload: addMessageTextACActionPayloadType
-}
+    newMessageBody: string
+};
 export const addMessageTextAC = (newMessageBody: string): addMessageTextACActionType => (
-        {type: ADD_MESSAGE_TEXT, payload: {newMessageBody}}
+        {type: ADD_MESSAGE_TEXT, newMessageBody}
     );
 
 export default dialogsReducer;

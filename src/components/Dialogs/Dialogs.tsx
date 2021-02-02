@@ -5,18 +5,17 @@ import DialogItem from "./DialogItem/DialogItem";
 import {IDialog, IMessage} from "../../interfaces";
 import AddMessageForm from "./AddMessageForm/AddMessageForm";
 
-type DialogsProps = {
+type PropsType = {
     dialogsPage: {
         dialogs: Array<IDialog>
         messages: Array<IMessage>
         newMessageText: string
     }
-    sendNewMessage(body: any): void
+    sendNewMessage(body: string): void
     isAuth: boolean,
 }
 
-const Dialogs: React.FunctionComponent<DialogsProps> = ({sendNewMessage, dialogsPage, isAuth}) => {
-    console.log('DIALOGS RENDER')
+const Dialogs: React.FunctionComponent<PropsType> = ({sendNewMessage, dialogsPage, isAuth}) => {
      let state = dialogsPage;
      let messageElements = state.messages.map( (m:{id: number, message: string}) => <Message key={m.id} {...m} /> );
      let dialogsElements = state.dialogs.map( ({id, name}:any) => <DialogItem key={id} name = {name} id={id} /> );

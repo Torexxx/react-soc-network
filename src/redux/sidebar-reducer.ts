@@ -1,5 +1,7 @@
 import { AppStateType } from "./redux-store";
 
-export const sidebarReducer = (state: AppStateType, action: { type: string, payload?: { newText: string, dialogText: string} }) => {
+type ActionsTypes = {}
+
+export const sidebarReducer = (state: AppStateType, action: ActionsTypes) => {
     return state;
 }

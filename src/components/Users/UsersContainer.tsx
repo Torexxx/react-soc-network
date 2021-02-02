@@ -37,7 +37,7 @@ export type PropsType = MapStatePropsType & MapDispatchPropsType & OwnType;
 const UsersContainer: React.FC<PropsType> = (props) => {
     return (
         <Users
-            users ={props.users}
+            users={props.users}
             pageSize={props.pageSize}
             totalItemsCount={props.totalItemsCount}
             pageNumber={props.pageNumber}

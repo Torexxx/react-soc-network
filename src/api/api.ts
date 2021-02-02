@@ -1,7 +1,5 @@
-import axios from 'axios';
-// const { default: axios } = require('axios');
-
-const mainUrl = 'https://social-network.samuraijs.com/api/1.0/';
+import axios, {AxiosResponse} from 'axios';
+import {IUser, PhotosType, ProfileType} from "../types/types";
 
 let instance = axios.create({
     withCredentials: true,
@@ -11,148 +9,130 @@ let instance = axios.create({
     }
 })
 
+type GetUsersType = {
+    items: Array<IUser>
+    totalCount: number
+    error: any
+};
+type SavePhotoType<P> = {
+    data: P
+    resultCode: number
+    messages: Array<string>
+};
+type FollowUnfollowResponseType = {
+    resultCode: number
+    messages: Array<string>
+    data: { }
+};
+
 export const usersAPI = {
     getUsers(pageSize: number, currentPage: number) {
-        return instance.get(`users?count=${pageSize}&page=${currentPage}`)
-            .then(response => response.data)
+        return instance.get<GetUsersType>(`users?count=${pageSize}&page=${currentPage}`)
+            .then(res => res.data)
     },
     unfollow(userId: number) {
-            return fetch(`${mainUrl}follow/${userId}`, {
-            method: "DELETE",
-            credentials : "include",
-            headers: {
-                'API-KEY': 'd07e318e-5bc8-4780-b44a-37a9fb87fff6'
-            }
-        })
+            return instance.delete<FollowUnfollowResponseType>(`follow/${userId}`)
     },
     follow(userId: number) {
-        return fetch(`${mainUrl}follow/${userId}`, {
-            method: "POST",
-            credentials : "include",
-            headers: {
-                'API-KEY': 'd07e318e-5bc8-4780-b44a-37a9fb87fff6'
-            }
-        })
+        return instance.post<FollowUnfollowResponseType>(`follow/${userId}`)
     },
     getProfile(userId: number) {
         // console.warn('use profileAPI.getProfile()');
         return profileAPI.getProfile(userId);
 
     },
-    savePhoto(photoFile: any) {
+    savePhoto(photoFile: Blob) {
         let formData = new FormData();
         formData.append("image", photoFile);
 
-        return fetch(`${mainUrl}/profile/photo`, {
-            method: "PUT",
-            credentials : "include",
-            headers: {
-                'API-KEY': 'd07e318e-5bc8-4780-b44a-37a9fb87fff6'
-            },
-            body: formData
-        })
-            .then(response => {
-                return response.json()
-            })
+        return instance.put<SavePhotoType<PhotosType>>(`profile/photo`, formData)
+            .then(res => res.data)
     }
-}
+};
+
+type SaveProfileType = {
+    resultCode: number
+    messages: Array<string>
+    data: {}
+};
+type GetProfileType = ProfileType;
+type UpdateStatusType = {
+    resultCode: number
+    messages: Array<string>
+    data: {}
+};
 
 export const profileAPI = {
     getProfile(userId: number) {
-        return instance(`${mainUrl}profile/${userId}`)
-            .then(response => response.data)
+        return instance.get<GetProfileType>(`profile/${userId}`)
+            .then(res => res.data)
     },
     updateStatus(status: string) {
-        return instance.put(`profile/status`, {status})
-            .then(response => response.data)
+        return instance.put<UpdateStatusType>(`profile/status`, {status})
+            .then(res => res.data)
     },
     getStatus(userId: number) {
-        return fetch(`${mainUrl}profile/status/${userId}`,
-            {credentials: 'include',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'API-KEY': 'd07e318e-5bc8-4780-b44a-37a9fb87fff6'
-                }})
-            .then(response => response.json())
-
+        return instance.get(`profile/status/${userId}`)
+            .then(res => res.data)
     },
-    saveProfile(profile: object) {
+    saveProfile(profile: ProfileType) {
+        return instance.put<SaveProfileType>(`profile`, profile)
+            .then(res => res.data)
+    }
+};
 
-        return fetch(`${mainUrl}profile`,
-            {
-                method: "PUT",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'API-KEY': 'd07e318e-5bc8-4780-b44a-37a9fb87fff6'
-                },
-                credentials: 'include',
-                body: JSON.stringify(profile)
+export enum ResultCodesEnum {
+    Success = 0,
+    Error = 1,
+}
+export enum ResultCodeForCaptcha {
+    CaptchaIsRequired = 10,
+}
 
-            })
-            .then(response => response.json())
-    },
+type MeResponseType = {
+    data: {
+        id: number
+        login: string
+        email: string
+    }
+    resultCode: ResultCodesEnum | ResultCodeForCaptcha
+    messages: Array<string>
+}
+type LoginResponseType = {
+    resultCode: ResultCodesEnum | ResultCodeForCaptcha
+    messages: Array<string>
+    data: {userId: number}
+}
+type LogoutResponseType = {
+    resultCode: ResultCodesEnum
+    messages: Array<string>
+    data: {}
 }
 
 export const authAPI = {
     me() {
-        return fetch(`${mainUrl}auth/me`,
-            {credentials: 'include',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'API-KEY': 'd07e318e-5bc8-4780-b44a-37a9fb87fff6'
-                }}
-        )
-            .then(response => response.json())
-            .catch(console.log)
+        return instance.get<MeResponseType>(`auth/me`)
+            .then(res => res.data)
     },
-    login(email: string, password: any, rememberMe: boolean = false, captcha?: string) {
-        return fetch(`${mainUrl}auth/login`,
-            {
-                method: 'POST',
-                credentials: 'include',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'API-KEY': 'd07e318e-5bc8-4780-b44a-37a9fb87fff6'
-                },
-                body: JSON.stringify({email, password, rememberMe, captcha})
-            }
-        )
-            .then(response => response.json())
-    },
+    login(email: string, password: string, rememberMe: boolean = false, captcha: null | string = null) {
+            return instance.post<LoginResponseType>(`auth/login`,{email, password, rememberMe, captcha})
+                .then(res => res.data)
+        },
     logout() {
-
-        return fetch(`${mainUrl}auth/login`,
-            {
-                method: 'DELETE',
-                credentials: 'include',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'API-KEY': 'd07e318e-5bc8-4780-b44a-37a9fb87fff6'
-                },
-            }
-        )
-            .then(response => response.json())
+        return instance.delete<LogoutResponseType>(`auth/login`)
+            .then(res => res.data)
     },
-}
+};
 
+// instance.get<MeResponseType>(`auth/me`).then((res: AxiosResponse<MeResponseType> ) => res.data.data.login)
+instance.get<number>(`auth/me`).then((res) => res.data)
+// Почему AxiosResponse<T> вместо AxiosResponse<number> ?
+type GetCaptchaUrlType = {
+    url: string
+}
 export const securityAPI = {
     getCaptchaUrl() {
-        return fetch(`${mainUrl}security/get-captcha-url`,
-            {
-                method: 'GET',
-                credentials: 'include',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'API-KEY': 'd07e318e-5bc8-4780-b44a-37a9fb87fff6'
-                },
-            }
-        )
-            .then(response => response.json())
+        return instance.get<GetCaptchaUrlType>(`security/get-captcha-url`)
+            .then(res => res.data)
     }
-}
+};
