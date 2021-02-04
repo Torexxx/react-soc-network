@@ -9,18 +9,22 @@ import {required} from "../../../utils/Form-validator";
 
 const ProfileDataForm = ({profile, handleSubmit, error }: any) => {
 
-    // console.log(handleSubmit) передает  reduxForm и связывает с тем что мы передали в ProfileDataReduxForm  (onSubmit={profileInfoSubmit} )
-    // console.log(rest)
+    // console.log(handleSubmit) передает reduxForm и связывает с тем что мы передали в ProfileDataReduxForm  (onSubmit={profileInfoSubmit} )
+    type ProfileDataFormValuesKeysType = Extract<keyof ProfileDataFormValuesType, string>;
+
+    type ProfileDataFormValuesType = {
+        fullName: string
+        lookingForAJob: string
+        lookingForAJobDescription: string
+        aboutMe: string
+    }
+
     return (
           <form className={s.profileInfoWrapper} onSubmit={handleSubmit}>
-              {
-                  error ? <div className={s.commonErrorText}>{error}</div>   // не срабатывает?
-                      : ''
-              }
+              {error ? <div className={s.commonErrorText}>{error}</div> : ''}
             <button>Save</button>
             <div className={s.editField}>
-                <b>Full Name: </b>
-                {fieldCreator('fullName', Input,undefined, [required], null)}
+                {fieldCreator<ProfileDataFormValuesKeysType>('fullName', Input,{}, [required], undefined, 'Full Name:')}
                 {/*можно передать ровно столько аргументов сколько указано*/}
                 {/*<FieldCreator name='fullName' component={Input}/>*/}
                 {/*//можно передать либо 0 либо сколько угодно.. т.к по дефолту приходит пустой пропс*/}
@@ -36,10 +40,7 @@ const ProfileDataForm = ({profile, handleSubmit, error }: any) => {
                 <FieldCreator name='lookingForAJobDescription' component={Input}/>
             </div>
             }
-            <div> <b>about Me: </b>
-                {fieldCreator('aboutMe', TextArea,undefined,[required], null)}
-            </div>
-
+                {fieldCreator<ProfileDataFormValuesKeysType>('aboutMe', TextArea, {},[required], undefined, 'about me')}
             <div>
                 <b>Contacts: </b> {Object.keys(profile.contacts).map(key => {
                 return <Contacts key={key}
@@ -53,6 +54,6 @@ const ProfileDataForm = ({profile, handleSubmit, error }: any) => {
     )
 }
 
-const ProfileDataReduxForm = reduxForm({form: 'profile-info', enableReinitialize: true })(ProfileDataForm)
+const ProfileDataReduxForm = reduxForm({form: 'profile-info', enableReinitialize: true })(ProfileDataForm);
 
 export default ProfileDataReduxForm;

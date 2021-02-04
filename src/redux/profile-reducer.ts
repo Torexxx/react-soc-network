@@ -83,13 +83,12 @@ type SetUserProfileActionType = {
     }
 };
 const setUserProfile = (profile: ProfileType): SetUserProfileActionType => ({type: SET_USER_PROFILE, payload: {profile}});
-type SetProfileUpdateStatusActionType = {
-    type: typeof SET_PROFILE_UPDATE_STATUS
-    payload: {
-        status: string
-    }
-};
-const setProfileUpdateStatus = (status: string): SetProfileUpdateStatusActionType => ({type: SET_PROFILE_UPDATE_STATUS, payload: {status}});
+
+///////////////ReturnType//////////////////////
+type SetProfileUpdateStatusActionType = ReturnType<typeof setProfileUpdateStatus>
+const setProfileUpdateStatus = (status: string) => ({type: SET_PROFILE_UPDATE_STATUS, payload: {status}} as const);
+///////////////ReturnType/////////////////////
+
 type SetStatusActionType = {
     type: typeof SET_STATUS
     payload: {

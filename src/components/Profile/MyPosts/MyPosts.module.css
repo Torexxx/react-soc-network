@@ -25,3 +25,6 @@
     border: solid red 2px;
 }
 
+.fieldWrapper {
+    display: flex;
+}

@@ -6,13 +6,13 @@ import avatar from "../../../assets/images/avatar.png"
 import ProfileData from "./ProfileData";
 import ProfileDataReduxForm from './ProfileDataForm';
 
-export const Contacts = ({contactTitle, contactValue}: any) => {
+export const Contacts:React.FC<any> = ({contactTitle, contactValue}) => {
     return <div className={s.contacts}>
         <b>{contactTitle}</b> : {contactValue}
     </div>
 }
 
-const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile, profileUpdateStatus, ...props }: any) => {
+const ProfileInfo: React.FC<any> = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile, profileUpdateStatus, ...props }) => {
 
     interface Event<T = EventTarget> {
         target: T;

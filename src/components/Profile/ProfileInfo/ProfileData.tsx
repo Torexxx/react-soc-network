@@ -2,7 +2,7 @@ import s from "./ProfileInfo.module.css";
 import React from "react";
 import {Contacts} from "./ProfileInfo";
 
-const ProfileData = ({profile, goToEditMode} : any) => {
+const ProfileData: React.FC<any> = ({profile, goToEditMode}) => {
 
     return (
         <>

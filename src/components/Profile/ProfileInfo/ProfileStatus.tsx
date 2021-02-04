@@ -20,16 +20,6 @@ class ProfileStatus extends React.Component<PropsType, StateType> {
         status: this.props.status
     }
 
-    // static getDerivedStateFromProps(nextProps: any, prevState: any) {
-    //     if (nextProps.status !== prevState.status ) {
-    //         console.log('inside getDerivedStateFromProps')
-    //         return {
-    //             status: prevState.status
-    //         };
-    //     }
-    //     return 1
-    // }
-
     componentDidUpdate(prevProps: PropsType, prevState: StateType, snapshot?: any) {
 
       if (prevProps.status !== this.props.status) {
@@ -71,4 +61,5 @@ class ProfileStatus extends React.Component<PropsType, StateType> {
 }
 
 export default ProfileStatus;
+
 
