@@ -18,27 +18,6 @@ let initialState = {
 
 export type InitialStateType = typeof initialState;
 
-// type ActionTypes = ReturnType<typeof followSuccess> | ReturnType<typeof unfollowSuccess>
-//                  | ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage> | ReturnType<typeof setTotalUsersCount>
-//                  | ReturnType<typeof showLoader> | ReturnType<typeof hideLoader>  | ReturnType<typeof toggleFollowingInProgress>
-
-function inferLiteralFromString<T extends string>(arg: T): T {
-    return arg;
-}
-// function inferLiteral<U, T extends U>(arg: T) : T {
-//     return arg
-// }
-//
-// function inferStringLiteral<T extends string>(arg: T): T {
-//     return inferLiteral<string, T>(arg);
-// }
-
-// const a = inferLiteralFromString<string>('some string')
-// console.log('a', a)
-// const b = inferLiteralFromString<'some string'>('some string')
-// console.log('b', b)
-
-// Джинерик Тип требует аргументы, функуия джинерик -неет
 type ActionTypes = InferActionTypes<typeof actions>
 
 export const actions = {
@@ -122,7 +101,6 @@ const _followUnfollowFlow = async (dispatch: DispatchType,
                                    actionCreator: (userId: number) => ActionTypes) => {
     dispatch(actions.toggleFollowingInProgress(true, userId));
     let response = await apiMethod(userId);
-
     if (response.data.resultCode === ResultCodesEnum.Success) {
         dispatch(actionCreator(userId));
     }
