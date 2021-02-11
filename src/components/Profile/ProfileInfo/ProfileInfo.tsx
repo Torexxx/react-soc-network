@@ -4,15 +4,27 @@ import {Preloader} from "../../common/Preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import avatar from "../../../assets/images/avatar.png"
 import ProfileData from "./ProfileData";
-import ProfileDataReduxForm from './ProfileDataForm';
+import ProfileDataReduxForm, { ProfileDataFormValuesType } from './ProfileDataForm';
+import {ProfileType} from "../../../types/types";
 
-export const Contacts:React.FC<any> = ({contactTitle, contactValue}) => {
+export const Contacts:React.FC<{contactTitle: any,contactValue : any }> = ({contactTitle, contactValue}) => {
     return <div className={s.contacts}>
         <b>{contactTitle}</b> : {contactValue}
     </div>
 }
 
-const ProfileInfo: React.FC<any> = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile, profileUpdateStatus, ...props }) => {
+type ProfileInfoPropsType = {
+    profile: ProfileType | any   // ругается на initialValues
+    status: string
+    updateStatus: (status: string) => void
+    isOwner: boolean
+    savePhoto: (file: Blob) => void
+    saveProfile: (formData: ProfileDataFormValuesType) => void
+    profileUpdateStatus: string
+
+}
+
+const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile, profileUpdateStatus, ...props }) => {
 
     interface Event<T = EventTarget> {
         target: T;
@@ -30,14 +42,8 @@ const ProfileInfo: React.FC<any> = ({profile, status, updateStatus, isOwner, sav
         setEditMode(true);
     }
 
-    const profileInfoSubmit =  (formData: any) => {
+    const profileInfoSubmit =  (formData: ProfileDataFormValuesType) => {
         saveProfile(formData)
-        // if profileUpdateStatus === success  => setEditMode(false);
-
-        // saveProfile(formData)
-        //     .then(() => {
-        //         setEditMode(false);
-        //     });
     }
 
     const onMainPhotoSelected = (e: Event<HTMLInputElement>) => {

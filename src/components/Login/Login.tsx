@@ -8,7 +8,18 @@ import {Redirect} from "react-router-dom";
 import s from './Login.module.css';
 import {AppStateType} from "../../redux/redux-store";
 
-const LoginForm: React.FC<AllLoginFormProps> = ({handleSubmit, error, captchaUrl}) => {
+type LoginFormOwnProps  = {
+    captchaUrl: string | null
+};
+type LoginFormValuesType = {
+    email: string
+    password: string
+    rememberMe: boolean
+    captcha: string
+};
+type LoginFormValuesKeysType = Extract<keyof LoginFormValuesType, string>;
+
+const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType, LoginFormOwnProps> & LoginFormOwnProps> = ({handleSubmit, error, captchaUrl}) => {
     return (
         <form onSubmit={handleSubmit}>
             {fieldCreator<LoginFormValuesKeysType>("email", Input,{},[required],'Введите логин')}
@@ -38,17 +49,6 @@ type MapStateProps = {
 type MapDispatchProps = {
     login: (email: string, password: string, rememberMe: boolean, captcha: string) => void
 };
-type LoginFormOwnProps  = {
-    captchaUrl: string | null
-};
-type AllLoginFormProps = InjectedFormProps<LoginFormValuesType, LoginFormOwnProps> & LoginFormOwnProps;
-type LoginFormValuesKeysType = Extract<keyof LoginFormValuesType, string>;
-type LoginFormValuesType = {
-    email: string
-    password: string
-    rememberMe: boolean
-    captcha: string
-};
 
 const Login: React.FC<MapStateProps & MapDispatchProps> = ({login, isAuth, captchaUrl}) => {
 
@@ -66,7 +66,7 @@ const Login: React.FC<MapStateProps & MapDispatchProps> = ({login, isAuth, captc
     );
 };
 
-let LoginReduxForm = reduxForm<LoginFormValuesType, LoginFormOwnProps >({form: 'login'})(LoginForm);
+let LoginReduxForm = reduxForm<LoginFormValuesType, LoginFormOwnProps>({form: 'login'})(LoginForm);
 
 const mapStateToProps = (state: AppStateType): MapStateProps => ({isAuth: state.auth.isAuth, captchaUrl: state.auth.captchaUrl});
 export default connect(mapStateToProps, {login})(Login);

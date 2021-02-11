@@ -1,8 +1,9 @@
-import {profileAPI, ResultCodesEnum, usersAPI} from "../api/api";
+import {profileAPI, ResultCodesEnum} from "../api/api";
 import {stopSubmit} from "redux-form";
 import {PhotosType, PostType, ProfileType} from "../types/types";
 import { ThunkAction } from "redux-thunk";
 import {AppStateType} from "./redux-store";
+import {usersAPI} from "../api/users-api";
 
 const ADD_POST =  'ADD_POST';
 const SET_USER_PROFILE =  'SET_USER_PROFILE';
@@ -11,12 +12,14 @@ const DELETE_POST = 'DELETE_POST';
 const SAVE_PHOTO_SUCCESS =  'SAVE_PHOTO_SUCCESS';
 const SET_PROFILE_UPDATE_STATUS =  'SET_PROFILE_UPDATE_STATUS';
 
+type Nullable<T> = T | null;
+
 let initialState = {
     posts: [
         {id: 1, message: 'Hello', likesCount: 1},
         {id: 2, message: 'Hi', likesCount: 1},
     ] as Array<PostType>,
-    profile: null as ProfileType | null,
+    profile: null as Nullable<ProfileType>,
     status: '',
     newPostText: '',
     profileUpdateStatus: 'none',
@@ -134,7 +137,7 @@ export const updateStatus = (status: string): ThunkType => {
 };
 export const getUserProfile = (userId: number): ThunkType => {
     return async (dispatch) => {
-         usersAPI.getProfile(userId)
+         profileAPI.getProfile(userId)
              .then(data => dispatch(setUserProfile(data)))
     }
 };

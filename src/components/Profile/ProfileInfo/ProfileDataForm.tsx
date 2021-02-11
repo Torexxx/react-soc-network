@@ -1,46 +1,45 @@
 import s from "./ProfileInfo.module.css";
-import {FieldCreator, fieldCreator, Input, TextArea} from "../../common/FormControls/FormControls";
-import {Field} from "redux-form";
+import { fieldCreator, Input, TextArea} from "../../common/FormControls/FormControls";
+import {Field, InjectedFormProps} from "redux-form";
 import {reduxForm} from "redux-form";
 import React from "react";
 import { Contacts } from "./ProfileInfo";
 import {required} from "../../../utils/Form-validator";
+import {ProfileType} from "../../../types/types";
 
+type ProfileDataFormOwnProps = {
+    profile: ProfileType
+}
+type ProfileDataFormValuesKeysType = Extract<keyof ProfileDataFormValuesType, string>;
+type AllProfileDataFormProps = InjectedFormProps<ProfileDataFormValuesType, ProfileDataFormOwnProps> & ProfileDataFormOwnProps;
 
-const ProfileDataForm = ({profile, handleSubmit, error }: any) => {
+export type ProfileDataFormValuesType = {
+    fullName: string
+    lookingForAJob: string
+    lookingForAJobDescription: string
+    aboutMe: string
+};
+
+const ProfileDataForm: React.FC<AllProfileDataFormProps> = ({profile, handleSubmit, error }) => {
 
     // console.log(handleSubmit) передает reduxForm и связывает с тем что мы передали в ProfileDataReduxForm  (onSubmit={profileInfoSubmit} )
-    type ProfileDataFormValuesKeysType = Extract<keyof ProfileDataFormValuesType, string>;
-
-    type ProfileDataFormValuesType = {
-        fullName: string
-        lookingForAJob: string
-        lookingForAJobDescription: string
-        aboutMe: string
-    }
 
     return (
           <form className={s.profileInfoWrapper} onSubmit={handleSubmit}>
               {error ? <div className={s.commonErrorText}>{error}</div> : ''}
             <button>Save</button>
             <div className={s.editField}>
-                {fieldCreator<ProfileDataFormValuesKeysType>('fullName', Input,{}, [required], undefined, 'Full Name:')}
-                {/*можно передать ровно столько аргументов сколько указано*/}
-                {/*<FieldCreator name='fullName' component={Input}/>*/}
-                {/*//можно передать либо 0 либо сколько угодно.. т.к по дефолту приходит пустой пропс*/}
+                {fieldCreator<ProfileDataFormValuesKeysType>('fullName', Input,{}, [required], undefined, 'Full Name: ')}
             </div>
-
             <div className={s.editField}>
-                <b>Looking for a job: </b>
-                <FieldCreator name='lookingForAJob' component={Input} type='checkbox'/>
+                {fieldCreator<ProfileDataFormValuesKeysType>('lookingForAJob', Input,{type: 'checkbox'}, [], undefined, 'Looking for a job: ')}
             </div>
             {profile.lookingForAJob &&
             <div className={s.editField}>
-                <b>My professional skills: </b>
-                <FieldCreator name='lookingForAJobDescription' component={Input}/>
+                {fieldCreator<ProfileDataFormValuesKeysType>('lookingForAJobDescription', Input,{}, [], undefined, 'My professional skills: ')}
             </div>
             }
-                {fieldCreator<ProfileDataFormValuesKeysType>('aboutMe', TextArea, {},[required], undefined, 'about me')}
+                {fieldCreator<ProfileDataFormValuesKeysType>('aboutMe', TextArea, {},[required], undefined, 'about me: ')}
             <div>
                 <b>Contacts: </b> {Object.keys(profile.contacts).map(key => {
                 return <Contacts key={key}
@@ -54,6 +53,6 @@ const ProfileDataForm = ({profile, handleSubmit, error }: any) => {
     )
 }
 
-const ProfileDataReduxForm = reduxForm({form: 'profile-info', enableReinitialize: true })(ProfileDataForm);
+const ProfileDataReduxForm = reduxForm<ProfileDataFormValuesType, ProfileDataFormOwnProps>({form: 'profile-info', enableReinitialize: true })(ProfileDataForm);
 
 export default ProfileDataReduxForm;

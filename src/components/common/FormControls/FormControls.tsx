@@ -1,15 +1,25 @@
 import s from "../../Profile/MyPosts/MyPosts.module.css";
 import React from "react";
-import {Field, WrappedFieldProps} from "redux-form";
+import {Field} from "redux-form";
 import {FieldValidatorType} from "../../../utils/Form-validator";
-import {WrappedFieldMetaProps} from "redux-form/lib/Field";
+import {WrappedFieldMetaProps, WrappedFieldProps} from "redux-form/lib/Field";
 
 type FormControlPropsType = {
     meta: WrappedFieldMetaProps
 }
 
+type FormControlParamsType ={
+    meta: {
+        touched: boolean
+        error?: string
+    }
+    children: React.ReactNode
+}
+type FormControlType<T> = (params: T ) => JSX.Element
+// FormControlType<FormControlParamsType>
 export const FormControl: React.FC<FormControlPropsType> = ({ meta: { touched, error} , children }) => {
     const hasError = error && touched;
+
     return (
             <div className={s.formControl + ' ' + (hasError ? s.error : '')}>
 
@@ -21,14 +31,14 @@ export const FormControl: React.FC<FormControlPropsType> = ({ meta: { touched, e
             </div>
         )
 }
-
-export function fieldCreator<FormKeysType extends string> (
-                             name: FormKeysType,
+ // <T extends string>  ---- литеральный тип string (String Literal)
+export function fieldCreator<T extends string> (
+                             name: T,
                              component: React.FC<WrappedFieldProps>,
                              props={},
                              validators: Array<FieldValidatorType>,
                              placeholder: string | undefined,
-                             text='') {
+                             text= '') {
 
                     return <div className={s.fieldWrapper}>{text}
                                 <Field
@@ -40,15 +50,6 @@ export function fieldCreator<FormKeysType extends string> (
                                 />
                             </div>
 }
-export const FieldCreator = ({name, component, type='text', placeholder}: any) => {
-    return <Field
-        name={name}
-        component={component}
-        type={type}
-
-        // validate = {[required]}
-    />
-};
 
 export const Input: React.FC<WrappedFieldProps> = (props) => {
     let {input, meta, ...restProps} = props;
