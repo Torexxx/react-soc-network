@@ -1,16 +1,16 @@
-import {profileAPI, ResultCodesEnum} from "../api/api";
+import {ResultCodesEnum} from "../api/api";
 import {stopSubmit} from "redux-form";
 import {PhotosType, PostType, ProfileType} from "../types/types";
-import { ThunkAction } from "redux-thunk";
+import {ThunkAction} from "redux-thunk";
 import {AppStateType} from "./redux-store";
-import {usersAPI} from "../api/users-api";
+import {profileAPI} from "../api/profile-api";
 
-const ADD_POST =  'ADD_POST';
-const SET_USER_PROFILE =  'SET_USER_PROFILE';
-const SET_STATUS =  'SET_STATUS';
+const ADD_POST = 'ADD_POST';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_STATUS = 'SET_STATUS';
 const DELETE_POST = 'DELETE_POST';
-const SAVE_PHOTO_SUCCESS =  'SAVE_PHOTO_SUCCESS';
-const SET_PROFILE_UPDATE_STATUS =  'SET_PROFILE_UPDATE_STATUS';
+const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS';
+const SET_PROFILE_UPDATE_STATUS = 'SET_PROFILE_UPDATE_STATUS';
 
 type Nullable<T> = T | null;
 
@@ -25,7 +25,7 @@ let initialState = {
     profileUpdateStatus: 'none',
 }
 
-export type InitialStateType =  typeof initialState;
+export type InitialStateType = typeof initialState;
 
 type ActionsTypes = AddPostACActionType | SetUserProfileActionType | SetProfileUpdateStatusActionType |
     SetStatusActionType | DeletePostActionType | SavePhotoSuccessActionType;
@@ -38,10 +38,10 @@ const profileReducer = (state = initialState, action: ActionsTypes): InitialStat
             let newPost = {
                 id: Date.now(), message: action.payload.newPostText, likesCount: 1
             }
-             return {
+            return {
                 ...state,
-                 newPostText: '',
-                 posts: [...state.posts, newPost]
+                newPostText: '',
+                posts: [...state.posts, newPost]
             };
 
         case SET_USER_PROFILE:
@@ -85,7 +85,10 @@ type SetUserProfileActionType = {
         profile: ProfileType
     }
 };
-const setUserProfile = (profile: ProfileType): SetUserProfileActionType => ({type: SET_USER_PROFILE, payload: {profile}});
+const setUserProfile = (profile: ProfileType): SetUserProfileActionType => ({
+    type: SET_USER_PROFILE,
+    payload: {profile}
+});
 
 ///////////////ReturnType//////////////////////
 type SetProfileUpdateStatusActionType = ReturnType<typeof setProfileUpdateStatus>
@@ -112,65 +115,63 @@ type SavePhotoSuccessActionType = {
         photos: PhotosType
     }
 };
+export const savePhotoSuccess = (photos: PhotosType): SavePhotoSuccessActionType => ({
+    type: SAVE_PHOTO_SUCCESS,
+    payload: {photos, ...photos}
+});
 
-export const savePhotoSuccess = (photos: PhotosType): SavePhotoSuccessActionType => ({type: SAVE_PHOTO_SUCCESS, payload: {photos, ...photos}});
-export const getStatus = (userId: number): ThunkType => {
-    return async (dispatch) => {
-        profileAPI.getStatus(userId)
-            .then(data => {
-                dispatch(setStatus(data))
-            })
+export const getStatus = (userId: number): ThunkType => async (dispatch) => {
+    try {
+        let data = await profileAPI.getStatus(userId);
+        dispatch(setStatus(data));
+    } catch (err) {
+        console.error(err)
     }
-};
-export const updateStatus = (status: string): ThunkType => {
-    return async (dispatch) => {
-        profileAPI.updateStatus(status)
-            .then(data => {
-                if (data.resultCode === ResultCodesEnum.Success) {
-                    dispatch(setStatus(status) )
-                }
-            })
-            .catch((err) => {
-                console.error(err);
-        })
-    }
-};
-export const getUserProfile = (userId: number): ThunkType => {
-    return async (dispatch) => {
-         profileAPI.getProfile(userId)
-             .then(data => dispatch(setUserProfile(data)))
-    }
-};
-export const savePhoto = (file: Blob): ThunkType => {
-    return async (dispatch) => {
-         let data = await usersAPI.savePhoto(file);
-
-         if (data.resultCode === ResultCodesEnum.Success) {
-             dispatch(savePhotoSuccess(data.data));
-         }
-    }
-};
-export const saveProfile = (profile: ProfileType): ThunkType  => {
-    return async (dispatch) => {
-        let data = await profileAPI.saveProfile(profile);
-
+}
+export const updateStatus = (status: string): ThunkType => async (dispatch) => {
+    try {
+        let data = await profileAPI.updateStatus(status);
         if (data.resultCode === ResultCodesEnum.Success) {
-            dispatch(setProfileUpdateStatus('success'));
-            dispatch(setUserProfile(profile));
-            dispatch(setProfileUpdateStatus('none'));
+            dispatch(setStatus(status))
         }
-            else {
-                setProfileUpdateStatus('error');
-                const res = data.messages[0].toLowerCase();
-                const err = res.substring(res.length - 1 , res.indexOf('>') + 1);
+    } catch (err) {
+        console.error(err)
+    }
+}
+export const getUserProfile = (userId: number): ThunkType => async (dispatch) => {
+    try {
+        let data = await profileAPI.getProfile(userId);
+        dispatch(setUserProfile(data))
+    } catch (err) {
+        console.error(err)
+    }
+}
+export const savePhoto = (file: Blob): ThunkType => async (dispatch) => {
+    let data = await profileAPI.savePhoto(file);
+    if (data.resultCode === ResultCodesEnum.Success) {
+        dispatch(savePhotoSuccess(data.data.photos));
+    }
+}
+export const saveProfile = (profile: ProfileType): ThunkType => async (dispatch) => {
+    let data = await profileAPI.saveProfile(profile);
 
-                dispatch(stopSubmit('profile-info',{'contacts': {
-                        [err]: data.messages[0]
-                    }}))
+    if (data.resultCode === ResultCodesEnum.Success) {
+        dispatch(setProfileUpdateStatus('success'));
+        dispatch(setUserProfile(profile));
+        dispatch(setProfileUpdateStatus('none'));
+    } else {
+        setProfileUpdateStatus('error');
+        const res = data.messages[0].toLowerCase();
+        const err = res.substring(res.length - 1, res.indexOf('>') + 1);
 
-                return Promise.reject(data.messages[0]);
-        }
-    };
+        dispatch(stopSubmit('profile-info', {
+            'contacts': {
+                [err]: data.messages[0]
+            }
+        }))
+
+        return Promise.reject(data.messages[0]);
+    }
 };
 
 export default profileReducer;

@@ -1,9 +1,10 @@
-import {authAPI, ResultCodesEnum, ResultCodeForCaptcha} from "../api/api";
-import {securityAPI} from "../api/api";
+import {ResultCodesEnum, ResultCodeForCaptchaEnum} from "../api/api";
 import {stopSubmit} from "redux-form";
 import {AppStateType, InferActionTypes} from "./redux-store";
 import { ThunkAction } from "redux-thunk";
 import { Action } from "redux";
+import {authAPI} from "../api/auth-api";
+import {securityAPI} from "../api/security-api";
 
 let initialState = {
     userId: null as number | null,
@@ -66,7 +67,7 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
     if (data.resultCode === ResultCodesEnum.Success) {
         dispatch(getAuthUserData());
     } else {
-        if (data.resultCode === ResultCodeForCaptcha.CaptchaIsRequired) {
+        if (data.resultCode === ResultCodeForCaptchaEnum.CaptchaIsRequired) {
             dispatch(getCaptchaUrl());
         }
         dispatch(stopSubmit('login', {_error: data.messages[0]}));

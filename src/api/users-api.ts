@@ -1,22 +1,18 @@
-import {PhotosType} from "../types/types";
-import {FollowUnfollowResponseType, GetUsersType, instance, profileAPI, SavePhotoType} from "./api";
+import {GetItemsType, instance} from "./api";
+import {IUser} from "../types/types";
+import {APIResponseType} from './api'
 
 export const usersAPI = {
     getUsers(pageSize: number, currentPage: number) {
-        return instance.get<GetUsersType>(`users?count=${pageSize}&page=${currentPage}`)
+        return instance.get<GetItemsType<IUser>>(`users?count=${pageSize}&page=${currentPage}`)
+            .then(res => res.data)
+    },
+    follow(userId: number) {
+        return instance.post<APIResponseType>(`follow/${userId}`)
             .then(res => res.data)
     },
     unfollow(userId: number) {
-        return instance.delete<FollowUnfollowResponseType>(`follow/${userId}`)
+        return instance.delete(`follow/${userId}`)
+            .then(res => res.data) as Promise<APIResponseType>
     },
-    follow(userId: number) {
-        return instance.post<FollowUnfollowResponseType>(`follow/${userId}`)
-    },
-    savePhoto(photoFile: Blob) {
-        let formData = new FormData();
-        formData.append("image", photoFile);
-
-        return instance.put<SavePhotoType<PhotosType>>(`profile/photo`, formData)
-            .then(res => res.data)
-    }
 };

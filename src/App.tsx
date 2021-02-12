@@ -20,7 +20,10 @@ const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileCo
 class App extends React.Component<any> {
 
     catchAllUnhandledErrors = (e: any) => {
-        alert(e.reason.response.data.message + ' Необходимо залогиниться на сайте')
+        if (e.reason.response) {
+            alert(e.reason.response.data.message + ' Необходимо залогиниться на сайте')
+        }
+
         // TODO dispatch(globalError) Выпадашка
     }
 
