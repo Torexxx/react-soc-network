@@ -1,6 +1,5 @@
-import {ActionsTypes, addMessageTextAC, DialogType, MessageType} from "../../redux/dialogs-reducer";
+import {ActionsTypes, actions, DialogType, MessageType} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
-
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../hoc/withAuthRedirect";
 import { AppStateType } from "../../redux/redux-store";
@@ -26,7 +25,7 @@ let mapStateToProps = (state: AppStateType) : MapStatePropsType => {
 let mapDispatchToProps = (dispatch: DispatchType): MapDispatchPropsType => {
     return {
         sendNewMessage: (newMessageBody: string) => {
-            dispatch(addMessageTextAC(newMessageBody));
+            dispatch(actions.addMessageTextAC(newMessageBody));
         },
     }
 };

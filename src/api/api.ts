@@ -19,7 +19,6 @@ export type APIResponseType<D = {}, T = ResultCodesEnum> = {
     messages: Array<string>
 };
 
-
 export enum ResultCodesEnum {
     Success = 0,
     Error = 1,

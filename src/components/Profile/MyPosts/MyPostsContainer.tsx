@@ -1,4 +1,4 @@
-import {addPostAC} from "../../../redux/profile-reducer";
+import {actions} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 import {reset} from "redux-form";
@@ -22,7 +22,7 @@ type MapDispatchProps = {
 let mapDispatchToProps = (dispatch: any): MapDispatchProps => {
     return {
         addPost: (newPostText: string) => {
-            dispatch(addPostAC(newPostText));
+            dispatch(actions.addPostAC(newPostText));
         },
 
         resetField: () => {
