@@ -1,6 +1,6 @@
 import {ResultCodesEnum, ResultCodeForCaptchaEnum} from "../api/api";
 import { stopSubmit} from "redux-form";
-import {BaseThunkType, InferActionTypes} from "./redux-store";
+import {BaseThunkType, InferActionsTypes} from "./redux-store";
 import { Action } from "redux";
 import {authAPI} from "../api/auth-api";
 import {securityAPI} from "../api/security-api";
@@ -76,5 +76,5 @@ interface StopSubmitAction extends Action {
     type: ActionsTypes
 }
 export type InitialStateType = typeof initialState;
-type ActionsTypes = InferActionTypes<typeof actions>;
+type ActionsTypes = InferActionsTypes<typeof actions>;
 type ThunkType = BaseThunkType<ActionsTypes | StopSubmitAction>;   // ===  ReturnType<typeof stopSubmit>

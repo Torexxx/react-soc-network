@@ -31,14 +31,16 @@ export const FormControl: React.FC<FormControlPropsType> = ({ meta: { touched, e
             </div>
         )
 }
+
+
  // <T extends string>  ---- литеральный тип string (String Literal)
-export function fieldCreator<T extends string> (
+export const fieldCreator = <T extends string> (
                              name: T,
                              component: React.FC<WrappedFieldProps>,
                              props={},
                              validators: Array<FieldValidatorType>,
                              placeholder: string | undefined,
-                             text= '') {
+                             text= '') => {
 
                     return <div className={s.fieldWrapper}>{text}
                                 <Field

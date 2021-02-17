@@ -73,6 +73,7 @@ let AppContainer = compose(
 const MainApp = (props: any) => {
    return <Router>
         <Provider store={store}>
+            <h1>&#9749;</h1>
             <AppContainer />
         </Provider>
     </Router>

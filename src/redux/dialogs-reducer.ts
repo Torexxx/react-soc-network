@@ -1,4 +1,4 @@
-import {InferActionTypes} from "./redux-store";
+import {InferActionsTypes} from "./redux-store";
 
 let initialState = {
     dialogs: [
@@ -45,4 +45,4 @@ export type MessageType = {
     message: string
 };
 export type initialStateType = typeof initialState;
-export type ActionsTypes = InferActionTypes<typeof actions>;
+export type ActionsTypes = InferActionsTypes<typeof actions>;

@@ -1,7 +1,7 @@
 import {ResultCodesEnum} from "../api/api";
 import {stopSubmit} from "redux-form";
 import {PhotosType, PostType, ProfileType} from "../types/types";
-import { BaseThunkType, InferActionTypes} from "./redux-store";
+import { BaseThunkType, InferActionsTypes} from "./redux-store";
 import {profileAPI} from "../api/profile-api";
 import {FormAction} from "redux-form/lib/actions";
 
@@ -58,12 +58,12 @@ const profileReducer = (state = initialState, action: ActionsTypes): InitialStat
 };
 
 export const actions = {
-    addPostAC:(newPostText: string) => ({type:"SN/PROFILE/ADD_POST", payload: {newPostText}} as const),
-    setUserProfile :(profile: ProfileType) => ({type: "SN/PROFILE/SET_USER_PROFILE", payload: {profile}} as const),
+    addPostAC: (newPostText: string) => ({type:"SN/PROFILE/ADD_POST", payload: {newPostText}} as const),
+    setUserProfile: (profile: ProfileType) => ({type: "SN/PROFILE/SET_USER_PROFILE", payload: {profile}} as const),
     setProfileUpdateStatus: (status: string) => ({type: "SN/PROFILE/SET_PROFILE_UPDATE_STATUS", payload: {status}} as const),
-    setStatus : (status: string) => ({type: "SN/PROFILE/SET_STATUS", payload: {status}} as const),
-    deletePost :(postId: number) => ({type: "SN/PROFILE/DELETE_POST", payload: {postId}} as const),
-    savePhotoSuccess :(photos: PhotosType) => ({type: "SN/PROFILE/SAVE_PHOTO_SUCCESS", payload: {photos, ...photos}} as const),
+    setStatus: (status: string) => ({type: "SN/PROFILE/SET_STATUS", payload: {status}} as const),
+    deletePost: (postId: number) => ({type: "SN/PROFILE/DELETE_POST", payload: {postId}} as const),
+    savePhotoSuccess: (photos: PhotosType) => ({type: "SN/PROFILE/SAVE_PHOTO_SUCCESS", payload: {photos, ...photos}} as const),
 };
 
 export const getStatus = (userId: number): ThunkType => async (dispatch) => {
@@ -124,5 +124,5 @@ export default profileReducer;
 
 type Nullable<T> = T | null;
 export type InitialStateType = typeof initialState;
-type ActionsTypes = InferActionTypes<typeof actions>;
+type ActionsTypes = InferActionsTypes<typeof actions>;
 type ThunkType = BaseThunkType<ActionsTypes | FormAction>;

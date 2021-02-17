@@ -2,7 +2,7 @@ import {Dispatch} from "redux";
 import {ResultCodesEnum} from "../api/api";
 import {IUser} from "../types/types";
 import {updateObjectInArray} from "../utils/object-helpers"
-import {AppStateType, BaseThunkType, InferActionTypes} from "./redux-store";
+import {AppStateType, BaseThunkType, InferActionsTypes} from "./redux-store";
 import {usersAPI} from "../api/users-api";
 
 let initialState = {
@@ -112,4 +112,4 @@ export default usersReducer;
 type GetStateType = () => AppStateType;
 type ThunkType = BaseThunkType<ActionTypes>;
 export type InitialStateType = typeof initialState;
-type ActionTypes = InferActionTypes<typeof actions>;
+type ActionTypes = InferActionsTypes<typeof actions>;
