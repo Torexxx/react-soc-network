@@ -11,20 +11,20 @@ import {AppStateType} from "../../redux/redux-store";
 type LoginFormOwnProps  = {
     captchaUrl: string | null
 };
-type LoginFormValuesType = {
+type LoginFormValues = {
     email: string
     password: string
     rememberMe: boolean
     captcha: string
 };
-type LoginFormValuesKeysType = Extract<keyof LoginFormValuesType, string>;
+type LoginFormValuesKeys = Extract<keyof LoginFormValues, string>;
 
-const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType, LoginFormOwnProps> & LoginFormOwnProps> = ({handleSubmit, error, captchaUrl}) => {
+const LoginForm: React.FC<InjectedFormProps<LoginFormValues, LoginFormOwnProps> & LoginFormOwnProps> = ({handleSubmit, error, captchaUrl}) => {
     return (
         <form onSubmit={handleSubmit}>
-            {fieldCreator<LoginFormValuesKeysType>("email", Input,{},[required],'Введите логин')}
-            {fieldCreator<LoginFormValuesKeysType>("password", Input,{type: "password"},[required],'Введите пароль')}
-            {fieldCreator<LoginFormValuesKeysType>('rememberMe', Input,{type: "checkbox"},[],undefined, 'Remember me')}
+            {fieldCreator<LoginFormValuesKeys>("email", Input,{},[required],'Введите логин')}
+            {fieldCreator<LoginFormValuesKeys>("password", Input,{type: "password"},[required],'Введите пароль')}
+            {fieldCreator<LoginFormValuesKeys>('rememberMe', Input,{type: "checkbox"},[],undefined, 'Remember me')}
             {error ? <div className={s.commonErrorText}>{error}</div> : ''}
             <div>
                 <button> Войти</button>
@@ -32,7 +32,7 @@ const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType, LoginFormOwnPro
 
             {captchaUrl ? <div> <img alt='' src={captchaUrl}/>
                     <div>
-                        {fieldCreator<LoginFormValuesKeysType>('captcha', Input,{},[required],'captcha', 'Remember me')}
+                        {fieldCreator<LoginFormValuesKeys>('captcha', Input,{},[required],'captcha', 'Remember me')}
                     </div>
                 </div>
                     : ''
@@ -52,7 +52,7 @@ type MapDispatchProps = {
 
 const Login: React.FC<MapStateProps & MapDispatchProps> = ({login, isAuth, captchaUrl}) => {
 
-    const loginSubmit = (formData: LoginFormValuesType) => {
+    const loginSubmit = (formData: LoginFormValues) => {
         const {email, password, rememberMe, captcha } = formData;
         login(email, password, rememberMe, captcha);
     }
@@ -66,7 +66,7 @@ const Login: React.FC<MapStateProps & MapDispatchProps> = ({login, isAuth, captc
     );
 };
 
-let LoginReduxForm = reduxForm<LoginFormValuesType, LoginFormOwnProps>({form: 'login'})(LoginForm);
+let LoginReduxForm = reduxForm<LoginFormValues, LoginFormOwnProps>({form: 'login'})(LoginForm);
 
 const mapStateToProps = (state: AppStateType): MapStateProps => ({isAuth: state.auth.isAuth, captchaUrl: state.auth.captchaUrl});
 export default connect(mapStateToProps, {login})(Login);

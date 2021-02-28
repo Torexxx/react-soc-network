@@ -1,9 +1,10 @@
-import {ActionsTypes, actions, DialogType, MessageType} from "../../redux/dialogs-reducer";
+import React from 'react';
+import {actions, DialogType, MessageType} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
-import {withAuthRedirect} from "../hoc/withAuthRedirect";
-import { AppStateType } from "../../redux/redux-store";
-import {Dispatch} from "redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {AppStateType} from "../../redux/redux-store";
+import { compose } from "redux";
 
 type MapStatePropsType = {
     dialogsPage: {
@@ -12,9 +13,9 @@ type MapStatePropsType = {
     }
 };
 type MapDispatchPropsType = {
-    sendNewMessage: (newMessageBody: string) => void
+    sendMessage: (newMessageBody: string) => void
 };
-type DispatchType = Dispatch<ActionsTypes>;
+// type DispatchType = Dispatch<ActionsTypes>;
 
 let mapStateToProps = (state: AppStateType) : MapStatePropsType => {
     return {
@@ -22,16 +23,21 @@ let mapStateToProps = (state: AppStateType) : MapStatePropsType => {
     }
 };
 
-let mapDispatchToProps = (dispatch: DispatchType): MapDispatchPropsType => {
-    return {
-        sendNewMessage: (newMessageBody: string) => {
-            dispatch(actions.addMessageTextAC(newMessageBody));
-        },
-    }
-};
+// let mapDispatchToProps = (dispatch: DispatchType): MapDispatchPropsType => {
+//     return {
+//         sendNewMessage: (newMessageBody: string) => {
+//             dispatch(actions.addMessageText(newMessageBody));
+//         },
+//     }
+// };
 
-const DialogsContainer = connect(
-    mapStateToProps, mapDispatchToProps)(withAuthRedirect(Dialogs)
-);
+// const DialogsContainer = connect<MapStatePropsType, MapDispatchPropsType, unknown, AppStateType>(
+//     mapStateToProps, {sendMessage: actions.sendMessage})(withAuthRedirect(Dialogs)
+// );
 
-export default DialogsContainer;
+export default compose<React.ComponentType>(
+    connect<MapStatePropsType, MapDispatchPropsType, unknown, AppStateType>(mapStateToProps, {...actions}),
+    withAuthRedirect
+)(Dialogs);
+
+

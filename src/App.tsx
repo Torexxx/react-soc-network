@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
+import {BrowserRouter as Router, Redirect, Route, Switch, withRouter} from "react-router-dom";
 import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
 import UsersContainer from "./components/Users/UsersContainer";
@@ -13,17 +13,19 @@ import {connect, Provider} from 'react-redux';
 import {initializeApp} from "./redux/app-reducer";
 import { compose } from 'redux';
 import store, {AppStateType} from './redux/redux-store';
-import withSuspense from "./components/hoc/withSuspense";
-const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"))
-const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"))
+import withSuspense from "./hoc/withSuspense";
+const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"));
+const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"));
 
-class App extends React.Component<any> {
+type MapDispatchProps = { initializeApp: () => void };
+type MapStateProps = ReturnType<typeof mapStateToProps>;
 
-    catchAllUnhandledErrors = (e: any) => {
+class App extends React.Component<MapStateProps & MapDispatchProps> {
+
+    catchAllUnhandledErrors = (e: PromiseRejectionEvent) => {
         if (e.reason.response) {
             alert(e.reason.response.data.message + ' Необходимо залогиниться на сайте')
         }
-
         // TODO dispatch(globalError) Выпадашка
     }
 
@@ -37,7 +39,6 @@ class App extends React.Component<any> {
     }
 
     render() {
-
         if (this.props.initialized) {
             return (
                 <div className='app-wrapper'>
@@ -67,10 +68,12 @@ const mapStateToProps = (state: AppStateType) => {
         initialized: state.app.initialized
     }
 }
-let AppContainer = compose(
-    connect(mapStateToProps,{initializeApp}) (App))
+let AppContainer = compose<React.ComponentType>(
+    withRouter,
+    connect(mapStateToProps,{initializeApp}))
+(App)
 
-const MainApp = (props: any) => {
+const MainApp: React.FC = () => {
    return <Router>
         <Provider store={store}>
             <h1>&#9749;</h1>
