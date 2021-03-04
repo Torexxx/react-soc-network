@@ -20,6 +20,9 @@ const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileCo
 type MapDispatchProps = { initializeApp: () => void };
 type MapStateProps = ReturnType<typeof mapStateToProps>;
 
+const SuspendedDialogs  = withSuspense(DialogsContainer);
+const SuspendedProfile  = withSuspense(ProfileContainer);
+
 class App extends React.Component<MapStateProps & MapDispatchProps> {
 
     catchAllUnhandledErrors = (e: PromiseRejectionEvent) => {
@@ -47,8 +50,8 @@ class App extends React.Component<MapStateProps & MapDispatchProps> {
                     <div className='app-wrapper-content'>
                         <Switch>
                             <Route path='/' exact render={() => <Redirect to='/profile'/>}/>
-                            <Route path='/dialogs' render={withSuspense(DialogsContainer)}/>
-                            <Route path='/profile/:userId?' render={ withSuspense(ProfileContainer)}/>
+                            <Route path='/dialogs' render={() => <SuspendedDialogs /> }/>
+                            <Route path='/profile/:userId?' render={() => <SuspendedProfile />}/>
                             <Route path='/users' render={ () => <UsersContainer titleText = {"Пользователи"}/> }/>
                             <Route path='/hooks' render={ () => <MainAppRenderProps /> }/>
                             <Route path='/login' render={ () => <LoginPage /> }/>
