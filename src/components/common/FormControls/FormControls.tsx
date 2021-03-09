@@ -64,3 +64,4 @@ export const TextArea: React.FC<WrappedFieldProps> = (props) => {
 };
 // export const TextArea: React.FC<WrappedFieldProps> = (props) => <FormControl {...props} element = {'textarea'} />
 
+export type GetStringKeys<V> = Extract<keyof V, string>;
