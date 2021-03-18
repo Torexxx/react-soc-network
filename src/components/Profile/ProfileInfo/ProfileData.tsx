@@ -1,8 +1,14 @@
 import s from "./ProfileInfo.module.css";
 import React from "react";
 import {Contacts} from "./ProfileInfo";
+import {ContactsType, ProfileType} from "../../../types/types";
 
-const ProfileData: React.FC<any> = ({profile, goToEditMode}) => {
+type Props = {
+    profile: ProfileType
+    goToEditMode: () => void
+}
+
+const ProfileData: React.FC<Props> = ({profile, goToEditMode}) => {
 
     return (
         <>
@@ -25,8 +31,10 @@ const ProfileData: React.FC<any> = ({profile, goToEditMode}) => {
             <div><b>About me: </b>{profile.aboutMe}</div>
 
             <div>
-                <b>Contacts: </b> {Object.keys(profile.contacts).map(key => {
-                return <Contacts key={key} contactTitle={key} contactValue={profile.contacts[key]} />
+                <b>Contacts: </b> {Object
+                .keys(profile.contacts)
+                .map((key)=> {
+                    return <Contacts key={key} contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType] } />
             })}
 
             </div>

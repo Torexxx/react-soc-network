@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import { ChangeEvent } from 'react';
 import s from './ProfileInfo.module.css'
 import {Preloader} from "../../common/Preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
@@ -7,28 +8,29 @@ import ProfileData from "./ProfileData";
 import ProfileDataReduxForm, { ProfileDataFormValuesType } from './ProfileDataForm';
 import {ProfileType} from "../../../types/types";
 
-export const Contacts:React.FC<{contactTitle: any,contactValue : any }> = ({contactTitle, contactValue}) => {
+// type Props......................................
+
+type ContactsProps = {
+    contactTitle: string
+    contactValue: any
+}
+export const Contacts:React.FC<ContactsProps> = ({contactTitle, contactValue}) => {
     return <div className={s.contacts}>
         <b>{contactTitle}</b> : {contactValue}
     </div>
 }
 
-type ProfileInfoPropsType = {
-    profile: ProfileType | any   // ругается на initialValues
+type Props = {
+    profile: ProfileType | any
     status: string
     updateStatus: (status: string) => void
     isOwner: boolean
-    savePhoto: (file: Blob) => void
+    savePhoto: (file: File) => void
     saveProfile: (formData: ProfileDataFormValuesType) => void
     profileUpdateStatus: string
-
 }
 
-const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile, profileUpdateStatus, ...props }) => {
-
-    interface Event<T = EventTarget> {
-        target: T;
-    }
+const ProfileInfo: React.FC<Props> = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile, profileUpdateStatus, ...props }) => {
 
     const [editMode, setEditMode] = useState(false);
 
@@ -42,13 +44,13 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateSta
         setEditMode(true);
     }
 
-    const profileInfoSubmit =  (formData: ProfileDataFormValuesType) => {
-        saveProfile(formData)
+    const profileInfoSubmit = (formData: ProfileDataFormValuesType) => {
+        saveProfile(formData);
     }
 
-    const onMainPhotoSelected = (e: Event<HTMLInputElement>) => {
-        if (e.target.files!.length) {
-            savePhoto(e.target.files![0]);
+    const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files?.length) {
+            savePhoto(e.target.files[0]);
         }
     }
 
