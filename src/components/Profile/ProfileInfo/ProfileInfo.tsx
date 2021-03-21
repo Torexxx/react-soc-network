@@ -1,18 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {ReactNode, useEffect, useState} from 'react';
 import { ChangeEvent } from 'react';
 import s from './ProfileInfo.module.css'
 import {Preloader} from "../../common/Preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import avatar from "../../../assets/images/avatar.png"
 import ProfileData from "./ProfileData";
-import ProfileDataReduxForm, { ProfileDataFormValuesType } from './ProfileDataForm';
+import ProfileDataReduxForm  from './ProfileDataForm';
 import {ProfileType} from "../../../types/types";
-
-// type Props......................................
 
 type ContactsProps = {
     contactTitle: string
-    contactValue: any
+    contactValue: string | ReactNode
 }
 export const Contacts:React.FC<ContactsProps> = ({contactTitle, contactValue}) => {
     return <div className={s.contacts}>
@@ -21,12 +19,12 @@ export const Contacts:React.FC<ContactsProps> = ({contactTitle, contactValue}) =
 }
 
 type Props = {
-    profile: ProfileType | any
+    profile: ProfileType
     status: string
     updateStatus: (status: string) => void
     isOwner: boolean
     savePhoto: (file: File) => void
-    saveProfile: (formData: ProfileDataFormValuesType) => void
+    saveProfile: (formData: ProfileType) => void
     profileUpdateStatus: string
 }
 
@@ -44,7 +42,7 @@ const ProfileInfo: React.FC<Props> = ({profile, status, updateStatus, isOwner, s
         setEditMode(true);
     }
 
-    const profileInfoSubmit = (formData: ProfileDataFormValuesType) => {
+    const profileInfoSubmit = (formData: ProfileType) => {
         saveProfile(formData);
     }
 
@@ -68,7 +66,7 @@ const ProfileInfo: React.FC<Props> = ({profile, status, updateStatus, isOwner, s
                     {
                         editMode
                             ? <ProfileDataReduxForm {...props} initialValues={profile} onSubmit={profileInfoSubmit} profile={profile}  />
-                            : <ProfileData profile={profile} goToEditMode={goToEditMode} />
+                            : <ProfileData profile={profile} isOwner = {isOwner} goToEditMode={goToEditMode} />
                     }
                 </div>
 

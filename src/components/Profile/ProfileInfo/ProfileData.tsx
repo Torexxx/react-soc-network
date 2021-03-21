@@ -6,13 +6,13 @@ import {ContactsType, ProfileType} from "../../../types/types";
 type Props = {
     profile: ProfileType
     goToEditMode: () => void
+    isOwner: boolean
 }
 
-const ProfileData: React.FC<Props> = ({profile, goToEditMode}) => {
-
+const ProfileData: React.FC<Props> = ({profile, goToEditMode, isOwner}) => {
     return (
         <>
-            <button onClick={goToEditMode}>Edit</button>
+            {isOwner && <div><button onClick={goToEditMode}>Edit</button></div>}
             <div className={s.editField}>
                 <b>Full Name: </b>
                 <div>{profile.fullName}</div>
@@ -31,7 +31,8 @@ const ProfileData: React.FC<Props> = ({profile, goToEditMode}) => {
             <div><b>About me: </b>{profile.aboutMe}</div>
 
             <div>
-                <b>Contacts: </b> {Object
+                <b>Contacts: </b> {
+                Object
                 .keys(profile.contacts)
                 .map((key)=> {
                     return <Contacts key={key} contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType] } />
