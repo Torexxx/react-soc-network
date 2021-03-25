@@ -1,5 +1,5 @@
 import {ResultCodesEnum} from "../api/api";
-import {stopSubmit} from "redux-form";
+import {reset, stopSubmit} from "redux-form";
 import {PhotosType, PostType, ProfileType} from "../types/types";
 import { BaseThunkType, InferActionsTypes} from "./redux-store";
 import {profileAPI} from "../api/profile-api";
@@ -12,7 +12,6 @@ let initialState = {
     ] as Array<PostType>,
     profile: null as Nullable<ProfileType>,
     status: '',
-    newPostText: '',
     profileUpdateStatus: 'none',
 };
 
@@ -25,7 +24,6 @@ const profileReducer = (state = initialState, action: ActionsTypes): InitialStat
             }
             return {
                 ...state,
-                newPostText: '',
                 posts: [...state.posts, newPost]
             };
 
@@ -58,13 +56,17 @@ const profileReducer = (state = initialState, action: ActionsTypes): InitialStat
 };
 
 export const actions = {
-    addPostAC: (newPostText: string) => ({type:"SN/PROFILE/ADD_POST", payload: {newPostText}} as const),
+    addPost: (newPostText: string) => ({type:"SN/PROFILE/ADD_POST", payload: {newPostText}} as const),
     setUserProfile: (profile: ProfileType) => ({type: "SN/PROFILE/SET_USER_PROFILE", payload: {profile}} as const),
     setProfileUpdateStatus: (status: string) => ({type: "SN/PROFILE/SET_PROFILE_UPDATE_STATUS", payload: {status}} as const),
     setStatus: (status: string) => ({type: "SN/PROFILE/SET_STATUS", payload: {status}} as const),
     deletePost: (postId: number) => ({type: "SN/PROFILE/DELETE_POST", payload: {postId}} as const),
     savePhotoSuccess: (photos: PhotosType) => ({type: "SN/PROFILE/SAVE_PHOTO_SUCCESS", payload: {photos, ...photos}} as const),
 };
+
+export const resetField = (): ThunkType => async (dispatch) => {
+    dispatch(reset('postAddMessageForm'))
+}
 
 export const getStatus = (userId: number): ThunkType => async (dispatch) => {
     try {

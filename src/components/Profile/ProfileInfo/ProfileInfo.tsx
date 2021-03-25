@@ -19,7 +19,7 @@ export const Contacts:React.FC<ContactsProps> = ({contactTitle, contactValue}) =
 }
 
 type Props = {
-    profile: ProfileType
+    profile: ProfileType | null
     status: string
     updateStatus: (status: string) => void
     isOwner: boolean

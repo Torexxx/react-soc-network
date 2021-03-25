@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import style from './Paginator.module.css';
 import cn from 'classnames';
 
-type PropsType = {
+type Props = {
     pageSize: number
     totalItemsCount: number
     pageNumber: number
@@ -10,7 +10,7 @@ type PropsType = {
     portionSize?: number
 }
 
-const Paginator: React.FC<PropsType> = React.memo(({
+const Paginator: React.FC<Props> = React.memo(({
     totalItemsCount,
     pageSize,
     onPageChanged,

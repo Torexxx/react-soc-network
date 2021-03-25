@@ -9,7 +9,7 @@ import {AppStateType} from "../../redux/redux-store";
 import { compose } from 'redux';
 
 type PathParamsType = {
-    userId: string ,
+    userId: string
 }
 type MapPropsType = ReturnType<typeof mapStateToProps>;
 
@@ -50,6 +50,7 @@ class ProfileContainer extends React.Component<Props>{
 
     componentDidUpdate(prevProps: Props, prevState: Props) {
         if (prevProps.match.params.userId !== this.props.match.params.userId) {
+            debugger
             this.updateProfilePhoto();
         }
     }
@@ -70,7 +71,7 @@ class ProfileContainer extends React.Component<Props>{
     }
 }
 
-const mapStateToProps = (state: AppStateType)  => {
+const mapStateToProps = (state: AppStateType) => {
     return {
         profile: state.profilePage.profile,
         status: state.profilePage.status,

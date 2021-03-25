@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import s from './Navbar.module.css';
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
     const activeLink = `${s.active}`;
 
     return <nav className={s.nav}>

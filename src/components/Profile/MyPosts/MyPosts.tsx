@@ -5,13 +5,16 @@ import {IPost} from '../../../interfaces';
 import AddPostReduxForm  from './AddPostForm/AddPostForm';
 import {AddPostFormValues} from './AddPostForm/AddPostForm';
 
-type Props = {
+export type MapProps = {
     posts: Array<IPost>
+}
+
+export type DispatchProps = {
     addPost(newPostText: string): void
     resetField() : void
 }
 
-const MyPosts: React.FC<Props> = (props) =>  {
+const MyPosts: React.FC<MapProps & DispatchProps> = (props) =>  {
 
     let {posts, addPost, resetField} = props;
     let postsElements = [...posts]

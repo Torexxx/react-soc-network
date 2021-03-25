@@ -2,8 +2,15 @@ import React from 'react';
 import s from './Header.module.css';
 import {NavLink} from "react-router-dom";
 import logo from '../../assets/images/logo.png'
+import { UserAuthData } from './HeaderContainer';
 
-const Header = ({...props}) => {
+export type MapProps  = {
+    userAuthData: UserAuthData
+}
+export type DispatchProps  = {
+    logout: () => void
+}
+const Header: React.FC<MapProps & DispatchProps> = ({...props}) => {
 
     const logOutHandler = () => {
         props.logout();

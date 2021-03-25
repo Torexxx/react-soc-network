@@ -1,35 +1,15 @@
-import {actions} from "../../../redux/profile-reducer";
-import MyPosts from "./MyPosts";
+import {actions, resetField} from "../../../redux/profile-reducer";
+import MyPosts, {DispatchProps, MapProps } from "./MyPosts";
 import {connect} from "react-redux";
-import {reset} from "redux-form";
 import { AppStateType } from "../../../redux/redux-store";
-import {PostType} from "../../../types/types";
 
-let mapStateToProps = (state: AppStateType): MapStateProps => {
+let mapStateToProps = (state: AppStateType) => {
     return {
         posts: state.profilePage.posts,
     }
 };
 
-type MapStateProps = {
-    posts: Array<PostType>
-}
-type MapDispatchProps = {
-    addPost: (newPostText: string) => void
-    resetField: () => void
-}
-
-let mapDispatchToProps = (dispatch: any): MapDispatchProps => {
-    return {
-        addPost: (newPostText: string) => {
-            dispatch(actions.addPostAC(newPostText));
-        },
-
-        resetField: () => {
-            dispatch(reset('postAddMessageForm'));
-        }
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(MyPosts);
+export default connect<MapProps, DispatchProps, unknown, AppStateType>(mapStateToProps, {
+    addPost: actions.addPost, resetField
+})(MyPosts);
 

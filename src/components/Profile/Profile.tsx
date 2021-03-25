@@ -1,19 +1,19 @@
 import React from 'react';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import {ProfileType} from "../../types/types";
 
-interface IProfile {
-    profile : any
+type Props = {
+    profile: ProfileType | null
     status: string
     updateStatus(status: string): void
-    isOwner: any
-    savePhoto(file: any): void
-    saveProfile(profile: any): void
+    isOwner: boolean
+    savePhoto(file: File): void
+    saveProfile(profile: ProfileType): void
     profileUpdateStatus: string
 }
 
-const Profile: React.FunctionComponent<IProfile> = ( props) => {
-
+const Profile: React.FC<Props> = ( props) => {
     return (
         <>
             <ProfileInfo  isOwner ={props.isOwner}

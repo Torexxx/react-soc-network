@@ -13,7 +13,7 @@ let initialState = {
 };
 
 it('new post length of post should be incremented', () => {
-    let action = actions.addPostAC('It-kamasutra');
+    let action = actions.addPost('It-kamasutra');
     let newState = profileReducer(initialState, action);
 
     expect(newState.posts.length).toBe(3);
@@ -21,7 +21,7 @@ it('new post length of post should be incremented', () => {
 })
 
 it('name of new post should be correct', () => {
-    let action = actions.addPostAC('Hello!');
+    let action = actions.addPost('Hello!');
     let newState = profileReducer(initialState, action);
 
     expect(newState.posts[2].message).toBe("Hello!");
