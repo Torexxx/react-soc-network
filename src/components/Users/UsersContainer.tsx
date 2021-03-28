@@ -1,9 +1,11 @@
 import React from 'react';
 import {connect} from "react-redux";
 import Users from "./Users";
-import {follow, getRequestUsers, unfollow} from "../../redux/users-reducer";
+
+import {FilterType, follow, getRequestUsers, unfollow} from "../../redux/users-reducer";
 import {
     getCurrentPage,
+    getFilteredResult,
     getFollowingInProgress,
     getIsFetching,
     getPageSize, getPortionSize,
@@ -22,11 +24,12 @@ type MapStatePropsType = {
     isFetching: boolean
     followingInProgress: Array<number>
     portionSize: number
+    filter: FilterType
 };
 type MapDispatchPropsType = {
     follow(userId: number): void
     unfollow(userId: number): void
-    getRequestUsers(pageNumber: number, pageSize: number, term: string ): void
+    getRequestUsers(pageNumber: number, pageSize: number, filter: FilterType ): void
 };
 type OwnType  = {
     titleText: string
@@ -48,6 +51,7 @@ const UsersContainer: React.FC<PropsType> = (props) => {
             unfollow={props.unfollow}
             getRequestUsers={props.getRequestUsers}
             titleText={props.titleText}
+            filter = {props.filter}
         />
     )
 }
@@ -60,7 +64,8 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
         pageNumber: getCurrentPage(state),
         isFetching: getIsFetching(state),
         followingInProgress: getFollowingInProgress(state),
-        portionSize: getPortionSize(state)
+        portionSize: getPortionSize(state),
+        filter: getFilteredResult(state)
     }
 }
 
@@ -68,7 +73,8 @@ export default connect<MapStatePropsType, MapDispatchPropsType, OwnType, AppStat
     mapStateToProps, {
     follow,
     unfollow,
-    getRequestUsers,
+    getRequestUsers
+
 })(UsersContainer);
 
 

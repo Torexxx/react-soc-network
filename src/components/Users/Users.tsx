@@ -10,7 +10,7 @@ import { UsersSearchForm } from './UsersSearchForm';
 
 let {useEffect, useCallback} = React;
 
-const Users: React.FC<PropsType> = React.memo( ({
+const Users: React.FC<PropsType> = React.memo(({
     unfollow,
     follow,
     getRequestUsers,
@@ -21,20 +21,27 @@ const Users: React.FC<PropsType> = React.memo( ({
     isFetching,
     followingInProgress,
     portionSize,
-    titleText
+    titleText,
+    filter
 
   }) => {
 
     useEffect(() => {
-        getRequestUsers(pageNumber, pageSize, '' );
-    }, [pageNumber, getRequestUsers, pageSize])
+        getRequestUsers(pageNumber, pageSize, filter);
+    }, [])
 
     const onPageChanged = useCallback((pageNumber: number) => {
-        getRequestUsers(pageNumber, pageSize, '')
-    }, [getRequestUsers, pageSize])
+        getRequestUsers(pageNumber, pageSize, filter)
+    }, [getRequestUsers, pageSize, filter])
 
     const onFilterChange = (filter: FilterType) => {
-        getRequestUsers(pageNumber, pageSize, filter.term)
+
+        let filtered;
+        if (typeof filter.friend === 'string') {
+             filtered = JSON.parse(filter.friend);
+        }
+        console.log(filtered)
+        getRequestUsers(1, pageSize, filtered);
     }
 
     return (
@@ -48,7 +55,7 @@ const Users: React.FC<PropsType> = React.memo( ({
                 pageSize = {pageSize}
                 onPageChanged = {onPageChanged}
                 pageNumber={pageNumber}
-                portionSize={ portionSize}
+                portionSize={portionSize}
             />
             { isFetching
                     ? <Preloader/>
