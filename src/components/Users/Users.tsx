@@ -5,6 +5,8 @@ import {Preloader} from "../common/Preloader/Preloader";
 import Paginator from "../common/Paginator/Paginator";
 import User from './User';
 import { PropsType } from './UsersContainer';
+import { FilterType } from '../../redux/users-reducer';
+import { UsersSearchForm } from './UsersSearchForm';
 
 let {useEffect, useCallback} = React;
 
@@ -24,17 +26,23 @@ const Users: React.FC<PropsType> = React.memo( ({
   }) => {
 
     useEffect(() => {
-        getRequestUsers(pageNumber, pageSize);
+        getRequestUsers(pageNumber, pageSize, '' );
     }, [pageNumber, getRequestUsers, pageSize])
 
     const onPageChanged = useCallback((pageNumber: number) => {
-        getRequestUsers(pageNumber, pageSize)
+        getRequestUsers(pageNumber, pageSize, '')
     }, [getRequestUsers, pageSize])
+
+    const onFilterChange = (filter: FilterType) => {
+        getRequestUsers(pageNumber, pageSize, filter.term)
+    }
 
     return (
 
         <div className={style.users}>
             <h1>{titleText}</h1>
+
+            <UsersSearchForm onFilterChange = {onFilterChange} />
             <Paginator
                 totalItemsCount ={totalItemsCount}
                 pageSize = {pageSize}

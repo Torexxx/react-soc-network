@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect, ConnectedProps} from "react-redux";
+import {connect} from "react-redux";
 import Users from "./Users";
 import {follow, getRequestUsers, unfollow} from "../../redux/users-reducer";
 import {
@@ -26,7 +26,7 @@ type MapStatePropsType = {
 type MapDispatchPropsType = {
     follow(userId: number): void
     unfollow(userId: number): void
-    getRequestUsers(pageNumber: number, pageSize: number ): void
+    getRequestUsers(pageNumber: number, pageSize: number, term: string ): void
 };
 type OwnType  = {
     titleText: string
