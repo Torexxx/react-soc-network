@@ -85,7 +85,9 @@ export const getRequestUsers = (page: number, pageSize: number, filter: FilterTy
         dispatch(actions.setFilter(filter));
 
         usersAPI.getUsers(pageSize, page, filter.term, filter.friend)
+
             .then(data => {
+                console.log(1)
                 dispatch(actions.setUsers(data.items));
                 dispatch(actions.setTotalUsersCount(data.totalCount));
                 dispatch(actions.hideLoader());

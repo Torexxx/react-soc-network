@@ -3,11 +3,11 @@ import './App.css';
 import {BrowserRouter as Router, Redirect, Route, Switch, withRouter} from "react-router-dom";
 import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
-import UsersContainer from "./components/Users/UsersContainer";
+import UsersPage from "./components/Users/UsersPage";
 // import MainAppHoc from "./hooks/mainAppHoc";
 // import MainAppChildren from "./hooks/mainAppChildren";
 import MainAppRenderProps from "./hooks/mainAppRenderProps";
-import LoginPage from './components/Login/Login';
+import {LoginPage} from './components/Login/LoginPage';
 import {Preloader} from "./components/common/Preloader/Preloader";
 import {connect, Provider} from 'react-redux';
 import {initializeApp} from "./redux/app-reducer";
@@ -52,7 +52,7 @@ class App extends React.Component<MapStateProps & MapDispatchProps> {
                             <Route path='/' exact render={() => <Redirect to='/profile'/>}/>
                             <Route path='/dialogs' render={() => <SuspendedDialogs /> }/>
                             <Route path='/profile/:userId?' render={() => <SuspendedProfile />}/>
-                            <Route path='/users' render={ () => <UsersContainer titleText = {"Пользователи"}/> }/>
+                            <Route path='/users' render={ () => <UsersPage titleText = {"Пользователи"}/> }/>
                             <Route path='/hooks' render={ () => <MainAppRenderProps /> }/>
                             <Route path='/login' render={ () => <LoginPage /> }/>
                             <Route path='*' render={ () => <div>404 NOT FOUND</div> }/>

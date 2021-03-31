@@ -12,6 +12,7 @@ type Props = {
 }
 
 const User: React.FC<Props> = ({user, unfollow, follow, followingInProgress}) => {
+
     return (
      <div className={style.user}>
         <div>

@@ -48,6 +48,7 @@ export const getAuthUserData = (): ThunkType => async (dispatch) => {
     }
 };
 export const login = (email: string, password: string, rememberMe: boolean, captcha: string): ThunkType => async (dispatch) => {
+    debugger
     let data = await authAPI.login(email, password, rememberMe, captcha);
 
     if (data.resultCode === ResultCodesEnum.Success) {

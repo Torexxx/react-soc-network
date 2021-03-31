@@ -6,6 +6,7 @@ import authReducer from "./auth-reducer";
 import thunkMiddleWare, {ThunkAction} from 'redux-thunk';
 import { reducer as formReducer } from 'redux-form';
 import appReducer from "./app-reducer";
+import {composeWithDevTools} from "redux-devtools-extension/index";
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
@@ -25,7 +26,7 @@ export type BaseThunkType<A extends Action = Action, R = Promise<void>> = ThunkA
 type RootReducerType = typeof rootReducer;
 export type AppStateType = ReturnType<RootReducerType>;
 
-let store = createStore(rootReducer, applyMiddleware(thunkMiddleWare));
+let store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunkMiddleWare)));
 
 export default store;
 

@@ -1,81 +1,80 @@
 import React from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {IUser} from "../../types/types";
 import style from './Users.module.css';
-import {Preloader} from "../common/Preloader/Preloader";
 import Paginator from "../common/Paginator/Paginator";
 import User from './User';
-import { PropsType } from './UsersContainer';
-import { FilterType } from '../../redux/users-reducer';
+import { FilterType, getRequestUsers, follow, unfollow } from '../../redux/users-reducer';
 import { UsersSearchForm } from './UsersSearchForm';
+import {
+    getCurrentPage, getFilteredResult, getFollowingInProgress,
+    getPageSize,
+    getPortionSize,
+    getTotalUsersCount,
+    getUsers
+} from "../../redux/user-selectors";
+
 
 let {useEffect, useCallback} = React;
 
-const Users: React.FC<PropsType> = React.memo(({
-    unfollow,
-    follow,
-    getRequestUsers,
-    users,
-    pageSize,
-    totalItemsCount,
-    pageNumber,
-    isFetching,
-    followingInProgress,
-    portionSize,
-    titleText,
-    filter
+export const Users: React.FC = React.memo((props) => {
 
-  }) => {
+    const totalItemsCount = useSelector(getTotalUsersCount);
+    const pageSize = useSelector(getPageSize);
+    const pageNumber = useSelector(getCurrentPage);  //const currentPage dont work
+    const users = useSelector<any, any>(getUsers);
+    const portionSize = useSelector<any, any>(getPortionSize);
+    const followingInProgress = useSelector<any, any>(getFollowingInProgress);
+    const filter = useSelector<any, any>(getFilteredResult);
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        getRequestUsers(pageNumber, pageSize, filter);
+        dispatch(getRequestUsers(pageNumber, pageSize, filter));
     }, [])
 
     const onPageChanged = useCallback((pageNumber: number) => {
-        getRequestUsers(pageNumber, pageSize, filter)
+        dispatch(getRequestUsers(pageNumber, pageSize, filter));
     }, [getRequestUsers, pageSize, filter])
 
     const onFilterChange = (filter: FilterType) => {
+        dispatch(getRequestUsers(1, pageSize, filter));
+    }
 
-        let filtered;
-        if (typeof filter.friend === 'string') {
-             filtered = JSON.parse(filter.friend);
-        }
-        console.log(filtered)
-        getRequestUsers(1, pageSize, filtered);
+    const followU = (userId: number) => {
+        dispatch(follow(userId))
+    }
+
+    const follow = (userId: number) => {
+        dispatch(follow(userId));
+    }
+
+    const unfollowU = (userId: number) => {
+        dispatch(unfollow(userId))
     }
 
     return (
-
         <div className={style.users}>
-            <h1>{titleText}</h1>
 
             <UsersSearchForm onFilterChange = {onFilterChange} />
             <Paginator
-                totalItemsCount ={totalItemsCount}
+                totalItemsCount = {totalItemsCount}
                 pageSize = {pageSize}
                 onPageChanged = {onPageChanged}
-                pageNumber={pageNumber}
-                portionSize={portionSize}
+                pageNumber = {pageNumber}
+                portionSize = {portionSize}
             />
-            { isFetching
-                    ? <Preloader/>
-                    :
-                    <>
-                        <div className={style.usersWrapper}>
-                            {users.map((user: IUser) => {
-                               return <User
-                                   key = {user.id}
-                                   user = {user}
-                                   unfollow = {unfollow}
-                                   follow = {follow}
-                                   followingInProgress = {followingInProgress}
-                               />
-                            })}
-                        </div>
-                    </>
-            }
+
+            <div className={style.usersWrapper}>
+                {users.map((user: IUser) => <User key = {user.id}
+                                                  user = {user}
+                                                  unfollow = {unfollowU}
+                                                  follow = {followU}
+                                                  followingInProgress = {followingInProgress}
+                    />
+                )}
+            </div>
         </div>
     );
 });
 
-export default Users;

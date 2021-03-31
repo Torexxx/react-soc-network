@@ -1,5 +1,5 @@
 import React from "react";
-import {Formik, FormikHelpers , Form, Field} from "formik";
+import {Formik, Form, Field} from "formik";
 import { FilterType } from "../../redux/users-reducer";
 
 const validateForm = (values: any) => {
@@ -11,21 +11,24 @@ type Props  = {
     onFilterChange: (filter: FilterType) => void
 }
 
-// type testProps = {
-//     setSubmitting: (isSubmitting: boolean) => void
-// }
+type FormType = {
+    term: string,
+    friend: 'true' | 'false' | 'null'
+}
 
 export const UsersSearchForm: React.FC<Props> = ({onFilterChange}) => {
-    const submit = (values: FilterType, { setSubmitting }: FormikHelpers<FilterType>) => {
-        setTimeout(() => {
-            console.log(values)
-            onFilterChange(values);
+    const submit = (values: FormType, { setSubmitting }: {setSubmitting: (isSubmitting: boolean) => void}) => {
+            const filter: FilterType  = {
+                term: values.term,
+                friend: values.friend === 'null' ? null : values.friend === 'true' ? true : false
+            }
+
+            onFilterChange(filter);
             setSubmitting(false);
-        }, 400);
     }
     return (
         <div>
-            <Formik initialValues={{ term: '', friend: null as null | boolean }}
+            <Formik initialValues={{ term: '', friend: 'null' }}
                     validate={validateForm}
                     onSubmit={submit}
             >
