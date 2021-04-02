@@ -15,13 +15,13 @@ import { compose } from 'redux';
 import store, {AppStateType} from './redux/redux-store';
 import withSuspense from "./hoc/withSuspense";
 const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"));
-const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"));
+const ProfilePage = React.lazy(() => import("./components/Profile/ProfilePage"));
 
 type MapDispatchProps = { initializeApp: () => void };
 type MapStateProps = ReturnType<typeof mapStateToProps>;
 
 const SuspendedDialogs  = withSuspense(DialogsContainer);
-const SuspendedProfile  = withSuspense(ProfileContainer);
+const SuspendedProfile  = withSuspense(ProfilePage);
 
 class App extends React.Component<MapStateProps & MapDispatchProps> {
 
@@ -84,6 +84,5 @@ const MainApp: React.FC = () => {
         </Provider>
     </Router>
 }
-
 
 export default MainApp;

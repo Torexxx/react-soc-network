@@ -45,10 +45,6 @@ export const Users: React.FC = React.memo((props) => {
         dispatch(follow(userId))
     }
 
-    const follow = (userId: number) => {
-        dispatch(follow(userId));
-    }
-
     const unfollowU = (userId: number) => {
         dispatch(unfollow(userId))
     }
