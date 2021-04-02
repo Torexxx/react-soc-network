@@ -1,12 +1,11 @@
 import React, {useEffect, useRef} from 'react';
 import Profile from "./Profile";
-import {connect, useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import {getStatus, getUserProfile, savePhoto, updateStatus, saveProfile} from "../../redux/profile-reducer";
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {ProfileType} from "../../types/types";
 import {AppStateType} from "../../redux/redux-store";
-import { compose } from 'redux';
 
 type PathParamsType = {
     userId: string
@@ -15,28 +14,6 @@ type PathParamsType = {
 type Props =  RouteComponentProps<PathParamsType>;
 
 const ProfilePage: React.FC<Props> = (props) => {
-
-    const dispatch = useDispatch();
-
-    function usePrevious(value: any) {
-        const ref = useRef();
-        useEffect(() => {
-
-            ref.current = value;
-        });
-        return ref.current;
-    }
-
-    // const prevAmount = usePrevious(props);
-
-
-
-
-    // function areEqual(prevProps: Props, nextProps: Props) {
-    //     if (prevProps.match.params.userId !== props.match.params.userId) {
-    //         updateProfilePhoto();
-    //     }
-    // }
 
     const updateStatusPage = (status: string) => {
         dispatch(updateStatus(status));
@@ -54,6 +31,27 @@ const ProfilePage: React.FC<Props> = (props) => {
     const authorizedUserId = useSelector((state : AppStateType) => state.auth.userId);
     // const isAuth = useSelector((state : AppStateType) => state.auth.isAuth);
 
+    const dispatch = useDispatch();
+
+    const usePrevious = (value: Props) => {
+        const ref = useRef<Props>();
+
+        useEffect(() => {
+            ref.current = value;
+        });
+
+        return ref.current;
+    }
+
+    const prevAmount = usePrevious(props);
+
+    useEffect(() => {
+        if (prevAmount) {
+            if (prevAmount.match.params.userId !== props.match.params.userId) {
+                updateProfilePhoto();
+            }
+        }
+    }, [props]);
 
     useEffect(() => {
         updateProfilePhoto();
@@ -88,14 +86,6 @@ const ProfilePage: React.FC<Props> = (props) => {
                  profileUpdateStatus = {profileUpdateStatus}
         />
     )
-
-    // componentDidUpdate(prevProps: Props, prevState: Props) {
-    //     if (prevProps.match.params.userId !== props.match.params.userId) {
-    //         updateProfilePhoto();
-    //     }
-    // }
-
-
 };
 
 export default withAuthRedirect(withRouter(ProfilePage));
