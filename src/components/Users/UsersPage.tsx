@@ -15,26 +15,11 @@ const UsersPage: React.FC<Props> = (props) => {
     return (
         <>
             <h1>{props.titleText}</h1>
-            {/*{isFetching ? <Preloader /> : <Users />}*/}
             {isFetching ? <Preloader /> : null}
             <Users />
         </>
     )
 }
-
-// let mapDispatchToProps = (dispatch: any) => {
-//     return {
-//         follow: (userId: number) => {
-//             dispatch(follow(userId))
-//         },
-//         unfollow: (userId: number) => {
-//             dispatch(unfollow(userId))
-//         },
-//         getRequestUsers: (page: number, pageSize: number, filter: FilterType) => {
-//             dispatch(getRequestUsers(page, pageSize, filter))
-//         }
-//     }
-// }
 
 export default UsersPage;
 

@@ -33,7 +33,7 @@ const ProfilePage: React.FC<Props> = (props) => {
 
     const dispatch = useDispatch();
 
-    const usePrevious = (value: Props) => {
+    const usePreviousProps = (value: Props) => {
         const ref = useRef<Props>();
 
         useEffect(() => {
@@ -43,11 +43,12 @@ const ProfilePage: React.FC<Props> = (props) => {
         return ref.current;
     }
 
-    const prevAmount = usePrevious(props);
+    const prevProps = usePreviousProps(props);
+
 
     useEffect(() => {
-        if (prevAmount) {
-            if (prevAmount.match.params.userId !== props.match.params.userId) {
+        if (prevProps) {
+            if (prevProps.match.params.userId !== props.match.params.userId) {
                 updateProfilePhoto();
             }
         }

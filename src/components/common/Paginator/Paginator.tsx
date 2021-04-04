@@ -5,7 +5,7 @@ import cn from 'classnames';
 type Props = {
     pageSize: number
     totalItemsCount: number
-    pageNumber: number
+    currentPage: number
     onPageChanged(pageNumber: number): void
     portionSize?: number
 }
@@ -14,7 +14,7 @@ const Paginator: React.FC<Props> = React.memo(({
     totalItemsCount,
     pageSize,
     onPageChanged,
-    pageNumber,
+    currentPage,
     portionSize = 10
   }) => {
 
@@ -41,8 +41,8 @@ const Paginator: React.FC<Props> = React.memo(({
                     .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber )
                     .map(p => <span
                         className={cn({
-                            [style.selectedPage] : p === pageNumber,
-                            [style.selectedPage2] : p === pageNumber + 1,
+                            [style.selectedPage] : p === currentPage,
+                            [style.selectedPage2] : p === currentPage + 1,
                         }, style.pageNumber) }
                         key={p}
                         onClick={() => {
