@@ -60,7 +60,7 @@ export const Users: React.FC = React.memo((props) => {
         if (currentPage !== 1) query.page = String(currentPage);
 
         history.push({
-            pathname: window.location.pathname,
+            pathname: history.location.pathname,
             search: queryString.stringify(query)
             // search: `?page=${currentPage}&term=${filter.term}&friend=${filter.friend}`
         });
