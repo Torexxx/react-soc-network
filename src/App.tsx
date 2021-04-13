@@ -63,7 +63,7 @@ class App extends React.Component<MapStateProps & MapDispatchProps> {
                             <Sider className="site-layout-background" width={200}>
                                 <Menu
                                     mode="inline"
-                                    defaultSelectedKeys={['2']}
+                                    defaultSelectedKeys={['1']}
                                     defaultOpenKeys={['sub1']}
                                     style={{ height: '100%' }}
                                 >

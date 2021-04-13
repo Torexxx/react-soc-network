@@ -38,3 +38,12 @@
  .logo {
      width: 80px;
  }
+ .login {
+     color: #fff;
+ }
+
+ .userMenu {
+     display: flex;
+     align-items: center;
+     justify-content: space-evenly;
+ }
