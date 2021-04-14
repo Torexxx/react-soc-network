@@ -2,20 +2,20 @@
     padding: 25px;
 }
 
-.users span:hover   {
-    text-decoration: underline;
-    text-decoration-color: fuchsia;
-}
+/*.users span:hover   {*/
+/*    text-decoration: underline;*/
+/*    text-decoration-color: fuchsia;*/
+/*}*/
 
 .usersWrapper {
     display: flex;
-    justify-content: space-between;
     max-width: 100%;
     flex-wrap: wrap;
 }
 
 .user {
     display: flex;
+    justify-content: space-between;
     flex-direction: column;
     align-items: center;
     border: 2px solid #7A956B;
@@ -24,6 +24,14 @@
     margin: 10px;
     max-width: 128px;
     overflow: hidden;
+}
+
+.name,
+.status {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100px;
+    white-space: nowrap;
 }
 
 .follow {

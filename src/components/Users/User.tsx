@@ -23,9 +23,9 @@ const User: React.FC<Props> = ({user, unfollow, follow, followingInProgress}) =>
                          src={user.photos.small ? user.photos.small : userPhoto}/>
                 </NavLink>
             </div>
-            <div>{user.name}</div>
+            <div className={style.name}>{user.name}</div>
         </div>
-        <div> {user.status}</div>
+         {user.status && <div className={style.status}> <b>Статус:</b> {user.status}</div>}
         <div style={{marginBottom: '10px'}}>
             { user.followed
                 ? <button disabled={followingInProgress.some((id: number) => id === user.id)}  className={style.follow}

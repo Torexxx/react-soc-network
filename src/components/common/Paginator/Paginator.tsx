@@ -39,7 +39,7 @@ const Paginator: React.FC<Props> = React.memo(({
 
                 { pages
                     .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber )
-                    .map(p => <span
+                    .map(p => <button
                         className={cn({
                             [style.selectedPage] : p === currentPage,
                             [style.selectedPage2] : p === currentPage + 1,
@@ -48,7 +48,7 @@ const Paginator: React.FC<Props> = React.memo(({
                         onClick={() => {
                             onPageChanged(p)
                         }
-                     }>{p}</span>)
+                     }>{p}</button>)
 
                 }
 

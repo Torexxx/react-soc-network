@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Header.module.css';
-import {Link, NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {UserOutlined} from '@ant-design/icons';
 import {Avatar, Button, Col, Layout, Menu, Row} from "antd";
 import {useDispatch, useSelector} from "react-redux";
@@ -21,7 +21,6 @@ export const Header: React.FC = () => {
     const {Header} = Layout;
 
     return <Header className="header">
-        <div className="logo"/>
         <Row>
             <Col span={20}>
                 <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
@@ -30,11 +29,13 @@ export const Header: React.FC = () => {
             </Col>
             <Col span={4}>
                 {isAuth
-                    ? <div className={s.userMenu}> <Button type={"primary"} onClick={logoutCallback} className={s.login}>Logout</Button>
+                    ? <div className={s.userMenu}> <Button onClick={logoutCallback} >Logout</Button>
                          <Avatar style={{backgroundColor: '#87d068'}} icon={<UserOutlined/>}/>
                          <span className={s.login}>{login}</span>
                       </div>
-                    : <Button type={'primary'} className={s.login}>Login</Button>
+                    : <Button type={'primary'} className={s.login}>
+                        <Link to={'/login'}> Login</Link>
+                      </Button>
                 }
 
             </Col>

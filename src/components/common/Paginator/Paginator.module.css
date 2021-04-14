@@ -1,23 +1,22 @@
 .pageNumber {
     font-weight: bold;
-    color: green;
+    color: #1890ff;
     cursor: pointer;
-    padding: 10px;
-    font-size: 18px;
+    padding: 6px;
+    font-size: 12px;
+    border: 1px solid #eeee
 }
 .selectedPage {
-    color: red;
     display: inline-block;
-    margin: 0 5px;
     cursor: pointer;
 
 }
-.selectedPage2 {
-    color: rebeccapurple;
-    display: inline-block;
-    margin: 0 5px;
-    cursor: pointer;
-}
+/*.selectedPage2 {*/
+/*    color: rebeccapurple;*/
+/*    display: inline-block;*/
+/*    margin: 0 5px;*/
+/*    cursor: pointer;*/
+/*}*/
 
 .paginator {
     display: flex;
@@ -29,7 +28,6 @@
 
 .pageNumber {
     padding: 10px;
-
 }
 
 .pageNumber.selectedPage {
