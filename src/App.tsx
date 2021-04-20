@@ -19,6 +19,7 @@ import withSuspense from "./hoc/withSuspense";
 
 const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"));
 const ProfilePage = React.lazy(() => import("./components/Profile/ProfilePage"));
+const ChatPage = React.lazy(() => import("./pages/Chat/ChatPage"));
 
 
 const { SubMenu } = Menu;
@@ -29,6 +30,7 @@ type MapStateProps = ReturnType<typeof mapStateToProps>;
 
 const SuspendedDialogs  = withSuspense(DialogsContainer);
 const SuspendedProfile  = withSuspense(ProfilePage);
+const SuspendedChat = withSuspense(ChatPage);
 
 class App extends React.Component<MapStateProps & MapDispatchProps> {
 
@@ -84,6 +86,7 @@ class App extends React.Component<MapStateProps & MapDispatchProps> {
                                     <Route path='/developers' render={ () => <UsersPage titleText = {"Developers"}/> }/>
                                     <Route path='/hooks' render={ () => <MainAppRenderProps /> }/>
                                     <Route path='/login' render={ () => <LoginPage /> }/>
+                                    <Route path='/chat' render={ () => <SuspendedChat /> }/>
                                     <Route path='*' render={ () => <div>404 NOT FOUND</div> }/>
                                 </Switch>
                             </Content>
