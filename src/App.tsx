@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import 'antd/dist/antd.css';
 import {Breadcrumb, Layout, Menu} from 'antd';
-import {UserOutlined} from '@ant-design/icons';
+import {UserOutlined, WechatOutlined, ProfileOutlined, PaperClipOutlined} from '@ant-design/icons';
 import {BrowserRouter as Router, Link, Redirect, Route, Switch, withRouter} from "react-router-dom";
 import {Header} from './components/Header/Header';
 import UsersPage from "./components/Users/UsersPage";
@@ -16,6 +16,7 @@ import {initializeApp} from "./redux/app-reducer";
 import {compose} from 'redux';
 import store, {AppStateType} from './redux/redux-store';
 import withSuspense from "./hoc/withSuspense";
+
 
 const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"));
 const ProfilePage = React.lazy(() => import("./components/Profile/ProfilePage"));
@@ -69,12 +70,15 @@ class App extends React.Component<MapStateProps & MapDispatchProps> {
                                     defaultOpenKeys={['sub1']}
                                     style={{ height: '100%' }}
                                 >
-                                    <SubMenu key="sub1" icon={<UserOutlined />} title="My Profile">
+                                    <SubMenu key="sub1" icon={<ProfileOutlined />} title="My Profile">
                                         <Menu.Item key="1"><Link to='/profile'>Profile</Link></Menu.Item>
                                         <Menu.Item key="2"><Link to='/dialogs'>Messages</Link></Menu.Item>
                                     </SubMenu>
                                     <SubMenu key="sub2" icon={<UserOutlined />} title="Developers">
                                         <Menu.Item key="1"><Link to='/developers'>Developers</Link></Menu.Item>
+                                    </SubMenu>
+                                    <SubMenu key="sub3" icon={<WechatOutlined  />} title="Chat">
+                                        <Menu.Item key="1"><Link to='/chat'>Chat</Link></Menu.Item>
                                     </SubMenu>
                                 </Menu>
                             </Sider>
