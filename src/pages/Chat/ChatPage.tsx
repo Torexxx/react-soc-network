@@ -10,6 +10,7 @@ export type ChatMessage = {
 }
 
 const ChatPage: React.FC = () => {
+
     return <div>
         <Chat/>
     </div>
@@ -26,17 +27,17 @@ const Chat: React.FC = () => {
 
 const Messages: React.FC = () => {
 
-    const [messages, setMessages] = useState<ChatMessage[]>([])
+    const [messages, setMessages] = useState<ChatMessage[]>([]);
 
     useEffect(() => {
         wsChannel.addEventListener('message', (event: MessageEvent) => {
-
-            setMessages(prev => [...prev, ...JSON.parse(event.data)])
+            let newMessages = JSON.parse(event.data);
+            setMessages(prevMessages => [...prevMessages, ...newMessages]);
         })
     },[])
 
     useEffect(() => {
-        ref.scrollTo(0, document.body.scrollHeight);
+        ref.scrollTo(0, ref.scrollHeight);
     }, [messages])
 
     let ref: HTMLDivElement;
@@ -60,7 +61,9 @@ const Message: React.FC<{message: ChatMessage}> = ({message}) => {
 }
 
 const AddMessageForm: React.FC = () => {
+
     const [message, setMessage] = useState('');
+    const [readyStatus, setReadyStatus] = useState<'pending' | 'open'>('pending');
 
     const sendMessage = () => {
         if (!message) return;
@@ -68,10 +71,19 @@ const AddMessageForm: React.FC = () => {
         setMessage('');
     }
 
+    useEffect(() => {
+        wsChannel.addEventListener('open', () => {
+            setReadyStatus('open')
+        })
+    }, [] )
+
+
     return <div>
-        <div><textarea onChange={(e) => setMessage(e.currentTarget.value)  } value={message}/></div>
         <div>
-            <button  onClick={sendMessage}>Отправить</button>
+            <textarea onChange={(e) => setMessage(e.currentTarget.value)} value={message}/>
+        </div>
+        <div>
+            <button onClick={sendMessage} disabled={readyStatus !== 'open'} >Отправить</button>
         </div>
     </div>
 }
