@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from 'react';
 
-
-export type ChatMessage = {
-    message: string,
-    photo: string
-    userId: number
-    userName: string
-}
+// export type ChatMessage = {
+//     message: string,
+//     photo: string
+//     userId: number
+//     userName: string
+// }
 
 const ChatPage: React.FC = () => {
     return <div>
@@ -53,6 +52,7 @@ const Messages: React.FC<{wsChannel: WebSocket | null}> = ({wsChannel}) => {
 
     const [messages, setMessages] = useState<ChatMessage[]>([]);
 
+
     useEffect(() => {
         let messageHandler = (event: MessageEvent) => {
             let newMessages = JSON.parse(event.data);
@@ -61,7 +61,6 @@ const Messages: React.FC<{wsChannel: WebSocket | null}> = ({wsChannel}) => {
         wsChannel?.addEventListener('message', messageHandler);
 
         return () => {
-            console.log('cleanUPPPPP')
             wsChannel?.removeEventListener('message', messageHandler);
         }
     },[wsChannel])
@@ -85,7 +84,8 @@ const Message: React.FC<{message: ChatMessage}> = ({message}) => {
     return <div>
        <img style={{width: '30px'}} alt={'avatar'} src={message.photo}/> <b>{message.userName}</b>
         <br/>
-        {message.message}
+
+        { message.message}
         <hr/>
     </div>
 }
