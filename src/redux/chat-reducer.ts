@@ -4,7 +4,8 @@ import {PhotosType, PostType, ProfileType} from "../types/types";
 import { BaseThunkType, InferActionsTypes} from "./redux-store";
 import {profileAPI} from "../api/profile-api";
 import {FormAction} from "redux-form/lib/actions";
-import {ChatMessage} from "../api/chat-api";
+import {chatAPI, ChatMessage} from "../api/chat-api";
+import { Dispatch } from "redux";
 
 let initialState = {
     messages: [] as ChatMessage[]
@@ -13,14 +14,13 @@ let initialState = {
 const chatReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
 
     switch (action.type) {
-        case 'SN/CHAT/MESSAGES_RECEVIED':
+        case 'SN/chat/MESSAGES_RECEIVED':
 
             return {
                 ...state,
-                messages: [...state.messages,  action.payload.message]
+                messages: [...state.messages, ...action.payload.messages]
 
             };
-
 
         default:
             return state;
@@ -28,13 +28,35 @@ const chatReducer = (state = initialState, action: ActionsTypes): InitialStateTy
 };
 
 export const actions = {
-    messagesReceived: (messages: ChatMessage[]) => ({type:"SN/CHAT/MESSAGES_RECEVIED", payload: {messages}} as const),
+    messagesReceived: (messages: ChatMessage[]) => ({type:"SN/chat/MESSAGES_RECEIVED", payload: {messages}} as const),
+};
+
+let _newMessageHandler: ((messages: ChatMessage[]) => void) | null = null;
+
+const newMessageHandlerCreator = (dispatch: Dispatch) => {
+    if (_newMessageHandler === null) {
+        _newMessageHandler = (messages) => {
+            dispatch(actions.messagesReceived(messages));
+        }
+    }
+
+    return _newMessageHandler;
+}
+
+export const startMessagesListening = (): ThunkType => async (dispatch) => {
+    chatAPI.start();
+    chatAPI.subscribe(newMessageHandlerCreator(dispatch));
 
 };
 
-// export const sendMessage = (messages: ChatMessage ): ThunkType => async (dispatch) => {
-//     dispatch(actions.messagesReceived(messages))
-// }
+export const stopMessagesListening = (): ThunkType => async (dispatch) => {
+    chatAPI.stop();
+    chatAPI.unsubscribe(newMessageHandlerCreator(dispatch));
+};
+
+export const sendMessage = (message: string): ThunkType => async (dispatch) => {
+    chatAPI.sendMessage(message);
+};
 
 
 
